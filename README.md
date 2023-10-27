@@ -5,12 +5,13 @@
 Soccer is the world's most popular sport, but many people in America do not have a team they follow. FootyMatchup takes your other favorite sports teams and gives you a soccer team with similar style and history that you can start to follow!
 
 ## Wireframes
-![Carolina Code School-3](https://github.com/dberr715/finalproject/assets/134158257/c5825de3-d241-4f82-9860-c6faffc52e44)
-![Carolina Code School-4](https://github.com/dberr715/finalproject/assets/134158257/6302af22-bc9b-4676-9d04-59d59b079021)
-![Carolina Code School-5](https://github.com/dberr715/finalproject/assets/134158257/08aaa85b-145b-4607-bdd9-acc4d8bb78f4)
-![Carolina Code School-6](https://github.com/dberr715/finalproject/assets/134158257/a778f88e-9091-40df-8aa7-01ed60e43a7c)
-![Carolina Code School-7](https://github.com/dberr715/finalproject/assets/134158257/0f5238e2-5191-4807-8b96-82ecd0c48a55)
-![Carolina Code School-8](https://github.com/dberr715/finalproject/assets/134158257/acfdd760-973a-4e82-8870-c18db605442c)
+
+![Carolina Code School-3](https://github.com/dberr715/finalProject/assets/134158257/cdfbf61b-dfed-4fc5-b337-c93c0afa300c)
+![Carolina Code School-4](https://github.com/dberr715/finalProject/assets/134158257/7b793d9c-04e4-429f-9dc4-7c8bc81add9e)
+![Carolina Code School-5](https://github.com/dberr715/finalProject/assets/134158257/35f77394-d23d-4a14-b628-07da8d745b24)
+![Carolina Code School-6](https://github.com/dberr715/finalProject/assets/134158257/3d06c93d-0e0f-4fb5-914d-e39726b89cb0)
+![Carolina Code School-7](https://github.com/dberr715/finalProject/assets/134158257/43557ee0-3ed7-46f3-8b68-06612c09fe8e)
+![Carolina Code School-8](https://github.com/dberr715/finalProject/assets/134158257/f830b0db-6316-4123-9064-13de92b83f3c)
 
 
 ## User Stories
