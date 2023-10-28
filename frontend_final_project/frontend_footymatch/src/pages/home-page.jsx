@@ -1,13 +1,13 @@
 import { redirect, useLoaderData } from "react-router-dom";
 import HomeText from "../components/HomeText";
-import Navigation from "../components/navigation";
-
 
 export async function loader() {
   try {
-    const url = `http://localhost:8000/urldata/?user=${localStorage.getItem("user_id")}`;
-    // const url = `${import.meta.env.VITE_API_URL}/urldata/`;
-    const linkList = await fetch(url, {
+    const url = `http://localhost:8000/user/?user=${localStorage.getItem(
+      "username"
+    )}`;
+    // const url = `${import.meta.env.VITE_API_URL}/user/`;
+    const userList = await fetch(url, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
@@ -15,20 +15,21 @@ export async function loader() {
     if (!Array.isArray(linkList)) {
       throw Error("Not an array of links");
     }
-    console.log(linkList.title);
-    return { linkList };
+    console.log("UserList", userList);
+    console.log(userList.username);
+    return { userList };
   } catch (error) {
     return redirect("/login");
   }
 }
 
-
-
-
 export default function Home() {
+    const{userList} = useLoaderData();
+
   return (
     <>
       <HomeText />
+      <UserList userList={userList} />
     </>
   );
 }
