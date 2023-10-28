@@ -1,8 +1,8 @@
 import { redirect, useLoaderData } from "react-router-dom";
 import HomeText from "../components/HomeText";
 import UserList from "../components/UserList";
-// import AIResponse from "../components/AIResponse";
-import {FootballData} from "../components/FootballData";
+import AIResponse from "../components/AIResponse";
+// import { FootballData } from "../components/FootballData";
 
 export async function loader() {
   try {
@@ -32,8 +32,8 @@ export default function Home() {
   return (
     <>
       <HomeText />
-      <FootballData/>
-      {/* <AIResponse/> */}
+      {/* <FootballData /> */}
+      <AIResponse />
       <UserList userList={userList} />
     </>
   );

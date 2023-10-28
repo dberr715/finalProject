@@ -1,4 +1,5 @@
-
+import React, { useEffect, useState } from "react";
+////////ACTUAL DATA FROM OPENAI//////////
 
 // export default function AIResponse() {
 //   const key = import.meta.env.VITE_OPENAI_API_KEY;
@@ -26,7 +27,7 @@
 //         ],
 //       }),
 //     });
-    
+
 //     const data = await response.json();
 //     console.log("ChatResponse: ", data.choices[0].message.content);
 //     return data.choices[0].message.content;
@@ -34,3 +35,33 @@
 
 //   fetchData();
 // }
+
+///////JSON call to limit api requests/////////
+
+function AIResponse() {
+  const [content, setContent] = useState("");
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        // Use the correct relative path to the JSON file
+        const response = await fetch("../samplechatresponse.json");
+        const data = await response.json();
+        const content = data.choices[0].message.content;
+        setContent(content);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      <h3>{content}</h3>
+    </div>
+  );
+}
+
+export default AIResponse;
