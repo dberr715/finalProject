@@ -1,7 +1,8 @@
 import { redirect, useLoaderData } from "react-router-dom";
 import HomeText from "../components/HomeText";
 import UserList from "../components/UserList";
-import AIResponse from "../components/AIRespons";
+// import AIResponse from "../components/AIResponse";
+import {FootballData} from "../components/FootballData";
 
 export async function loader() {
   try {
@@ -18,7 +19,7 @@ export async function loader() {
       throw Error("Not an array of links");
     }
     console.log("UserList", userList);
-    console.log(userList.username);
+    // console.log(userList.username);
     return { userList };
   } catch (error) {
     return redirect("/login");
@@ -31,7 +32,8 @@ export default function Home() {
   return (
     <>
       <HomeText />
-      <AIResponse/>
+      <FootballData/>
+      {/* <AIResponse/> */}
       <UserList userList={userList} />
     </>
   );
