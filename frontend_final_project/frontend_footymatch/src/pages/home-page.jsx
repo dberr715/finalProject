@@ -1,5 +1,6 @@
 import { redirect, useLoaderData } from "react-router-dom";
 import HomeText from "../components/HomeText";
+import UserList from "../components/UserList";
 
 export async function loader() {
   try {
@@ -12,7 +13,7 @@ export async function loader() {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
     }).then((response) => response.json());
-    if (!Array.isArray(linkList)) {
+    if (!Array.isArray(userList)) {
       throw Error("Not an array of links");
     }
     console.log("UserList", userList);
@@ -24,7 +25,7 @@ export async function loader() {
 }
 
 export default function Home() {
-    const{userList} = useLoaderData();
+  const { userList } = useLoaderData();
 
   return (
     <>
