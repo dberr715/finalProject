@@ -1,6 +1,7 @@
 import { redirect, useLoaderData } from "react-router-dom";
 import HomeText from "../components/HomeText";
 import UserList from "../components/UserList";
+import AIResponse from "../components/AIRespons";
 
 export async function loader() {
   try {
@@ -30,6 +31,7 @@ export default function Home() {
   return (
     <>
       <HomeText />
+      <AIResponse/>
       <UserList userList={userList} />
     </>
   );

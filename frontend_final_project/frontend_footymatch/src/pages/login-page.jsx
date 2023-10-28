@@ -36,7 +36,7 @@ export default function LoginPage() {
       }).then((response) => response.json());
 
       const { access, refresh, userId } = data;
-      console.log("DATAAAAAA", data);
+      
       localStorage.clear();
       localStorage.setItem("user_id", userId);
       localStorage.setItem("access_token", access);
