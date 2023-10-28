@@ -3,14 +3,33 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./pages/error-page";
 
-
+import Root from "./routes/root";
+import Home, { loader as homeLoader } from "./pages/home-page";
+import LoginPage from "./pages/login-page";
+import LogoutPage, { loader as logoutLoader } from "./pages/logout-page";
 import "./index.css";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Root />,
     errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "home/",
+        element: <Home />,
+        loader: homeLoader,
+      },
+      {
+        path: "login/",
+        element: <LoginPage />,
+      },
+      {
+        path: "logout/",
+        element: <LogoutPage />,
+        loader: logoutLoader,
+      },
+    ],
   },
 ]);
 
