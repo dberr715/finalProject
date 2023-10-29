@@ -5,6 +5,10 @@ import AIResponse from "../components/AIResponse";
 import Navigation from "../components/navigation";
 // import { FootballData } from "../components/FootballData";
 
+
+
+
+////////Data to make sure Users are loggable////////
 export async function loader() {
   try {
     const url = `http://localhost:8000/user/?user=${localStorage.getItem(
