@@ -7,6 +7,7 @@ import Root from "./routes/root";
 import Home, { loader as homeLoader } from "./pages/home-page";
 import LoginPage from "./pages/login-page";
 import LogoutPage, { loader as logoutLoader } from "./pages/logout-page";
+import CreateAccount from "./pages/create-account-page";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
         path: "logout/",
         element: <LogoutPage />,
         loader: logoutLoader,
+      },
+      {
+        path: "create/",
+        element: <CreateAccount />,
       },
     ],
   },

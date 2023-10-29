@@ -5,22 +5,24 @@ import "../index.css";
 export default function Navigation() {
   const { isAuth } = useAuth();
   return (
-    <div className="navigation">
-      <div className="active" href="#home">
-        {isAuth ? <Link to="/">Home</Link> : null}
+    <div>
+      <div>
+        <Link to="/">Home</Link>
+        {/* {isAuth ? <Link to="/">Home</Link> : null} */}
       </div>
 
-
-
-{/* Need to link to Favorite dropdown/page here */}
-      <div href="#Favorites">Favorites</div> 
-      <div href="#Log-in">
+      {/* Need to link to Favorite dropdown/page here */}
+      <div>Favorites</div>
+      <div>
         {" "}
         {isAuth ? (
           <Link to="/login">Login</Link>
         ) : (
           <Link to="/logout">Logout</Link>
         )}
+      </div>
+      <div>
+        <Link to="/create">Create Account</Link>
       </div>
     </div>
   );

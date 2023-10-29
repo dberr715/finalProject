@@ -2,6 +2,7 @@ import { redirect, useLoaderData } from "react-router-dom";
 import HomeText from "../components/HomeText";
 import UserList from "../components/UserList";
 import AIResponse from "../components/AIResponse";
+import Navigation from "../components/navigation";
 // import { FootballData } from "../components/FootballData";
 
 export async function loader() {
@@ -31,6 +32,7 @@ export default function Home() {
 
   return (
     <>
+      {/* <Navigation /> */}
       <HomeText />
       {/* <FootballData /> */}
       <AIResponse />
