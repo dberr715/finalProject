@@ -24,9 +24,9 @@ export default function Navigation() {
           <i className="fa fa-caret-down"></i>
         </button>
         <div className="dropdown-content">
-          <Link to="#">Link 1</Link>
-          <Link to="#">Link 2</Link>
-          <Link to="#">Link 3</Link>
+          <Link to="#">Favorite Team 1</Link>
+          <Link to="#">Favorite Team 2</Link>
+          <Link to="#">Favorite Team 3</Link>
         </div>
       </div>
       <div>
@@ -35,6 +35,9 @@ export default function Navigation() {
         ) : (
           <Link to="/login">Login</Link>
         )}
+      </div>
+      <div>
+        <Link to="sample">Sample</Link>
       </div>
     </div>
   );

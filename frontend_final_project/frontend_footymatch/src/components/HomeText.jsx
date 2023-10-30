@@ -1,4 +1,5 @@
 import "../index.css";
+import AIresponse from "./AIResponse";
 export default function HomeText() {
   return (
     <>
