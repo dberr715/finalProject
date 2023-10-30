@@ -1,12 +1,14 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
-class User(models.Model):
-    username = models.CharField()
-    password = models.CharField()
-    token = models.CharField()
+class FMUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    # password = models.CharField()
+    # token = models.CharField()
     favorites = models.CharField(default="No Favorites Set")
 
     def __str__(self):
-        return self.username
+        return self.user.username

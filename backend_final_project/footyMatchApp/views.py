@@ -1,4 +1,4 @@
-from .models import User
+from .models import FMUser
 from rest_framework import viewsets, status
 from .serializers import (
     UserSerializer,
@@ -12,7 +12,7 @@ from django.shortcuts import redirect
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by("-username")
+    queryset = FMUser.objects.all()
     serializer_class = UserSerializer
 
 
