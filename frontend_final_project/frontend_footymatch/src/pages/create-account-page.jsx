@@ -5,7 +5,7 @@ export default function CreateAccount() {
     <div className="registration form">
       <header>Sign Up</header>
       <form action="#">
-        <input type="text" placeholder="Enter your email" id="email" />
+        <input type="text" placeholder="Enter a username" id="email" />
         <input type="password" placeholder="Create a password" id="password" />
         <input
           type="password"
