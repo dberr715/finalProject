@@ -12,7 +12,7 @@
 //       const options = {
 //         method: "GET",
 //         headers: {
-//           "X-RapidAPI-Key": key, // No need for string interpolation here
+//           "X-RapidAPI-Key": key,
 //           "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
 //         },
 //       };
@@ -28,8 +28,8 @@
 //       }
 //     }
 
-//     fetchData(); // Call the async function when the component mounts
-//   }, []); // The empty dependency array ensures it runs only once
+//     fetchData(); 
+//   }, []); 
 
 //   return (
 //     <div>
