@@ -12,7 +12,8 @@ export default function TeamPage() {
 
   async function fetchData1() {
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
-    const nameUrl = "https://api-football-v1.p.rapidapi.com/v3/teams?id=33";
+    const nameUrl =
+      "https://api-football-v1.p.rapidapi.com/v3/teams?name=manchester%20city";
     const options = {
       method: "GET",
       headers: {
@@ -39,7 +40,7 @@ export default function TeamPage() {
       console.error(error);
     }
   }
-// Uncomment when ready to run////// 
+  // Uncomment when ready to run//////
   //  fetchData1();
 
   return (
