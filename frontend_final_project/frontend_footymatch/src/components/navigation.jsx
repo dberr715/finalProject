@@ -36,9 +36,6 @@ export default function Navigation() {
           <Link to="/login">Login</Link>
         )}
       </div>
-      <div>
-        <Link to="sample">Sample</Link>
-      </div>
     </div>
   );
 }

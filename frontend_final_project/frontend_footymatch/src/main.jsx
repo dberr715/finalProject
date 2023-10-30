@@ -11,7 +11,7 @@ import LogoutPage, { loader as logoutLoader } from "./pages/logout-page";
 import CreateAccount from "./pages/create-account-page";
 import "./index.css";
 import TeamPage from "./pages/team-page";
-import Sample from "./pages/sample";
+
 
 const router = createBrowserRouter([
   {
@@ -37,10 +37,7 @@ const router = createBrowserRouter([
         path: "create/",
         element: <CreateAccount />,
       },
-      {
-        path: "sample/",
-        element: <Sample />,
-      },
+
       {
         path: "home/",
         element: <Home />,

@@ -3,10 +3,8 @@ import HomeText from "../components/HomeText";
 import UserList from "../components/UserList";
 // import AIResponse from "../components/AIResponse";
 import Navigation from "../components/navigation";
+
 // import { FootballData } from "../components/FootballData";
-
-
-
 
 ////////Data to make sure Users are loggable////////
 export async function loader() {
@@ -38,9 +36,10 @@ export default function Home() {
     <>
       {/* <Navigation /> */}
       <HomeText />
+
       {/* <FootballData /> */}
       {/* <AIResponse /> */}
-      <UserList userList={userList} />
+      {/* <UserList userList={userList} /> */}
     </>
   );
 }

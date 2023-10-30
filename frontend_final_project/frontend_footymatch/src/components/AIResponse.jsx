@@ -36,7 +36,7 @@ export default function AIResponse() {
       );
 
       const data = await response.json();
-      console.log("ChatResponse: ", data.choices[0].message.content);
+
       setRec(data.choices[0].message.content);
     } catch (error) {
       console.log("Unable to fetch data: ", error);
@@ -47,7 +47,8 @@ export default function AIResponse() {
     <div>
       <input
         type="text"
-        placeholder="Enter sports team names"
+        placeholder="🏀🏈⚾️🎾"
+        
         value={inputText}
         onChange={handleInputChange}
       />
