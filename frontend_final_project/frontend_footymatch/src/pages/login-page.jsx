@@ -1,8 +1,6 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
-import { Form } from "react-router-dom";
-import "../index.css";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -36,12 +34,12 @@ export default function LoginPage() {
       }).then((response) => response.json());
 
       const { access, refresh, userId } = data;
-      
+
       localStorage.clear();
       localStorage.setItem("user_id", userId);
       localStorage.setItem("access_token", access);
       localStorage.setItem("refresh_token", refresh);
-      console.log("We're IN!");
+      console.log("Logged in successfully!");
       setIsAuth(true);
       return navigate(`/home`);
     } catch (error) {
@@ -51,26 +49,38 @@ export default function LoginPage() {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <label>
-        Username
-        <input
-          type="text"
-          name="username"
-          value={username}
-          onChange={handleChangeUsername}
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handleChangePassword}
-        />
-      </label>
-      <button type="submit">Login</button>
-    </Form>
+    <div className="container">
+      <form onSubmit={handleSubmit}>
+        <div className="login form">
+          <header>Login</header>
+          <label>
+            Username
+            <input
+              type="text"
+              name="username"
+              value={username}
+              onChange={handleChangeUsername}
+            />
+          </label>
+          <label>
+            Password
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={handleChangePassword}
+            />
+          </label>
+          <a href="#">Forgot password?</a>
+          <input type="submit" class="button" value="Login" />
+        </div>
+        <div className="signup">
+          <span className="signup">
+            Don't have an account?
+            <label htmlFor="check">Signup</label>
+          </span>
+        </div>
+      </form>
+    </div>
   );
 }
