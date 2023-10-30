@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
-
+import { Link } from "react-router-dom";
 export default function LoginPage() {
   const navigate = useNavigate();
   const { setIsAuth } = useAuth();
@@ -72,12 +72,15 @@ export default function LoginPage() {
             />
           </label>
           <a href="#">Forgot password?</a>
-          <input type="submit" class="button" value="Login" />
+          <input type="submit" className="button" value="Login" />
         </div>
         <div className="signup">
-          <span className="signup">
+          <span className="signup1">
             Don't have an account?
-            <label htmlFor="check">Signup</label>
+            <label className="signup2">
+              <br />
+              <Link to="/create">Sign Up</Link>
+            </label>
           </span>
         </div>
       </form>

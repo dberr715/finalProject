@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function CreateAccount() {
   return (
     <div className="registration form">
-      <header>Signup</header>
+      <header>Sign Up</header>
       <form action="#">
         <input type="text" placeholder="Enter your email" id="email" />
         <input type="password" placeholder="Create a password" id="password" />
@@ -12,12 +12,12 @@ export default function CreateAccount() {
           placeholder="Confirm your password"
           id="confirmPassword"
         />
-        <input type="submit" class="button" value="Signup" />
+        <input type="submit" className="button" value="Sign Up" />
       </form>
       <div className="signup">
         <span className="signup">Already have an account?</span>
-        <div>
-          <Link to="/login"><span>Login</span></Link>
+        <div className="signup">
+          <Link to="/login"><span className="login1">Login</span></Link>
         </div>
       </div>
     </div>

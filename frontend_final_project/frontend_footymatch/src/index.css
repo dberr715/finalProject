@@ -204,12 +204,30 @@ body {
 .signup {
   font-size: 17px;
   text-align: center;
+  color: white;
+}
+
+.signup1 {
+  font-size: 17px;
+  text-align: center;
+  color: #009579;
+}
+.signup2 {
+  font-size: 17px;
+  text-align: center;
+  color: #009579;
 }
 .signup label {
   color: #009579;
   cursor: pointer;
 }
 .signup label:hover {
+  text-decoration: underline;
+}
+.login1 {
+  font-size: 17px;
+  text-align: center;
+  color: black;
   text-decoration: underline;
 }
 
