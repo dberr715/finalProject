@@ -1,7 +1,7 @@
 import { redirect, useLoaderData } from "react-router-dom";
 import HomeText from "../components/HomeText";
 import UserList from "../components/UserList";
-import AIResponse from "../components/AIResponse";
+// import AIResponse from "../components/AIResponse";
 import Navigation from "../components/navigation";
 // import { FootballData } from "../components/FootballData";
 
@@ -39,7 +39,7 @@ export default function Home() {
       {/* <Navigation /> */}
       <HomeText />
       {/* <FootballData /> */}
-      <AIResponse />
+      {/* <AIResponse /> */}
       <UserList userList={userList} />
     </>
   );
