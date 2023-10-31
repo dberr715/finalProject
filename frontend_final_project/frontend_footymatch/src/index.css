@@ -123,7 +123,7 @@
 }
 
 /* Import Google font - Poppins */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -239,4 +239,22 @@ body {
 .button:hover {
   background-color: #4caf50; /* Green */
   color: white;
+}
+
+.loading-spinner {
+  background-image: url("../public/soccerball.png"); 
+  /* Soccer Ball icon by Icons8 */
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

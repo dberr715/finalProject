@@ -1,6 +1,11 @@
 import "../index.css";
 import AIresponse from "./AIResponse";
+import React, { useState } from "react";
 export default function HomeText() {
+  const [team, setTeam] = useState("");
+  const handleInputChange = (e) => {
+    setTeam(e.target.value);
+  };
   return (
     <>
       <h1>Welcome to FootyMatch!</h1>
@@ -12,16 +17,13 @@ export default function HomeText() {
         </label>
       </form> */}
       <h4>⚽️Find your new soccer team to support⚽️</h4>
-      <p>
-        Type 1 or more other sports teams you like to figure out which soccer
-        team to follow!{" "}
-      </p>
+      <p>Type 1 or more sports teams in to find your soccer team match! </p>
       <AIresponse />
-      <br/>
+      <br />
       <h4>Already have a team?</h4>
-      <h5>Search for it below!</h5>
+      <p>Search for it below!</p>
 
-      <input type="text" placeholder="🔍" />
+      <input type="text" value={team} onChange={handleInputChange} placeholder="🔍" />
       <button type="submit">Search</button>
     </>
   );
