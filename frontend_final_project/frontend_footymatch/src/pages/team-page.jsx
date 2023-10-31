@@ -3,14 +3,14 @@ import React, { useState, useEffect } from "react";
 import "../index.css";
 import HomeText from "../components/HomeText";
 
-export default function TeamPage() {
+export default function TeamPage(props) {
   const [teamName, setTeamName] = useState("");
   const [logo, setLogo] = useState("");
   const [country, setCountry] = useState("");
   const [stadium, setStadium] = useState("");
   const [stadiumPic, setStadiumPic] = useState("");
   
-  const team = <HomeText team={team}/>
+  
 
   async function fetchData1() {
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;

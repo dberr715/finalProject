@@ -1,10 +1,14 @@
 import "../index.css";
 import AIresponse from "./AIResponse";
 import React, { useState } from "react";
-export default function HomeText() {
+export default function HomeText(props) {
   const [team, setTeam] = useState("");
   const handleInputChange = (e) => {
     setTeam(e.target.value);
+  };
+
+  const handleSearchClick = () => {
+    props.onSearch(team);
   };
   return (
     <>
@@ -23,8 +27,15 @@ export default function HomeText() {
       <h4>Already have a team?</h4>
       <p>Search for it below!</p>
 
-      <input type="text" value={team} onChange={handleInputChange} placeholder="🔍" />
-      <button type="submit">Search</button>
+      <input
+        type="text"
+        value={team}
+        onChange={handleInputChange}
+        placeholder="🔍"
+      />
+      <button type="submit" onClick={handleSearchClick}>
+        Search
+      </button>
     </>
   );
 }
