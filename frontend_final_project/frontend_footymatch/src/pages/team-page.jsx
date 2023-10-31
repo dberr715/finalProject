@@ -1,20 +1,21 @@
 // TeamPage.js
 import React, { useState, useEffect } from "react";
 import "../index.css";
-import HomeText from "../components/HomeText";
+import { useParams } from "react-router-dom";
+// import HomeText from "../components/HomeText";
 
 export default function TeamPage(props) {
+  const params = useParams();
+  console.log(params);
   const [teamName, setTeamName] = useState("");
   const [logo, setLogo] = useState("");
   const [country, setCountry] = useState("");
   const [stadium, setStadium] = useState("");
   const [stadiumPic, setStadiumPic] = useState("");
-  
-  
 
   async function fetchData1() {
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
-    const nameUrl = `https://api-football-v1.p.rapidapi.com/v3/teams?name=${props.team}`;
+    const nameUrl = `https://api-football-v1.p.rapidapi.com/v3/teams?name=${params.teamname}`;
     const options = {
       method: "GET",
       headers: {
@@ -55,5 +56,3 @@ export default function TeamPage(props) {
     </div>
   );
 }
-
-  

@@ -8,7 +8,7 @@ import Root from "./routes/root";
 import Home from "./pages/home-page";
 import { redirect } from "react-router-dom";
 import LoginPage from "./pages/login-page";
-import LogoutPage, { loader as logoutLoader } from "./pages/logout-page";
+import LogoutPage, { logoutLoader } from "./pages/logout-page";
 import CreateAccount from "./pages/create-account-page";
 import "./index.css";
 import TeamPage from "./pages/team-page";
@@ -25,7 +25,8 @@ const router = createBrowserRouter([
         element: <LoginPage />,
       },
       {
-        path: "team/",
+        path: "team/:teamname",
+        // path: "team/",
         element: <TeamPage />,
       },
       {

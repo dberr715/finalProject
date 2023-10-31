@@ -1,15 +1,26 @@
 import "../index.css";
 import AIresponse from "./AIResponse";
 import React, { useState } from "react";
-export default function HomeText(props) {
+import { useNavigate } from "react-router-dom";
+
+export default function HomeText() {
+  const navigate = useNavigate();
+  const [searchedTeam, setSearchedTeam] = useState("");
+
+  const handleSearch = (team) => {
+    setSearchedTeam(team);
+  };
+
   const [team, setTeam] = useState("");
   const handleInputChange = (e) => {
     setTeam(e.target.value);
   };
 
   const handleSearchClick = () => {
-    props.onSearch(team);
+    handleSearch(team);
+    navigate(`/team/${team}`, { team });
   };
+
   return (
     <>
       <h1>Welcome to FootyMatch!</h1>
