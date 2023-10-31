@@ -1,17 +1,15 @@
-// TeamPage.js
 import React, { useState, useEffect } from "react";
 import "../index.css";
 import { useParams } from "react-router-dom";
-// import HomeText from "../components/HomeText";
 
 export default function TeamPage(props) {
   const params = useParams();
-  console.log(params);
   const [teamName, setTeamName] = useState("");
   const [logo, setLogo] = useState("");
   const [country, setCountry] = useState("");
   const [stadium, setStadium] = useState("");
   const [stadiumPic, setStadiumPic] = useState("");
+  const [error, setError] = useState(null); // New state for error handling
 
   async function fetchData1() {
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
@@ -26,19 +24,28 @@ export default function TeamPage(props) {
 
     try {
       const response = await fetch(nameUrl, options);
-      const result = await response.json();
-      const name = result.response[0].team.name;
-      const logo = result.response[0].team.logo;
-      const stadium = result.response[0].venue.name;
-      const stadiumPic = result.response[0].venue.image;
-      const country = result.response[0].team.country;
-      setTeamName(name);
-      setLogo(logo);
-      setStadium(stadium);
-      setStadiumPic(stadiumPic);
-      setCountry(country);
+
+      if (response.ok) {
+        const result = await response.json();
+        const name = result.response[0].team.name;
+        const logo = result.response[0].team.logo;
+        const stadium = result.response[0].venue.name;
+        const stadiumPic = result.response[0].venue.image;
+        const country = result.response[0].team.country;
+        setTeamName(name);
+        setLogo(logo);
+        setStadium(stadium);
+        setStadiumPic(stadiumPic);
+        setCountry(country);
+      } else {
+        // Handle API error here
+        setError("Team not found. Please try again.");
+      }
     } catch (error) {
       console.error(error);
+      setError(
+        "That is not a professional soccer team, please check your spelling and try again!"
+      );
     }
   }
 
@@ -48,11 +55,19 @@ export default function TeamPage(props) {
 
   return (
     <div>
-      <p>Country: {country}</p>
-      <p>Team Name: {teamName}</p>
-      <img src={logo} alt="Team Logo" />
-      <p>Stadium Name: {stadium}</p>
-      <img src={stadiumPic} alt="Stadium Pic" />
+      {error ? (
+        // Display the error message if an error occurred
+        <p className="error-message">{error}</p>
+      ) : (
+        // Display team information if no error
+        <>
+          <p>Country: {country}</p>
+          <p>Team Name: {teamName}</p>
+          <img src={logo} alt="Team Logo" />
+          <p>Stadium Name: {stadium}</p>
+          <img src={stadiumPic} alt="Stadium Pic" />
+        </>
+      )}
     </div>
   );
 }

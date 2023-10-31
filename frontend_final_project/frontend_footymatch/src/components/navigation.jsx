@@ -12,9 +12,9 @@ export default function Navigation() {
         <Link to="/home">Home</Link>
       </div>
       {/* Need to link to Favorite dropdown/page here */}
-      <div>
+      {/* <div>
         <Link to="/team">TeamPage</Link>
-      </div>
+      </div> */}
       <div>
         <Link to="/create">Create Account</Link>
       </div>
