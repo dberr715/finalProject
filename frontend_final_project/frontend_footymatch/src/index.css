@@ -1,4 +1,6 @@
-/* ResponseModal.css (or your CSS file) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Styles for the modal background */
 .modal {
@@ -48,8 +50,6 @@
 }
 
 /* Make sure to link your CSS file in your React component */
-
-
 
 /* Add a black background color to the top navigation */
 .topnav {

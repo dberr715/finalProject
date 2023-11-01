@@ -12,7 +12,8 @@ import LogoutPage, { logoutLoader } from "./pages/logout-page";
 import CreateAccount from "./pages/create-account-page";
 import "./index.css";
 import TeamPage from "./pages/team-page";
-import LeagueTables from "./pages/league-tables";
+import Live from "./components/Live";
+import GameDetails from "./pages/game-details";
 
 const router = createBrowserRouter([
   {
@@ -26,8 +27,12 @@ const router = createBrowserRouter([
         element: <LoginPage />,
       },
       {
-        path: "table/",
-        element: <LeagueTables />,
+        path: "game/:id",
+        element: <GameDetails />,
+      },
+      {
+        path: "live/",
+        element: <Live />,
       },
       {
         path: "team/:teamname",

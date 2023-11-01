@@ -19,7 +19,7 @@ export default function Navigation() {
         <Link to="/create">Create Account</Link>
       </div>
       <div>
-        <Link to="/table">League Tables</Link>
+        <Link to="/live">Live</Link>
       </div>
       <div className="dropdown">
         <button className="dropbtn">
