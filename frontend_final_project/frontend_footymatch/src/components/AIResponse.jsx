@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Spinner from "./Spinner";
 import ResponseModal from "./ResponseModal";
 
-export default function AIResponse() {
+export default function AIResponse({ handleSearch }) {
   const key = import.meta.env.VITE_OPENAI_API_KEY;
   const [inputText, setInputText] = useState("");
   const [rec, setRec] = useState("");
@@ -70,7 +70,13 @@ export default function AIResponse() {
       </button>
       {isLoading ? <Spinner /> : null}
 
-      {isModalOpen && <ResponseModal rec={rec} onClose={closeModal} />}
+      {isModalOpen && (
+        <ResponseModal
+          rec={rec}
+          onClose={closeModal}
+          handleSearch={handleSearch} // Pass handleSearch to ResponseModal
+        />
+      )}
     </div>
   );
 }
