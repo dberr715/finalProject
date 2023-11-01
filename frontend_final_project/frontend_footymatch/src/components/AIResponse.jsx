@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Spinner from "./Spinner";
+import ResponseModal from "./ResponseModal";
 
 export default function AIResponse() {
   const key = import.meta.env.VITE_OPENAI_API_KEY;
   const [inputText, setInputText] = useState("");
   const [rec, setRec] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleInputChange = (e) => {
     setInputText(e.target.value);
@@ -43,11 +45,16 @@ export default function AIResponse() {
       const data = await response.json();
 
       setRec(data.choices[0].message.content);
+      setIsModalOpen(true);
     } catch (error) {
       console.log("Unable to fetch data: ", error);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -59,11 +66,11 @@ export default function AIResponse() {
         onChange={handleInputChange}
       />
       <button className="match" onClick={fetchData}>
-        Submit
+        Match!
       </button>
       {isLoading ? <Spinner /> : null}
 
-      <div>{rec && <p>{rec}</p>}</div>
+      {isModalOpen && <ResponseModal rec={rec} onClose={closeModal} />}
     </div>
   );
 }

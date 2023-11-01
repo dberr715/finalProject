@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import HomeText from "../components/HomeText";
 import TeamPage from "../pages/team-page";
 import { Outlet } from "react-router";
+import "../index.css"
 
 export default function Root() {
   // const [searchedTeam, setSearchedTeam] = useState("");
