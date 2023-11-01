@@ -12,6 +12,7 @@ import LogoutPage, { logoutLoader } from "./pages/logout-page";
 import CreateAccount from "./pages/create-account-page";
 import "./index.css";
 import TeamPage from "./pages/team-page";
+import LeagueTables from "./pages/league-tables";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "login/",
         element: <LoginPage />,
+      },
+      {
+        path: "table/",
+        element: <LeagueTables />,
       },
       {
         path: "team/:teamname",

@@ -18,6 +18,9 @@ export default function Navigation() {
       <div>
         <Link to="/create">Create Account</Link>
       </div>
+      <div>
+        <Link to="/table">League Tables</Link>
+      </div>
       <div className="dropdown">
         <button className="dropbtn">
           Favorites
