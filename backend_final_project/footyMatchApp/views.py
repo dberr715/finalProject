@@ -7,9 +7,23 @@ from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnl
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework_simplejwt.views import TokenObtainPairView
+
 from django.shortcuts import redirect
 from django.contrib.auth.hashers import make_password
+from rest_framework_simplejwt.views import TokenObtainPairView
+from django.conf import settings
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    permission_classes = [IsAuthenticated]  
+
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        if response.status_code == 200:
+            user = self.user
+            response.data["user_id"] = user.id
+            response.data["username"] = user.username
+        return response
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -18,7 +32,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class LogoutView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]  
 
     def post(self, request):
         try:

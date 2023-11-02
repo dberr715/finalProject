@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 import { Link } from "react-router-dom";
+
 export default function LoginPage() {
   const navigate = useNavigate();
   const { setIsAuth } = useAuth();
@@ -31,20 +32,25 @@ export default function LoginPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
-      }).then((response) => response.json());
+      });
 
-      const { access, refresh, userId } = data;
+      if (data.status === 200) {
+        const tokenData = await data.json();
+        const { access, refresh, user_id } = tokenData;
 
-      localStorage.clear();
-      localStorage.setItem("user_id", userId);
-      localStorage.setItem("access_token", access);
-      localStorage.setItem("refresh_token", refresh);
-      console.log("Logged in successfully!");
-      setIsAuth(true);
-      return navigate(`/home`);
+        
+        localStorage.setItem("user_id", user_id);
+        localStorage.setItem("access_token", access);
+        localStorage.setItem("refresh_token", refresh);
+
+        console.log("Logged in successfully!");
+        setIsAuth(true);
+        return navigate(`/home`);
+      } else {
+        console.error("Login failed. Check your credentials.");
+      }
     } catch (error) {
       console.error("ERROR: ", error);
-      return navigate(`/login`, { replace: true });
     }
   };
 

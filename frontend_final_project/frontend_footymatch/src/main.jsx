@@ -14,6 +14,7 @@ import "./index.css";
 import TeamPage from "./pages/team-page";
 import Live from "./components/Live";
 import GameDetails from "./pages/game-details";
+import Fixture from "./components/Live";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
         path: "game/:id",
         element: <GameDetails />,
       },
+      // {
+      //   path: "/fixtures/:matchID",
+      //   element: <Fixture />,
+      // },
       {
         path: "live/",
         element: <Live />,
