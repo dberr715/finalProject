@@ -9,10 +9,17 @@ export default function CreateAccount() {
   });
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
+  const [showPasswordMismatchAlert, setShowPasswordMismatchAlert] =
+    useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (formData.password !== formData.confirm_password) {
+      setShowPasswordMismatchAlert(true);
+      return;
+    }
 
     try {
       const response = await fetch("http://localhost:8000/register/", {
@@ -28,7 +35,7 @@ export default function CreateAccount() {
         setTimeout(() => {
           setShowSuccessAlert(false);
           navigate("/login");
-        }, 1500);
+        }, 2200);
       } else if (response.status === 400) {
         setShowErrorAlert(true);
       } else {
@@ -52,6 +59,10 @@ export default function CreateAccount() {
 
   const handleErrorAlertClose = () => {
     setShowErrorAlert(false);
+  };
+
+  const handlePasswordMismatchAlertClose = () => {
+    setShowPasswordMismatchAlert(false);
   };
 
   return (
@@ -89,7 +100,7 @@ export default function CreateAccount() {
       {showSuccessAlert && (
         <div className="modal success">
           <div className="modal-content">
-            <p>Account creation successful!</p>
+            <p>Account creation success!👏</p>
           </div>
         </div>
       )}
@@ -98,6 +109,19 @@ export default function CreateAccount() {
           <div className="modal-content">
             <p>Username is already taken. Try a different option.</p>
             <span className="close-button" onClick={handleErrorAlertClose}>
+              &times;
+            </span>
+          </div>
+        </div>
+      )}
+      {showPasswordMismatchAlert && (
+        <div className="modal error">
+          <div className="modal-content">
+            <p>Passwords do not match.</p>
+            <span
+              className="close-button"
+              onClick={handlePasswordMismatchAlertClose}
+            >
               &times;
             </span>
           </div>
