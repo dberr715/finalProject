@@ -8,6 +8,7 @@ export default function LoginPage() {
   const { setIsAuth } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(""); // Add error state
 
   const handleChangeUsername = (e) => {
     setUsername(e.target.value);
@@ -38,7 +39,6 @@ export default function LoginPage() {
         const tokenData = await data.json();
         const { access, refresh, user_id } = tokenData;
 
-        
         localStorage.setItem("user_id", user_id);
         localStorage.setItem("access_token", access);
         localStorage.setItem("refresh_token", refresh);
@@ -47,10 +47,11 @@ export default function LoginPage() {
         setIsAuth(true);
         return navigate(`/home`);
       } else {
-        console.error("Login failed. Check your credentials.");
+        setError("Login failed. Check your credentials."); // Set error message
       }
     } catch (error) {
       console.error("ERROR: ", error);
+      setError("An error occurred."); // Set error message
     }
   };
 
@@ -68,6 +69,8 @@ export default function LoginPage() {
               onChange={handleChangeUsername}
             />
           </label>
+          {error && <p style={{ color: "red" }}>{error}</p>}{" "}
+          {/* Display error message in red */}
           <label>
             Password
             <input

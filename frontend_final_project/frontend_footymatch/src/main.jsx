@@ -1,27 +1,25 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider, Routes } from "react-router-dom";
 import ErrorPage from "./pages/error-page";
-// import { Navigate } from "react-router-dom";
 import Root from "./routes/root";
-// import Home, { loader as homeLoader } from "./pages/home-page";
 import Home from "./pages/home-page";
-import { redirect } from "react-router-dom";
 import LoginPage from "./pages/login-page";
-import LogoutPage, { logoutLoader } from "./pages/logout-page";
+// import LogoutPage, { logoutLoader } from "./pages/logout-page";
+import LogoutPage from "./pages/logout-page";
 import CreateAccount from "./pages/create-account-page";
 import "./index.css";
 import TeamPage from "./pages/team-page";
 import Live from "./components/Live";
 import GameDetails from "./pages/game-details";
-import Fixture from "./components/Live";
+import { PrivateRoute } from "./components/PrivateRoute";
+import HomePage from "./pages/home-page";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
-
     children: [
       {
         path: "login/",
@@ -31,50 +29,43 @@ const router = createBrowserRouter([
         path: "game/:id",
         element: <GameDetails />,
       },
-      // {
-      //   path: "/fixtures/:matchID",
-      //   element: <Fixture />,
-      // },
       {
         path: "live/",
         element: <Live />,
       },
       {
         path: "team/:teamname",
-        // path: "team/",
         element: <TeamPage />,
       },
       {
         path: "logout/",
         element: <LogoutPage />,
-        loader: logoutLoader,
+        // loader: logoutLoader,
       },
       {
         path: "create/",
         element: <CreateAccount />,
       },
-
       {
         path: "home/",
-        element: <Home />,
-        // loader: homeLoader,
+        element: <HomePage />,
       },
+      // {
+      //   path: "home/*",
+      //   element: <PrivateRoute element={<HomePage />} />,
+      // },
     ],
   },
-  // {
-  //   path: "home/",
-  //   element: <Home />,
-  //   loader: homeLoader,
-  //   errorElement: <ErrorPage />,
-  // },
 ]);
 
 if (window.location.pathname === "/") {
-  window.location.pathname = "/home/";
+  window.location.pathname = "/login/";
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RouterProvider router={router}>
+      <Routes />
+    </RouterProvider>
   </React.StrictMode>
 );

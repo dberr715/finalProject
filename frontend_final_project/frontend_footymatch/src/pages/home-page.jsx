@@ -1,48 +1,24 @@
-// import { redirect, useLoaderData } from "react-router-dom";
-import { redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import HomeText from "../components/HomeText";
+import React from "react";
 
+import { useAuth } from "../AuthContext";
 
-import UserList from "../components/UserList";
-// import AIResponse from "../components/AIResponse";
-import Navigation from "../components/navigation";
-
-// import { FootballData } from "../components/FootballData";
-
-////////Data to make sure Users are loggable////////
-// export async function loader() {
-//   try {
-//     const url = `http://localhost:8000/user/?user=${localStorage.getItem(
-//       "username"
-//     )}`;
-//     // const url = `${import.meta.env.VITE_API_URL}/user/`;
-//     const userList = await fetch(url, {
-//       headers: {
-//         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-//       },
-//     }).then((response) => response.json());
-//     if (!Array.isArray(userList)) {
-//       throw Error("Not an array of links");
-//     }
-//     console.log("UserList", userList);
-//     // console.log(userList.username);
-//     return { userList };
-//   } catch (error) {
-//     return redirect("/login");
-//   }
-// }
-
-export default function Home() {
-  // const { userList } = useLoaderData();
+export default function HomePage() {
+  const { isAuth } = useAuth();
 
   return (
-    <>
-      {/* <Navigation /> */}
-      <HomeText />
-
-      {/* <FootballData /> */}
-      {/* <AIResponse /> */}
-      {/* <UserList userList={userList} /> */}
-    </>
+    <div>
+      {isAuth ? (
+        <HomeText />
+      ) : (
+        <div>
+          <h1>You must log in first</h1>
+          <Link to="/login">
+            <span className="login1">Login</span>
+          </Link>
+        </div>
+      )}
+    </div>
   );
 }

@@ -12,7 +12,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.hashers import make_password
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.conf import settings
-from rest_framework_simplejwt.views import TokenObtainPairView
+
 from .serializers import MyTokenObtainPairSerializer
 
 # class CustomTokenObtainPairView(TokenObtainPairView):
