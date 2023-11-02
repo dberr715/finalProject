@@ -20,7 +20,9 @@
   --color-bg-alert: #fdeaec;
   --color-theme-primary: #623ce6;
 }
-
+.livegames {
+  text-align: center;
+}
 button,
 input,
 select,
@@ -42,18 +44,45 @@ body {
   color: var(--color-text-primary);
   background-color: var(--color-bg-secondary);
 }
+/* Default styles for larger screens */
+.match-container {
+  display: flex;
+  justify-content: center; /* Center the game cards horizontally */
+  flex-wrap: wrap; /* Allow cards to wrap to the next line */
+  max-width: 1000px; /* Set a maximum width for the container */
+  padding: 0 10%; /* Add 10% padding on each side of the container */
+  margin: 0 auto; /* Center the container horizontally */
+}
 
 .match {
   background-color: var(--color-bg-primary);
-  /* display: flex;
-	flex-direction: column; */
-  min-width: 60px;
-  /* border-radius: 10px; */
+  min-width: 300px; /* Set a minimum width for the game cards */
+  margin: 10px 10%; /* Add 10% margin on both right and left sides of each card */
+  border-radius: 10px;
   box-shadow: 0 0 2px 0 rgba(#303030, 0.1), 0 4px 4px 0 rgba(#303030, 0.1);
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
+
+/* Responsive adjustments for smaller screens (e.g., mobile phones) */
+@media screen and (max-width: 768px) {
+  .match-container {
+    padding: 0 5%; /* Reduce the padding to 5% on smaller screens */
+    margin: 0; /* Remove the horizontal margin on smaller screens */
+  }
+
+  .match {
+    min-width: 100%; /* Make cards full width on smaller screens */
+    margin: 10px 5% 10px 10%; /* Add 5% margin on top, 10% on right, and 5% on bottom of each card */
+  }
+}
+
 
 .match-header {
   display: flex;
+  align-items: center;
   border-bottom: 2px solid rgba(#303030, 0.1);
   padding: 16px;
 }
@@ -61,13 +90,15 @@ body {
 .match-status {
   background-color: var(--color-bg-alert);
   color: var(--color-text-alert);
-  padding: 8px 12px;
+  padding: 4px 12px; /* Reduced the top and bottom padding to make it not taller than wide */
   border-radius: 6px;
   font-weight: 600;
   font-size: 14px;
   display: flex;
   align-items: center;
   line-height: 1;
+  width: fit-content; /* Set a fixed width based on the content */
+  height: fit-content; /* Set a fixed height based on the content */
   margin-right: auto;
   &:before {
     content: "";
@@ -79,6 +110,18 @@ body {
     margin-right: 8px;
   }
 }
+
+.tournament-info {
+  display: flex;
+  flex-direction: column; /* Stack logo and league name vertically */
+  align-items: center; /* Center items horizontally */
+  margin-bottom: 10px; /* Add some spacing between logo and name */
+}
+
+.league-name {
+  font-size: 14px; /* Adjust the font size if needed */
+}
+
 
 .match-tournament {
   display: flex;
