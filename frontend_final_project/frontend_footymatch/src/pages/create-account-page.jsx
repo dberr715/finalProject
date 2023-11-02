@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function CreateAccount() {
   const [formData, setFormData] = useState({
@@ -7,6 +7,9 @@ export default function CreateAccount() {
     password: "",
     confirm_password: "",
   });
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const [showErrorAlert, setShowErrorAlert] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +24,13 @@ export default function CreateAccount() {
       });
 
       if (response.status === 201) {
-        console.log("User registered successfully.");
+        setShowSuccessAlert(true);
+        setTimeout(() => {
+          setShowSuccessAlert(false);
+          navigate("/login");
+        }, 1500);
+      } else if (response.status === 400) {
+        setShowErrorAlert(true);
       } else {
         console.error("Registration failed.");
       }
@@ -37,6 +46,14 @@ export default function CreateAccount() {
     });
   };
 
+  const handleSuccessAlertClose = () => {
+    setShowSuccessAlert(false);
+  };
+
+  const handleErrorAlertClose = () => {
+    setShowErrorAlert(false);
+  };
+
   return (
     <div className="registration form">
       <header>Sign Up</header>
@@ -44,19 +61,19 @@ export default function CreateAccount() {
         <input
           type="text"
           placeholder="Enter a username"
-          name="username" // Fix the name attribute
+          name="username"
           onChange={handleChange}
         />
         <input
           type="password"
           placeholder="Create a password"
-          name="password" // Fix the name attribute
+          name="password"
           onChange={handleChange}
         />
         <input
           type="password"
           placeholder="Confirm your password"
-          name="confirm_password" // Fix the name attribute
+          name="confirm_password"
           onChange={handleChange}
         />
         <input type="submit" className="button" value="Sign Up" />
@@ -69,6 +86,23 @@ export default function CreateAccount() {
           </Link>
         </div>
       </div>
+      {showSuccessAlert && (
+        <div className="modal success">
+          <div className="modal-content">
+            <p>Account creation successful!</p>
+          </div>
+        </div>
+      )}
+      {showErrorAlert && (
+        <div className="modal error">
+          <div className="modal-content">
+            <p>Username is already taken. Try a different option.</p>
+            <span className="close-button" onClick={handleErrorAlertClose}>
+              &times;
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

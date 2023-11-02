@@ -9,6 +9,7 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.shortcuts import redirect
+from django.contrib.auth.hashers import make_password
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -34,6 +35,8 @@ class UserCreateView(APIView):
         print(request)
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            newUser = serializer.save()
+            newUser.password = make_password(request.data["password"])
+            newUser.save()
             return Response(status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
