@@ -18,4 +18,5 @@ urlpatterns = [
     path("logout/", views.LogoutView.as_view(), name="logout"),
     path("dj-rest-auth/", include("dj_rest_auth.urls")),
     path("register/", views.UserCreateView.as_view(), name="user_register"),
+    path('api/favorites/', views.FavoriteTeamsView.as_view(), name='favorite-teams'),
 ]

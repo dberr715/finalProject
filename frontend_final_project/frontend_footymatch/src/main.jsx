@@ -12,7 +12,7 @@ import "./index.css";
 import TeamPage from "./pages/team-page";
 import Live from "./components/Live";
 import GameDetails from "./pages/game-details";
-import { PrivateRoute } from "./components/PrivateRoute";
+// import { PrivateRoute } from "./components/PrivateRoute";
 import HomePage from "./pages/home-page";
 
 const router = createBrowserRouter([

@@ -15,19 +15,24 @@ from django.conf import settings
 
 from .serializers import MyTokenObtainPairSerializer
 
-# class CustomTokenObtainPairView(TokenObtainPairView):
-#     # permission_classes = [IsAuthenticated]
 
-
-#     def post(self, request, *args, **kwargs):
-#         response = super().post(request, *args, **kwargs)
-#         if response.status_code == 200:
-#             user = self.user
-#             response.data["user_id"] = user.id
-#             response.data["username"] = user.username
-#         return response
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
+
+
+class FavoriteTeamsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        favorites = request.data.get("favorites", [])
+        fm_user, _ = FMUser.objects.get_or_create(user=user)
+        fm_user.favorites = favorites
+        fm_user.save()
+        return Response(
+            {"message": "Favorite teams updated successfully."},
+            status=status.HTTP_200_OK,
+        )
 
 
 class UserViewSet(viewsets.ModelViewSet):
