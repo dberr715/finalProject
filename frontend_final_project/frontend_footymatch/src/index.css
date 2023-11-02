@@ -173,8 +173,8 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: var(--color-bg-primary);
-  box-shadow: 0 4px 4px 0 rgba(#303030, 0.15),
+  background-color: rgb(248, 246, 246);
+  box-shadow: 0 4px 4px 0 black,
     0 0 0 15px var(--color-bg-secondary);
 }
 .team-logo img {
