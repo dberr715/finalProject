@@ -12,18 +12,22 @@ from django.shortcuts import redirect
 from django.contrib.auth.hashers import make_password
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.conf import settings
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import MyTokenObtainPairSerializer
+
+# class CustomTokenObtainPairView(TokenObtainPairView):
+#     # permission_classes = [IsAuthenticated]
 
 
-class CustomTokenObtainPairView(TokenObtainPairView):
-    permission_classes = [IsAuthenticated]  
-
-    def post(self, request, *args, **kwargs):
-        response = super().post(request, *args, **kwargs)
-        if response.status_code == 200:
-            user = self.user
-            response.data["user_id"] = user.id
-            response.data["username"] = user.username
-        return response
+#     def post(self, request, *args, **kwargs):
+#         response = super().post(request, *args, **kwargs)
+#         if response.status_code == 200:
+#             user = self.user
+#             response.data["user_id"] = user.id
+#             response.data["username"] = user.username
+#         return response
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -32,7 +36,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class LogoutView(APIView):
-    permission_classes = [IsAuthenticated]  
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         try:
