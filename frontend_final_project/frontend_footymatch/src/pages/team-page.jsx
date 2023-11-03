@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useAuth } from "../AuthContext";
 import "../index.css";
 
-export default function TeamPage(props) {
+export default function TeamPage() {
   const params = useParams();
+  const { isAuth } = useAuth();
   const [teamName, setTeamName] = useState("");
   const [logo, setLogo] = useState("");
   const [country, setCountry] = useState("");
@@ -11,33 +13,33 @@ export default function TeamPage(props) {
   const [stadiumPic, setStadiumPic] = useState("");
   const [error, setError] = useState(null);
 
-  const addFavoriteTeam = async () => {
-    const teamNameToAdd = teamName;
+  // const addFavoriteTeam = async () => {
+  //   const teamNameToAdd = teamName;
 
-    if (props.isAuth) {
-      const access_token = localStorage.getItem("access_token");
-      const url = "http://localhost:8000/api/favorites/";
+  //   if (isAuth) {
+  //     const access_token = localStorage.getItem("access_token");
+  //     const url = "http://localhost:8000/api/favorites/";
 
-      try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${access_token}`,
-          },
-          body: JSON.stringify({ teamName: teamNameToAdd }),
-        });
+  //     try {
+  //       const response = await fetch(url, {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${access_token}`,
+  //         },
+  //         body: JSON.stringify({ teamName: teamNameToAdd }),
+  //       });
 
-        if (response.ok) {
-          console.log(`${teamNameToAdd} has been added to favorites.`);
-        } else {
-          console.error(`Failed to add ${teamNameToAdd} to favorites.`);
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    }
-  };
+  //       if (response.ok) {
+  //         console.log(`${teamNameToAdd} has been added to favorites.`);
+  //       } else {
+  //         console.error(`Failed to add ${teamNameToAdd} to favorites.`);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error:", error);
+  //     }
+  //   }
+  // };
 
   async function fetchData1() {
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
@@ -89,9 +91,10 @@ export default function TeamPage(props) {
           <p>Country: {country}</p>
           <p>Team Name: {teamName}</p>
           <img src={logo} alt="Team Logo" />
+          <h2>Add to Favorites</h2>
           <p>Stadium Name: {stadium}</p>
           <img src={stadiumPic} alt="Stadium Pic" />
-          {props.isAuth && (
+          {isAuth && (
             <button onClick={addFavoriteTeam}>Add to Favorites</button>
           )}
         </>

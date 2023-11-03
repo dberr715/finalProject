@@ -7,6 +7,13 @@ export default function Navigation() {
   const { isAuth } = useAuth();
   const [favorites, setFavorites] = useState([]); // State to store favorite teams
 
+  // Function to update the favorites list
+  const updateFavoritesList = (teamNameToAdd) => {
+    // Make a copy of the current favorites list and add the new team
+    const updatedFavorites = [...favorites, teamNameToAdd];
+    setFavorites(updatedFavorites);
+  };
+
   // Fetch favorite teams when the component mounts
   const fetchFavoriteTeams = async () => {
     if (isAuth) {

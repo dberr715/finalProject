@@ -24,10 +24,10 @@ def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 
-
+# Create your models here.
 class FMUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    favorites = models.CharField(default="No Favorites Set")
+    favorites = models.CharField(max_length=10000, default="No Favorites Set")
 
     def __str__(self):
         return self.user.username

@@ -20,6 +20,8 @@ class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 
+
+
 class FavoriteTeamsView(APIView):
     permission_classes = [IsAuthenticated]
 
