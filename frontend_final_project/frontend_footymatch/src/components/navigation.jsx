@@ -59,7 +59,7 @@ export default function Navigation() {
           {console.log("Favorite: ", favorites)}
           {favorites && favorites.length > 0 ? (
             favorites.map((favorite, index) => (
-              <Link key={index} to={`/team/${favorite}`}>
+              <Link key={index} to={`/team/${favorite.team_name}`}>
                 {favorite.team_name}
               </Link>
             ))
