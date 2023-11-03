@@ -37,21 +37,24 @@ export default function LoginPage() {
 
       if (data.status === 200) {
         const tokenData = await data.json();
-        const { access, refresh, user_id } = tokenData;
+        const { access, refresh, user_id, username } = tokenData; // Fetch and destructure the username
 
         localStorage.setItem("user_id", user_id);
         localStorage.setItem("access_token", access);
         localStorage.setItem("refresh_token", refresh);
+        localStorage.setItem("username", username);
 
-        console.log("Logged in successfully!");
+        // Set the username in the context
+        setUsername(username);
+
         setIsAuth(true);
         return navigate(`/home`);
       } else {
-        setError("Login failed. Check your credentials."); // Set error message
+        setError("Login failed. Check your credentials.");
       }
     } catch (error) {
       console.error("ERROR: ", error);
-      setError("An error occurred."); // Set error message
+      setError("An error occurred.");
     }
   };
 

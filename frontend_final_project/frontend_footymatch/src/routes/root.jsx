@@ -1,25 +1,17 @@
 import { AuthProvider } from "../AuthContext";
-import Navigation from "../components/navigation";
+import Navigation from "../components/Navigation";
 import React, { useState } from "react";
-import HomeText from "../components/HomeText";
-import TeamPage from "../pages/team-page";
+
 import { Outlet } from "react-router";
-import "../index.css"
+import "../index.css";
 
 export default function Root() {
-  // const [searchedTeam, setSearchedTeam] = useState("");
-
-  // const handleSearch = (team) => {
-  //   setSearchedTeam(team);
-  // };
   return (
     <AuthProvider>
       <main>
         <Navigation />
-        {/* <HomeText onSearch={handleSearch} />
-        <TeamPage team={searchedTeam} /> */}
 
-        <Outlet  />
+        <Outlet />
       </main>
     </AuthProvider>
   );

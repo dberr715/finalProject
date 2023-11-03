@@ -4,13 +4,14 @@ import { useAuth } from "../AuthContext";
 import "../index.css";
 
 export default function Navigation() {
-  const { isAuth } = useAuth();
+  const { isAuth, username } = useAuth(); // Use username instead of user
+
   const [favorites, setFavorites] = useState([]);
 
   const fetchFavoriteTeams = async () => {
     if (isAuth) {
       const access_token = localStorage.getItem("access_token");
-      const url = "http://localhost:8000/favorite-teams/"; // Correct API endpoint
+      const url = "http://localhost:8000/favorite-teams/";
 
       try {
         const response = await fetch(url, {
@@ -23,7 +24,7 @@ export default function Navigation() {
 
         if (response.ok) {
           const data = await response.json();
-          console.log("Datatata: ", data);
+          console.log("Data: ", data);
           setFavorites(data);
         } else {
           console.error("Failed to fetch favorite teams.");
@@ -56,7 +57,6 @@ export default function Navigation() {
           <i className="fa fa-caret-down"></i>
         </button>
         <div className="dropdown-content">
-          {console.log("Favorite: ", favorites)}
           {favorites && favorites.length > 0 ? (
             favorites.map((favorite, index) => (
               <Link key={index} to={`/team/${favorite.team_name}`}>
@@ -70,7 +70,10 @@ export default function Navigation() {
       </div>
       <div>
         {isAuth ? (
-          <Link to="/logout">Logout</Link>
+          <div>
+            <Link to="/logout">Logout</Link>
+            <div className="username">{username}</div>
+          </div>
         ) : (
           <Link to="/login">Login</Link>
         )}
