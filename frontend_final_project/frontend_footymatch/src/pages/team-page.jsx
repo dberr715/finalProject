@@ -13,34 +13,6 @@ export default function TeamPage() {
   const [stadiumPic, setStadiumPic] = useState("");
   const [error, setError] = useState(null);
 
-  // const addFavoriteTeam = async () => {
-  //   const teamNameToAdd = teamName;
-
-  //   if (isAuth) {
-  //     const access_token = localStorage.getItem("access_token");
-  //     const url = "http://localhost:8000/api/favorites/";
-
-  //     try {
-  //       const response = await fetch(url, {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${access_token}`,
-  //         },
-  //         body: JSON.stringify({ teamName: teamNameToAdd }),
-  //       });
-
-  //       if (response.ok) {
-  //         console.log(`${teamNameToAdd} has been added to favorites.`);
-  //       } else {
-  //         console.error(`Failed to add ${teamNameToAdd} to favorites.`);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error:", error);
-  //     }
-  //   }
-  // };
-
   async function fetchData1() {
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
     const nameUrl = `https://api-football-v1.p.rapidapi.com/v3/teams?name=${params.teamname}`;
@@ -78,10 +50,36 @@ export default function TeamPage() {
     }
   }
 
+  async function addFavoriteTeam(teamName) {
+    const apiUrl = " http://localhost:8000/favorite-teams/ "; // Correct API endpoint
+
+    // console.log("Tokenhere:  ", token);
+    const token = localStorage.getItem("access_token");
+    const user_id = localStorage.getItem("user_id");
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ team_name: teamName, user: user_id }),
+      });
+
+      if (response.ok) {
+        console.log("Team added to favorites successfully.");
+      } else {
+        console.error("Failed to add team to favorites.");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  }
+
   useEffect(() => {
     fetchData1();
   }, [params.teamname]);
-
+  // console.log("Tokenhere:  ", token);
   return (
     <div>
       {error ? (
@@ -95,7 +93,9 @@ export default function TeamPage() {
           <p>Stadium Name: {stadium}</p>
           <img src={stadiumPic} alt="Stadium Pic" />
           {isAuth && (
-            <button onClick={addFavoriteTeam}>Add to Favorites</button>
+            <button onClick={() => addFavoriteTeam(teamName)}>
+              Add to Favorites
+            </button>
           )}
         </>
       )}

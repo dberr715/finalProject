@@ -1,10 +1,7 @@
-from .models import User
+from .models import User, Favorites
 from rest_framework.validators import UniqueValidator
 from rest_framework import serializers
-
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-
-# from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -17,7 +14,10 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ["username", "password"]
 
 
-
+class FavoritesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Favorites
+        fields = ["user", "team_name"]
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -25,9 +25,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         data = super().validate(attrs)
 
         # Add your extra responses here
-        data['username'] = self.user.username
-        data['groups'] = self.user.groups.values_list('name', flat=True)
+        data["user_id"] = self.user.id
+        data["username"] = self.user.username
+        data["groups"] = self.user.groups.values_list("name", flat=True)
         return data
-
-
-

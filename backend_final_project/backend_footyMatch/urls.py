@@ -3,9 +3,7 @@ from django.urls import path, include
 from footyMatchApp import views
 from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from footyMatchApp.views import MyTokenObtainPairView
-
 
 router = routers.DefaultRouter()
 router.register(r"user", views.UserViewSet)
@@ -18,5 +16,5 @@ urlpatterns = [
     path("logout/", views.LogoutView.as_view(), name="logout"),
     path("dj-rest-auth/", include("dj_rest_auth.urls")),
     path("register/", views.UserCreateView.as_view(), name="user_register"),
-    path('api/favorites/', views.FavoriteTeamsView.as_view(), name='favorite-teams'),
+    path("favorite-teams/", views.FavoriteTeam.as_view(), name="favorite-teams"),
 ]

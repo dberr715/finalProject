@@ -5,20 +5,12 @@ import "../index.css";
 
 export default function Navigation() {
   const { isAuth } = useAuth();
-  const [favorites, setFavorites] = useState([]); // State to store favorite teams
+  const [favorites, setFavorites] = useState([]);
 
-  // Function to update the favorites list
-  const updateFavoritesList = (teamNameToAdd) => {
-    // Make a copy of the current favorites list and add the new team
-    const updatedFavorites = [...favorites, teamNameToAdd];
-    setFavorites(updatedFavorites);
-  };
-
-  // Fetch favorite teams when the component mounts
   const fetchFavoriteTeams = async () => {
     if (isAuth) {
       const access_token = localStorage.getItem("access_token");
-      const url = "http://localhost:8000/api/favorites/";
+      const url = "http://localhost:8000/favorite-teams/"; // Correct API endpoint
 
       try {
         const response = await fetch(url, {
@@ -31,7 +23,8 @@ export default function Navigation() {
 
         if (response.ok) {
           const data = await response.json();
-          setFavorites(data.favorites);
+          console.log("Datatata: ", data);
+          setFavorites(data);
         } else {
           console.error("Failed to fetch favorite teams.");
         }
@@ -41,7 +34,7 @@ export default function Navigation() {
     }
   };
 
-  // Fetch favorite teams when the component mounts
+  // Fetch favorite teams whenever isAuth changes
   useEffect(() => {
     fetchFavoriteTeams();
   }, [isAuth]);
@@ -64,14 +57,12 @@ export default function Navigation() {
         </button>
         <div className="dropdown-content">
           {favorites.length > 0 ? (
-            // Display favorite teams if there are any
             favorites.map((favorite, index) => (
               <Link key={index} to={`/team/${favorite}`}>
                 {favorite}
               </Link>
             ))
           ) : (
-            // Display a message if no favorite teams
             <p>No favorite teams yet</p>
           )}
         </div>

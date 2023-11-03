@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import FMUser
+from .models import Profile
 
 # Register your models here.
-admin.site.register(FMUser)
+admin.site.register(Profile)
