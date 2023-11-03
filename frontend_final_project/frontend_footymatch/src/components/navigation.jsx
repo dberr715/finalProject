@@ -56,10 +56,11 @@ export default function Navigation() {
           <i className="fa fa-caret-down"></i>
         </button>
         <div className="dropdown-content">
-          {favorites.length > 0 ? (
+          {console.log("Favorite: ", favorites)}
+          {favorites && favorites.length > 0 ? (
             favorites.map((favorite, index) => (
               <Link key={index} to={`/team/${favorite}`}>
-                {favorite}
+                {favorite.team_name}
               </Link>
             ))
           ) : (
