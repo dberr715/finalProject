@@ -22,31 +22,37 @@ export default function HomeText() {
   };
 
   return (
-    <>
-      <h1>Welcome to FootyMatch!</h1>
+    <div className="main-container">
+      <div className="maincopy">
+        <h1>Welcome to FootyMatch!</h1>
+        <h3>Your Gateway to the World of Soccer.</h3>
 
-      {/* <form>
-        <label>
-          <input type="text" placeholder="🏀🏈⚾️🎾" />
-          <button type="submit">Match!</button>
-        </label>
-      </form> */}
-      <h4>⚽️Find your new soccer team to support⚽️</h4>
-      <p>Type 1 or more sports teams in to find your soccer team match! </p>
-      <AIresponse />
-      <br />
-      <h4>Already have a team?</h4>
-      <p>Search for it below!</p>
+        <p>
+          Do you love sports like basketball, baseball, or hockey? We'll help
+          you discover your perfect soccer team based on the sports you already
+          love. Whether you're a die-hard fan or just curious about the world of
+          soccer, we've got you covered. Get ready to find your new favorite
+          soccer team and dive into the excitement of the beautiful game!
+        </p>
 
-      <input
-        type="text"
-        value={team}
-        onChange={handleInputChange}
-        placeholder="🔍"
-      />
-      <button type="submit" onClick={handleSearchClick}>
-        Search
-      </button>
-    </>
+        <p>Type 1 or more sports teams in to find your soccer team match! </p>
+        <AIresponse />
+
+        <div className="search-container">
+          <h4>Already have a team?</h4>
+          <p>Search for it below!</p>
+
+          <input
+            type="text"
+            value={team}
+            onChange={handleInputChange}
+            placeholder="🔍"
+          />
+          <button type="submit" onClick={handleSearchClick}>
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }

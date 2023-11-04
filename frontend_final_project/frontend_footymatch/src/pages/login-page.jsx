@@ -59,42 +59,56 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
-        <div className="login form">
-          <header>Login</header>
-          <label>
-            Username
-            <input
-              type="text"
-              name="username"
-              value={username}
-              onChange={handleChangeUsername}
-            />
-          </label>
-          {error && <p style={{ color: "red" }}>{error}</p>}{" "}
-          {/* Display error message in red */}
-          <label>
-            Password
-            <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={handleChangePassword}
-            />
-          </label>
-          <input type="submit" className="button" value="Login" />
-          <div className="signup">
-            <span className="signup1">
-              Don't have an account?
-              <label className="signup2">
-                <br />
-                <Link to="/create">Sign Up</Link>
-              </label>
-            </span>
+    <>
+      <div className="maincopy">
+        <h1>Welcome to FootyMatch!</h1>
+        <h3>Your Gateway to the World of Soccer.</h3>
+
+        <p>
+          Do you love sports like basketball, baseball, or hockey? We'll help
+          you discover your perfect soccer team based on the sports you already
+          love. Whether you're a die-hard fan or just curious about the world of
+          soccer, we've got you covered. Get ready to find your new favorite
+          soccer team and dive into the excitement of the beautiful game!
+        </p>
+      </div>
+      <div className="container">
+        <form onSubmit={handleSubmit}>
+          <div className="login form">
+            <header>Login</header>
+            <label>
+              Username
+              <input
+                type="text"
+                name="username"
+                value={username}
+                onChange={handleChangeUsername}
+              />
+            </label>
+            {error && <p style={{ color: "red" }}>{error}</p>}{" "}
+            {/* Display error message in red */}
+            <label>
+              Password
+              <input
+                type="password"
+                name="password"
+                value={password}
+                onChange={handleChangePassword}
+              />
+            </label>
+            <input type="submit" className="button" value="Login" />
+            <div className="signup">
+              <span className="signup1">
+                Don't have an account?
+                <label className="signup2">
+                  <br />
+                  <Link to="/create">Sign Up</Link>
+                </label>
+              </span>
+            </div>
           </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+    </>
   );
 }

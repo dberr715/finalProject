@@ -4,7 +4,7 @@ import { useAuth } from "../AuthContext";
 import "../index.css";
 
 export default function Navigation() {
-  const { isAuth, username } = useAuth(); // Use username instead of user
+  const { isAuth, username } = useAuth(); 
 
   const [favorites, setFavorites] = useState([]);
 
@@ -49,11 +49,11 @@ export default function Navigation() {
         <Link to="/create">Create Account</Link>
       </div> */}
       <div>
-        <Link to="/live">Live</Link>
+        <Link to="/live">Live Games</Link>
       </div>
       <div className="dropdown">
         <button className="dropbtn">
-          Favorites
+          My Favorites
           <i className="fa fa-caret-down"></i>
         </button>
         <div className="dropdown-content">
