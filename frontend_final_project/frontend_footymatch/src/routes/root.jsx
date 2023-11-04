@@ -9,7 +9,7 @@ export default function Root() {
   return (
     <AuthProvider>
       <main>
-        <Navigation />
+       
 
         <Outlet />
       </main>

@@ -83,17 +83,16 @@ export default function LoginPage() {
               onChange={handleChangePassword}
             />
           </label>
-          <a href="#">Forgot password?</a>
           <input type="submit" className="button" value="Login" />
-        </div>
-        <div className="signup">
-          <span className="signup1">
-            Don't have an account?
-            <label className="signup2">
-              <br />
-              <Link to="/create">Sign Up</Link>
-            </label>
-          </span>
+          <div className="signup">
+            <span className="signup1">
+              Don't have an account?
+              <label className="signup2">
+                <br />
+                <Link to="/create">Sign Up</Link>
+              </label>
+            </span>
+          </div>
         </div>
       </form>
     </div>

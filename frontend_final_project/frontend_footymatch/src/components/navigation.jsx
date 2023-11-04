@@ -45,9 +45,9 @@ export default function Navigation() {
       <div className="active">
         <Link to="/home">Home</Link>
       </div>
-      <div>
+      {/* <div>
         <Link to="/create">Create Account</Link>
-      </div>
+      </div> */}
       <div>
         <Link to="/live">Live</Link>
       </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../AuthContext";
+import Navigation from "../components/Navigation";
 import "../index.css";
 
 export default function TeamPage() {
@@ -81,24 +82,27 @@ export default function TeamPage() {
   }, [params.teamname]);
   // console.log("Tokenhere:  ", token);
   return (
-    <div>
-      {error ? (
-        <p className="error-message">{error}</p>
-      ) : (
-        <>
-          <p>Country: {country}</p>
-          <p>Team Name: {teamName}</p>
-          <img src={logo} alt="Team Logo" />
-          <h2>Add to Favorites</h2>
-          <p>Stadium Name: {stadium}</p>
-          <img src={stadiumPic} alt="Stadium Pic" />
-          {isAuth && (
-            <button onClick={() => addFavoriteTeam(teamName)}>
-              Add to Favorites
-            </button>
-          )}
-        </>
-      )}
-    </div>
+    <>
+      <Navigation />
+      <div>
+        {error ? (
+          <p className="error-message">{error}</p>
+        ) : (
+          <>
+            <p>Country: {country}</p>
+            <p>Team Name: {teamName}</p>
+            <img src={logo} alt="Team Logo" />
+            <h2>Add to Favorites</h2>
+            <p>Stadium Name: {stadium}</p>
+            <img src={stadiumPic} alt="Stadium Pic" />
+            {isAuth && (
+              <button onClick={() => addFavoriteTeam(teamName)}>
+                Add to Favorites
+              </button>
+            )}
+          </>
+        )}
+      </div>
+    </>
   );
 }
