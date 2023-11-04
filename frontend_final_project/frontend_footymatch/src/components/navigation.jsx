@@ -4,7 +4,7 @@ import { useAuth } from "../AuthContext";
 import "../index.css";
 
 export default function Navigation() {
-  const { isAuth, username } = useAuth();
+  const { isAuth, username } = useAuth(); 
 
   const [favorites, setFavorites] = useState([]);
 
