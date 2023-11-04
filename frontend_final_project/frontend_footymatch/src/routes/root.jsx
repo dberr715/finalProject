@@ -9,8 +9,6 @@ export default function Root() {
   return (
     <AuthProvider>
       <main>
-       
-
         <Outlet />
       </main>
     </AuthProvider>
