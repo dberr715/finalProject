@@ -61,18 +61,30 @@ export default function LoginPage() {
   return (
     <>
       <div className="maincopy">
-        <h1>Welcome to FootyMatch!</h1>
-        <h3>Your Gateway to the World of Soccer.</h3>
+        <img
+          src="../../public/footymatch.png"
+          alt="FootyMatch"
+          className="footy"
+        />
 
+        {/* <h1>Welcome to FootyMatch!</h1> */}
+        <h3>Your Gateway to the World of Soccer.</h3>
         <p>
+          For sports fans looking to explore soccer, we've got you covered. Find
+          your perfect team and dive into the beautiful game!
+        </p>
+        <p>Minimal input needed!</p>
+        <p>Free Sign Up!</p>
+
+        {/* <p>
           Do you love sports like basketball, baseball, or hockey? We'll help
           you discover your perfect soccer team based on the sports you already
           love. Whether you're a die-hard fan or just curious about the world of
           soccer, we've got you covered. Get ready to find your new favorite
           soccer team and dive into the excitement of the beautiful game!
-        </p>
+        </p> */}
       </div>
-      <div className="container">
+      <div className="container" style={{ marginTop: "50px" }}>
         <form onSubmit={handleSubmit}>
           <div className="login form">
             <header>Login</header>
