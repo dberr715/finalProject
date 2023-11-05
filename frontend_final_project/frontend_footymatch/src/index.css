@@ -76,6 +76,7 @@ body {
 
 .match {
   background-color: var(--color-bg-primary);
+  color: rgb(13, 6, 6);
   min-width: 300px;
   margin: 10px 10%;
   border-radius: 10px;
@@ -460,7 +461,8 @@ body {
 body {
   min-height: 100vh;
   width: 100%;
-  background: #87e486cf;
+  background: #5e6d6a;
+  color: #e4f9f5;
 }
 .container {
   position: absolute;
@@ -603,4 +605,3 @@ body {
   width: 400px;
   height: auto;
 }
-

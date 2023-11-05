@@ -24,6 +24,11 @@ export default function HomeText() {
   return (
     <div className="main-container">
       <div className="maincopy">
+        <img
+          src="../../public/footymatch.png"
+          alt="FootyMatch"
+          className="footy"
+        />
         <h1>Welcome to FootyMatch!</h1>
         <h3>Your Gateway to the World of Soccer.</h3>
 
