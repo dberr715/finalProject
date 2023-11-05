@@ -31,7 +31,7 @@ export default function AIResponse({ handleSearch }) {
               {
                 role: "user",
                 content:
-                  "In the next prompt, I will give 1+ non-soccer sports teams, and I want you to make a recommendation of a soccer team that I should follow. Tell 1 team name that fits all the input teams I entered and 2 sentences why this would be a good team to follow. After I give you teams, let the first response line be just the team name. Limit your choices to teams in the EPL, La Liga, Bundesliga, Ligue1, or Serie A",
+                  "In the next prompt, I will give 1+ non-soccer sports teams, and I want you to make a recommendation of a soccer team that I should follow. Tell 1 team name that fits all the input teams I entered. Write 2 sentences why this would be a good team to follow. Limit your choices to teams in the EPL, La Liga, Bundesliga, Ligue1, or Serie A",
               },
               {
                 role: "user",

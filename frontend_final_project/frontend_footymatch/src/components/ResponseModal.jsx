@@ -60,7 +60,7 @@ export default function ResponseModal({ rec, onClose }) {
         <span className="close" onClick={onClose}>
           &times;
         </span>
-        <h2>Your FootyMatch is: </h2>
+        <h2>Your FootyMatch: </h2>
         <p>{rec}</p>
 
         <input
