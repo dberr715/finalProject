@@ -151,7 +151,7 @@ export default function TeamPage() {
     }
 
     // After fetching data, check if the team is a favorite
-    // fetchFavoriteTeams();
+    fetchFavoriteTeams();
   }
   console.log("Time1: ", time1);
   console.log("Time2: ", time2);
@@ -236,7 +236,7 @@ export default function TeamPage() {
   useEffect(() => {
     fetchData1();
 
-    // fetchFavoriteTeams();
+    fetchFavoriteTeams();
   }, [params.teamname]);
 
   return (

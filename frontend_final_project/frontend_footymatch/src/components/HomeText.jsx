@@ -48,7 +48,7 @@ export default function HomeText() {
             <AIresponse />
           </div>
           <div className="search-container">
-            <div className="card">
+            <div className="card smaller-card">
               <p>Already have a team in mind?</p>
               <input
                 className="search"
@@ -67,24 +67,6 @@ export default function HomeText() {
             </div>
           </div>
         </div>
-        {/* 
-        <p>Type 1 or more sports teams in to find your soccer team match! </p>
-        <AIresponse />
-
-        <div className="search-container">
-          <h4>Already have a team?</h4>
-          <p>Search for it below!</p>
-
-          <input
-            type="text"
-            value={team}
-            onChange={handleInputChange}
-            placeholder="🔍"
-          />
-          <button type="submit" onClick={handleSearchClick}>
-            Search
-          </button> */}
-        {/* </div> */}
       </div>
     </div>
   );

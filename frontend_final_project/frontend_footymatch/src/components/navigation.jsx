@@ -4,7 +4,7 @@ import { useAuth } from "../AuthContext";
 import "../index.css";
 
 export default function Navigation() {
-  const { isAuth, username } = useAuth(); 
+  const { isAuth, username } = useAuth();
 
   const [favorites, setFavorites] = useState([]);
 
@@ -41,42 +41,41 @@ export default function Navigation() {
   }, [isAuth]);
 
   return (
-    <div className="topnav" id="myTopnav">
-      <div className="active">
-        <Link to="/home">Home</Link>
-      </div>
-      {/* <div>
-        <Link to="/create">Create Account</Link>
-      </div> */}
-      <div>
-        <Link to="/live">Live Games</Link>
-      </div>
-      <div className="dropdown">
-        <button className="dropbtn">
-          My Favorites
-          <i className="fa fa-caret-down"></i>
-        </button>
-        <div className="dropdown-content">
-          {favorites && favorites.length > 0 ? (
-            favorites.map((favorite, index) => (
-              <Link key={index} to={`/team/${favorite.team_name}`}>
-                {favorite.team_name}
-              </Link>
-            ))
+    <div className="sticky-topnav">
+      <div className="topnav" id="myTopnav">
+        <div className="active">
+          <Link to="/home">Home</Link>
+        </div>
+        <div>
+          <Link to="/live">Live Games</Link>
+        </div>
+        <div className="dropdown">
+          <button className="dropbtn">
+            My Favorites
+            <i className="fa fa-caret-down"></i>
+          </button>
+          <div className="dropdown-content">
+            {favorites && favorites.length > 0 ? (
+              favorites.map((favorite, index) => (
+                <Link key={index} to={`/team/${favorite.team_name}`}>
+                  {favorite.team_name}
+                </Link>
+              ))
+            ) : (
+              <p>No favorite teams yet</p>
+            )}
+          </div>
+        </div>
+        <div>
+          {isAuth ? (
+            <div>
+              <Link to="/logout">Logout</Link>
+              <div className="username">{username}</div>
+            </div>
           ) : (
-            <p>No favorite teams yet</p>
+            <Link to="/login">Login</Link>
           )}
         </div>
-      </div>
-      <div>
-        {isAuth ? (
-          <div>
-            <Link to="/logout">Logout</Link>
-            <div className="username">{username}</div>
-          </div>
-        ) : (
-          <Link to="/login">Login</Link>
-        )}
       </div>
     </div>
   );
