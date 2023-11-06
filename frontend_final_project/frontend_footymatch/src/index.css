@@ -53,12 +53,13 @@ main {
 }
 
 .main-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin-top: 150px;
-  max-width: 1200px;
+  position: fixed;
+  top: 50px; /* Adjust this value to leave space for the navigation bar */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto; /* Add scrollbars if the content overflows */
+  padding-top: 20px;
 }
 
 .maincopy {
@@ -66,11 +67,12 @@ main {
   position: relative;
   margin-bottom: 20px;
   z-index: 0;
+  margin: 0 auto;
   margin-bottom: 240px;
   background-color: rgba(23, 23, 34, 0.65);
   color: #e4f9f5;
-  max-width: 700px;
-  width: 700px;
+  max-width: 1200px;
+  width: 1100px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
@@ -463,16 +465,15 @@ body {
 .topnav {
   background-color: #333;
   /* overflow: hidden; */
-
-  width: 100%;
-  min-height: 56px;
-  position: relative;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background-color: #333; /* Set your desired background color */
-  color: #fff; /* Set your desired text color */
-
+  background-color: #333;
+  color: #fff;
+  z-index: 100;
+  width: 100%;
+  min-height: 56px;
   z-index: 100;
 }
 
