@@ -58,7 +58,7 @@ export default function AIResponse({ handleSearch }) {
   };
 
   return (
-    <div>
+    <div className="ai-response">
       <input
         type="text"
         placeholder="🏀🏈⚾️🎾"
@@ -74,7 +74,7 @@ export default function AIResponse({ handleSearch }) {
         <ResponseModal
           rec={rec}
           onClose={closeModal}
-          handleSearch={handleSearch} // Pass handleSearch to ResponseModal
+          handleSearch={handleSearch}
         />
       )}
     </div>

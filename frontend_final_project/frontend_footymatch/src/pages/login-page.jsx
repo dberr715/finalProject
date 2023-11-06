@@ -87,8 +87,8 @@ export default function LoginPage() {
       <div className="container" style={{ marginTop: "50px" }}>
         <form onSubmit={handleSubmit}>
           <div className="login form">
-            <header>Login</header>
-            <label>
+            <header className="apple">Login</header>
+            <label className="apple">
               Username
               <input
                 type="text"
@@ -99,7 +99,7 @@ export default function LoginPage() {
             </label>
             {error && <p style={{ color: "red" }}>{error}</p>}{" "}
             {/* Display error message in red */}
-            <label>
+            <label className="apple">
               Password
               <input
                 type="password"
