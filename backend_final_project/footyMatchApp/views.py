@@ -1,5 +1,5 @@
 from .models import Favorites
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, generics
 from .serializers import (
     UserSerializer,
     FavoritesSerializer,
@@ -17,6 +17,17 @@ from django.contrib.auth.models import User
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
+
+
+class FavoriteTeamDelete(generics.DestroyAPIView):
+    queryset = Favorites.objects.all()
+    serializer_class = FavoritesSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return Favorites.objects.get(
+            user=self.request.user, team_name=self.kwargs["team_name"]
+        )
 
 
 class FavoriteTeam(APIView):

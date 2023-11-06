@@ -13,8 +13,10 @@ export default function TeamPage() {
   const [stadium, setStadium] = useState("");
   const [stadiumPic, setStadiumPic] = useState("");
   const [error, setError] = useState(null);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   async function fetchData1() {
+    // Your existing code for fetching team data
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
     const nameUrl = `https://api-football-v1.p.rapidapi.com/v3/teams?name=${params.teamname}`;
     const options = {
@@ -49,38 +51,93 @@ export default function TeamPage() {
         "That is not a professional soccer team, please check your spelling and try again!"
       );
     }
+
+    // After fetching data, check if the team is a favorite
+    fetchFavoriteTeams();
   }
 
-  async function addFavoriteTeam(teamName) {
-    const apiUrl = " http://localhost:8000/favorite-teams/ "; // Correct API endpoint
-
-    // console.log("Tokenhere:  ", token);
+  // Function to add or remove a team from favorites
+  async function handleFavoriteTeam() {
+    const apiUrl = "http://localhost:8000/favorite-teams/"; // Correct API endpoint
     const token = localStorage.getItem("access_token");
     const user_id = localStorage.getItem("user_id");
-    try {
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ team_name: teamName, user: user_id }),
-      });
+    const data = { team_name: teamName, user: user_id };
 
-      if (response.ok) {
-        console.log("Team added to favorites successfully.");
+    try {
+      if (isFavorite) {
+        // Remove from favorites
+        const response = await fetch(apiUrl, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+          console.log("Team removed from favorites successfully.");
+          setIsFavorite(false);
+        } else {
+          console.error("Failed to remove team from favorites.");
+        }
       } else {
-        console.error("Failed to add team to favorites.");
+        // Add to favorites
+        const response = await fetch(apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+          console.log("Team added to favorites successfully.");
+          setIsFavorite(true);
+        } else {
+          console.error("Failed to add team to favorites.");
+        }
       }
     } catch (error) {
       console.error("An error occurred:", error);
     }
   }
 
+  // Fetch the user's favorite teams and check if the current team is a favorite
+  const fetchFavoriteTeams = async () => {
+    if (isAuth) {
+      const access_token = localStorage.getItem("access_token");
+      const url = "http://localhost:8000/favorite-teams/";
+
+      try {
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${access_token}`,
+          },
+        });
+
+        if (response.ok) {
+          const favoriteTeams = await response.json();
+          const isFavorite = favoriteTeams.some(
+            (team) => team.team_name === teamName
+          );
+          setIsFavorite(isFavorite);
+        } else {
+          console.error("Failed to fetch favorite teams.");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+  };
+
   useEffect(() => {
     fetchData1();
   }, [params.teamname]);
-  // console.log("Tokenhere:  ", token);
+
   return (
     <>
       <Navigation />
@@ -92,12 +149,12 @@ export default function TeamPage() {
             <p>Country: {country}</p>
             <p>Team Name: {teamName}</p>
             <img src={logo} alt="Team Logo" />
-            <h2>Add to Favorites</h2>
+
             <p>Stadium Name: {stadium}</p>
             <img src={stadiumPic} alt="Stadium Pic" />
             {isAuth && (
-              <button onClick={() => addFavoriteTeam(teamName)}>
-                Add to Favorites
+              <button onClick={() => handleFavoriteTeam()}>
+                {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
               </button>
             )}
           </>
