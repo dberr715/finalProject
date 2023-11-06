@@ -51,7 +51,7 @@ export default function Live() {
             {fixture.map((score) => (
               <div key={score.fixture.id} className="match">
                 <div className="match-header">
-                  <div className="match-status">Live</div>
+                  {/* <div className="match-status">Live</div> */}
                   <div className="match-tournament">
                     <div className="tournament-info">
                       <img src={score.league.logo} alt="League Logo" />
