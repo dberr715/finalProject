@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, redirect } from "react-router-dom";
+import { useRevalidator } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 import Navigation from "../components/Navigation";
 import FavoritesButton from "../components/FavoritesButton"; // Correct import path
 import "../index.css";
 
 export default function TeamPage() {
+  const revalidator = useRevalidator();
   const params = useParams();
   const { isAuth } = useAuth();
   const [teamName, setTeamName] = useState("");
@@ -67,6 +69,7 @@ export default function TeamPage() {
         setTeamId(teamId);
         console.log("FIRST FETCH:", teamId);
         fetchData2(teamId);
+        console.log({ teamName });
       } else {
         setError("Team not found. Please try again.");
       }
@@ -82,7 +85,6 @@ export default function TeamPage() {
   }
 
   async function fetchData2(teamId) {
-    console.log("SECOND FETCH?!?!:", teamId);
     // Your existing code for fetching team data
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
 
@@ -177,6 +179,7 @@ export default function TeamPage() {
         if (response.ok) {
           console.log("Team removed from favorites successfully.");
           setIsFavorite(false);
+          revalidator.revalidate();
         } else {
           console.error("Failed to remove team from favorites.");
         }
@@ -202,42 +205,47 @@ export default function TeamPage() {
       console.error("An error occurred:", error);
     }
   }
-
+  // console.log({ isFavorite });
+  console.log({ params });
   // Fetch the user's favorite teams and check if the current team is a favorite
   const fetchFavoriteTeams = async () => {
-    if (isAuth) {
-      const access_token = localStorage.getItem("access_token");
-      const url = "http://localhost:8000/favorite-teams/";
+    console.log("FETCHING FAVORITE TEAM");
 
-      try {
-        const response = await fetch(url, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${access_token}`,
-          },
-        });
+    const access_token = localStorage.getItem("access_token");
+    const url = "http://localhost:8000/favorite-teams/";
 
-        if (response.ok) {
-          const favoriteTeams = await response.json();
-          const isFavorite = favoriteTeams.some(
-            (team) => team.team_name === teamName
-          );
-          setIsFavorite(isFavorite);
-        } else {
-          console.error("Failed to fetch favorite teams.");
-        }
-      } catch (error) {
-        console.error("Error:", error);
+    try {
+      console.log("TRYING TO GET FAVORITE TEAM");
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      console.log("RESPONSE OK?", response.ok);
+      if (response.ok) {
+        console.log("INSIDE");
+        const favoriteTeams = await response.json();
+        const isFavorite = favoriteTeams.some(
+          (team) => team.team_name === params.teamname
+        );
+
+        console.log(favoriteTeams);
+        return setIsFavorite(isFavorite);
+      } else {
+        console.error("Failed to fetch favorite teams.");
       }
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
   useEffect(() => {
     fetchData1();
-
     fetchFavoriteTeams();
-  }, [params.teamname]);
+    console.log("HERE");
+  }, []);
 
   return (
     <>

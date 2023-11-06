@@ -60,7 +60,6 @@ export default function LoginPage() {
   return (
     <div className="container">
       <div className="maincopy">
-        {/* Content you want on top of the form */}
         <img
           src="../../public/footymatch.png"
           alt="FootyMatch"

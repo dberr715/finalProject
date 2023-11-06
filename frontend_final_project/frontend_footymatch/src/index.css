@@ -48,6 +48,9 @@ body {
   color: rgb(18, 16, 16);
   background-color: var(--color-bg-secondary);
 }
+main {
+  width: 1000px;
+}
 
 .main-container {
   display: flex;
@@ -394,8 +397,15 @@ body {
 
 .container {
   position: absolute;
-  width: 5px;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 430px;
+  width: 100%;
   background: transparent;
+  border-radius: 7px;
+  height: auto;
   /* top: 0;
   left: 0;
   right: 0;
@@ -452,8 +462,10 @@ body {
 
 .topnav {
   background-color: #333;
-  overflow: hidden;
+  /* overflow: hidden; */
+
   width: 100%;
+  min-height: 56px;
   position: relative;
   top: 0;
   left: 0;
@@ -485,7 +497,7 @@ body {
 
 .dropdown {
   float: left;
-  overflow: hidden;
+  position: relative;
 }
 
 /* Dropdown button style */
@@ -510,12 +522,12 @@ body {
 
 /* Dropdown content style */
 .dropdown-content {
-  display: none; /* Initially hidden */
+  display: none;
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1; /* Higher z-index to appear on top */
+  z-index: 999999999; /* Higher z-index to appear on top */
 }
 
 /* Show dropdown content when hovering over the dropdown button */
@@ -532,6 +544,7 @@ body {
 .dropdown-content a:hover {
   background-color: #ddd;
   color: black;
+  z-index: 999;
 }
 
 .dropdown:hover .dropdown-content {
@@ -664,16 +677,10 @@ body {
   padding: 35px;
   font-size: 18px;
   width: 100%;
-  height: 500px;
   text-align: left;
-  align-items: center;
-  justify-content: center;
-
-  margin-top: "50px";
-
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  /* border: 1px solid rgba(255, 255, 255, 0.25); */
   border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
 }
 
