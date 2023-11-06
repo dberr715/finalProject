@@ -15,6 +15,25 @@ export default function TeamPage() {
   const [stadiumPic, setStadiumPic] = useState("");
   const [error, setError] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [teamId, setTeamId] = useState("");
+  const [time1, setTime1] = useState("");
+  const [time2, setTime2] = useState("");
+  const [time3, setTime3] = useState("");
+  const [league1, setLeague1] = useState("");
+  const [league2, setLeague2] = useState("");
+  const [league3, setLeague3] = useState("");
+  const [teamsHomeName1, setTeamsHomeName1] = useState("");
+  const [teamsAwayName1, setTeamsAwayName1] = useState("");
+  const [teamsHomeName2, setTeamsHomeName2] = useState("");
+  const [teamsAwayName2, setTeamsAwayName2] = useState("");
+  const [teamsHomeName3, setTeamsHomeName3] = useState("");
+  const [teamsAwayName3, setTeamsAwayName3] = useState("");
+  const [teamsHomeLogo1, setTeamsHomeLogo1] = useState("");
+  const [teamsAwayLogo1, setTeamsAwayLogo1] = useState("");
+  const [teamsHomeLogo2, setTeamsHomeLogo2] = useState("");
+  const [teamsAwayLogo2, setTeamsAwayLogo2] = useState("");
+  const [teamsHomeLogo3, setTeamsHomeLogo3] = useState("");
+  const [teamsAwayLogo3, setTeamsAwayLogo3] = useState("");
 
   async function fetchData1() {
     // Your existing code for fetching team data
@@ -38,11 +57,13 @@ export default function TeamPage() {
         const stadium = result.response[0].venue.name;
         const stadiumPic = result.response[0].venue.image;
         const country = result.response[0].team.country;
+        const teamId = result.response[0].team.id;
         setTeamName(name);
         setLogo(logo);
         setStadium(stadium);
         setStadiumPic(stadiumPic);
         setCountry(country);
+        setTeamId(teamId);
       } else {
         setError("Team not found. Please try again.");
       }
@@ -52,11 +73,90 @@ export default function TeamPage() {
         "That is not a professional soccer team, please check your spelling and try again!"
       );
     }
+    console.log("TEAM ID: ", teamId);
 
     // After fetching data, check if the team is a favorite
     fetchFavoriteTeams();
   }
 
+  async function fetchData2() {
+    // Your existing code for fetching team data
+    const key = import.meta.env.VITE_FOOTBALL_API_KEY;
+    const idUrl = `https://api-football-v1.p.rapidapi.com/v3/fixtures?season=2020&team=${params.teamid}&next=3`;
+    //  const nameUrl = `https://api-football-v1.p.rapidapi.com/v3/teams?name=${params.teamname}`;
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": key,
+        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+      },
+    };
+
+    try {
+      const response = await fetch(idUrl, options);
+
+      if (response.ok) {
+        const result = await response.json();
+        const time1 = result.response[0].fixture.date;
+        const time2 = result.response[1].fixture.date;
+        const time3 = result.response[0].fixture.date;
+        const league1 = result.response[0].league.name;
+        const league2 = result.response[1].league.name;
+        const league3 = result.response[2].league.name;
+        const teamsHomeName1 = result.response[0].teams.home.name;
+        const teamsHomeName2 = result.response[1].teams.home.name;
+        const teamsHomeName3 = result.response[2].teams.home.name;
+        const teamsAwayName1 = result.response[0].teams.away.name;
+        const teamsAwayName2 = result.response[1].teams.away.name;
+        const teamsAwayName3 = result.response[2].teams.away.name;
+        const teamsHomeLogo1 = result.response[0].teams.home.logo;
+        const teamsHomeLogo2 = result.response[1].teams.home.logo;
+        const teamsHomeLogo3 = result.response[2].teams.home.logo;
+        const teamsAwayLogo1 = result.response[0].teams.away.logo;
+        const teamsAwayLogo2 = result.response[1].teams.away.logo;
+        const teamsAwayLogo3 = result.response[2].teams.away.logo;
+
+        setTime1(time1);
+        setTime2(time2);
+        setTime3(time3);
+        setLeague1(league1);
+        setLeague2(league2);
+        setLeague3(league3);
+        setTeamsHomeName1(teamsHomeName1);
+        setTeamsHomeName2(teamsHomeName2);
+        setTeamsHomeName3(teamsHomeName3);
+        setTeamsAwayName1(teamsAwayName1);
+        setTeamsAwayName2(teamsAwayName1);
+        setTeamsAwayName3(teamsAwayName1);
+        setTeamsHomeName1(teamsHomeName1);
+        setTeamsHomeName2(teamsHomeName2);
+        setTeamsHomeName3(teamsHomeName3);
+        setTeamsAwayName1(teamsAwayName1);
+        setTeamsAwayName2(teamsAwayName2);
+        setTeamsAwayName3(teamsAwayName3);
+        setTeamsHomeLogo1(teamsHomeLogo1);
+        setTeamsHomeLogo2(teamsHomeLogo2);
+        setTeamsHomeLogo3(teamsHomeLogo3);
+        setTeamsAwayLogo1(teamsAwayLogo1);
+        setTeamsAwayLogo2(teamsAwayLogo2);
+        setTeamsAwayLogo3(teamsAwayLogo3);
+      } else {
+        setError("Team not found. Please try again.");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "That is not a professional soccer team, please check your spelling and try again!"
+      );
+    }
+    console.log("TEAM ID: ", teamId);
+
+    // After fetching data, check if the team is a favorite
+    fetchFavoriteTeams();
+  }
+  console.log("Time1: ", time1);
+  console.log("Time2: ", time2);
+  console.log("Time3: ", time3);
   // Function to add or remove a team from favorites
   async function handleFavoriteTeam() {
     const apiUrl = "http://localhost:8000/favorite-teams/"; // Correct API endpoint
@@ -147,6 +247,7 @@ export default function TeamPage() {
           <p className="error-message">{error}</p>
         ) : (
           <>
+            <p>Team ID: {teamId}</p>
             <p>Country: {country}</p>
             <p>Team Name: {teamName}</p>
             <img src={logo} alt="Team Logo" />
@@ -160,6 +261,28 @@ export default function TeamPage() {
                 onToggleFavorite={() => handleFavoriteTeam()} // Pass the function to toggle favorite as a prop
               />
             )}
+            <h2>Next Games</h2>
+            <h3>League:{league1}</h3>
+            <h4>Time: {time1}</h4>
+            <img src={teamsHomeLogo1} alt="Home Team Logo" />
+            <p>Home:{teamsHomeName1}</p>
+            <p>vs.</p>
+            <p>Away: {teamsAwayName1}</p>
+            <img src={teamsAwayLogo1} alt="Away Team Logo" />
+            <h3>League:{league2}</h3>
+            <h4>Time: {time2}</h4>
+            <img src={teamsHomeLogo2} alt="Home Team Logo" />
+            <p>Home:{teamsHomeName2}</p>
+            <p>vs.</p>
+            <p>Away: {teamsAwayName2}</p>
+            <img src={teamsAwayLogo2} alt="Away Team Logo" />
+            <h3>League:{league3}</h3>
+            <h4>Time: {time3}</h4>
+            <img src={teamsHomeLogo3} alt="Home Team Logo" />
+            <p>Home:{teamsHomeName3}</p>
+            <p>vs.</p>
+            <p>Away: {teamsAwayName3}</p>
+            <img src={teamsAwayLogo3} alt="Away Team Logo" />
           </>
         )}
       </div>
