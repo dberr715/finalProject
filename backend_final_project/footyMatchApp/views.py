@@ -13,21 +13,25 @@ from django.contrib.auth.hashers import make_password
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.models import User
+from .models import Favorites
+from .serializers import FavoritesSerializer
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 
-class FavoriteTeamDelete(generics.DestroyAPIView):
-    queryset = Favorites.objects.all()
-    serializer_class = FavoritesSerializer
+class FavoriteTeamDelete(APIView):
     permission_classes = [IsAuthenticated]
 
-    def get_object(self):
-        return Favorites.objects.get(
-            user=self.request.user, team_name=self.kwargs["team_name"]
-        )
+    def delete(self, request, team_name):
+        try:
+            # Get the favorite record for the team and user
+            favorite = Favorites.objects.get(user=request.user, team_name=team_name)
+            favorite.delete()  # Remove the favorite
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Favorites.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
 
 class FavoriteTeam(APIView):
@@ -36,15 +40,13 @@ class FavoriteTeam(APIView):
     def post(self, request):
         try:
             serializer = FavoritesSerializer(data=request.data)
-            print(serializer)
             if serializer.is_valid():
-                newFavorite = serializer.save()
-
-                newFavorite.save()
+                serializer.save(user=request.user)  # Set the user to the currently authenticated user
                 return Response(status=status.HTTP_201_CREATED)
-
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
 
     def get(self, request):
         user = request.user

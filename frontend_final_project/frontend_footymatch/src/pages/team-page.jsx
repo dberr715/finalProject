@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 import Navigation from "../components/Navigation";
+import FavoritesButton from "../components/FavoritesButton"; // Correct import path
 import "../index.css";
 
 export default function TeamPage() {
@@ -66,13 +67,12 @@ export default function TeamPage() {
     try {
       if (isFavorite) {
         // Remove from favorites
-        const response = await fetch(apiUrl, {
+        const response = await fetch(apiUrl + teamName + "/", {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(data),
         });
 
         if (response.ok) {
@@ -136,6 +136,7 @@ export default function TeamPage() {
 
   useEffect(() => {
     fetchData1();
+    fetchFavoriteTeams();
   }, [params.teamname]);
 
   return (
@@ -153,9 +154,11 @@ export default function TeamPage() {
             <p>Stadium Name: {stadium}</p>
             <img src={stadiumPic} alt="Stadium Pic" />
             {isAuth && (
-              <button onClick={() => handleFavoriteTeam()}>
-                {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-              </button>
+              <FavoritesButton
+                teamName={teamName} // Pass the teamName as a prop
+                isFavorite={isFavorite} // Pass isFavorite as a prop
+                onToggleFavorite={() => handleFavoriteTeam()} // Pass the function to toggle favorite as a prop
+              />
             )}
           </>
         )}
