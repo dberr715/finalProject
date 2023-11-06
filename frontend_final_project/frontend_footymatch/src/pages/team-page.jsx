@@ -58,12 +58,15 @@ export default function TeamPage() {
         const stadiumPic = result.response[0].venue.image;
         const country = result.response[0].team.country;
         const teamId = result.response[0].team.id;
+        console.log("RESULT FOR TEAM ID:", result);
         setTeamName(name);
         setLogo(logo);
         setStadium(stadium);
         setStadiumPic(stadiumPic);
         setCountry(country);
         setTeamId(teamId);
+        console.log("FIRST FETCH:", teamId);
+        fetchData2(teamId);
       } else {
         setError("Team not found. Please try again.");
       }
@@ -73,16 +76,17 @@ export default function TeamPage() {
         "That is not a professional soccer team, please check your spelling and try again!"
       );
     }
-    console.log("TEAM ID: ", teamId);
 
     // After fetching data, check if the team is a favorite
     fetchFavoriteTeams();
   }
 
-  async function fetchData2() {
+  async function fetchData2(teamId) {
+    console.log("SECOND FETCH?!?!:", teamId);
     // Your existing code for fetching team data
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
-    const idUrl = `https://api-football-v1.p.rapidapi.com/v3/fixtures?season=2020&team=${params.teamid}&next=3`;
+
+    const idUrl = `https://api-football-v1.p.rapidapi.com/v3/fixtures?team=${teamId}&next=3`;
     //  const nameUrl = `https://api-football-v1.p.rapidapi.com/v3/teams?name=${params.teamname}`;
     const options = {
       method: "GET",
@@ -94,9 +98,10 @@ export default function TeamPage() {
 
     try {
       const response = await fetch(idUrl, options);
-
+      console.log("RESPONSE:", response);
       if (response.ok) {
         const result = await response.json();
+        console.log("RESULT:", result.response);
         const time1 = result.response[0].fixture.date;
         const time2 = result.response[1].fixture.date;
         const time3 = result.response[0].fixture.date;
@@ -126,14 +131,9 @@ export default function TeamPage() {
         setTeamsHomeName2(teamsHomeName2);
         setTeamsHomeName3(teamsHomeName3);
         setTeamsAwayName1(teamsAwayName1);
-        setTeamsAwayName2(teamsAwayName1);
-        setTeamsAwayName3(teamsAwayName1);
-        setTeamsHomeName1(teamsHomeName1);
-        setTeamsHomeName2(teamsHomeName2);
-        setTeamsHomeName3(teamsHomeName3);
-        setTeamsAwayName1(teamsAwayName1);
         setTeamsAwayName2(teamsAwayName2);
         setTeamsAwayName3(teamsAwayName3);
+
         setTeamsHomeLogo1(teamsHomeLogo1);
         setTeamsHomeLogo2(teamsHomeLogo2);
         setTeamsHomeLogo3(teamsHomeLogo3);
@@ -149,10 +149,9 @@ export default function TeamPage() {
         "That is not a professional soccer team, please check your spelling and try again!"
       );
     }
-    console.log("TEAM ID: ", teamId);
 
     // After fetching data, check if the team is a favorite
-    fetchFavoriteTeams();
+    // fetchFavoriteTeams();
   }
   console.log("Time1: ", time1);
   console.log("Time2: ", time2);
@@ -236,7 +235,8 @@ export default function TeamPage() {
 
   useEffect(() => {
     fetchData1();
-    fetchFavoriteTeams();
+
+    // fetchFavoriteTeams();
   }, [params.teamname]);
 
   return (
