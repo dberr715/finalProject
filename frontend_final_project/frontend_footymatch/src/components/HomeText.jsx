@@ -32,12 +32,15 @@ export default function HomeText() {
         <h1>Welcome to FootyMatch!</h1>
         <h3>Your Gateway to the World of Soccer.</h3>
 
-        <p>
+        <p className="kalyn">
           Do you love sports like basketball, baseball, or hockey? We'll help
           you discover your perfect soccer team based on the sports you already
           love. Whether you're a die-hard fan or just curious about the world of
-          soccer, we've got you covered. Get ready to find your new favorite
-          soccer team and dive into the excitement of the beautiful game!
+          soccer, we've got you covered.
+        </p>
+        <p className="kalyn">
+          Get ready to find your new favorite soccer team and dive into the
+          excitement of the beautiful game!
         </p>
         <div className="card-container">
           <div className="card">
