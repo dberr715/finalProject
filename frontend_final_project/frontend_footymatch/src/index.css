@@ -29,6 +29,10 @@ select,
 textarea {
   font: inherit;
 }
+.button1 {
+  background-color: #9aae00;
+  color: rgb(18, 18, 18);
+}
 
 img {
   display: block;
@@ -41,7 +45,7 @@ strong {
 body {
   font-family: "Inter", sans-serif;
   line-height: 1.5;
-  color: var(--color-text-primary);
+  color: rgb(18, 16, 16);
   background-color: var(--color-bg-secondary);
 }
 
@@ -79,7 +83,7 @@ input[type="text"] {
 }
 
 .apple {
-  color: rgb(27, 25, 25);
+  color: #181b1a;
 }
 
 .match {
@@ -220,6 +224,68 @@ input[type="text"] {
   align-items: center;
 }
 
+:root {
+  font-size: 20px;
+  box-sizing: inherit;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+p:not(:last-child) {
+  margin-bottom: 1.5em;
+}
+
+body {
+  font: 1em/1.618 Inter, sans-serif;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 100vh;
+  padding: 30px;
+
+  color: rgb(21, 21, 37);
+  background: url("../public/pitch.jpg") center / cover no-repeat fixed;
+}
+
+.card-container {
+  display: flex; /* Use Flexbox to display children horizontally */
+  justify-content: space-between; /* Add space between the elements */
+  align-items: center; /* Center vertically within the container */
+}
+.card {
+  max-width: 300px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  max-width: 500px;
+  height: 300px;
+  padding: 35px;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+
+  backdrop-filter: blur(15px);
+}
+
+.card-footer {
+  font-size: 0.65em;
+  color: #446;
+}
+
 .match-date,
 .match-referee {
   font-size: 14px;
@@ -306,7 +372,10 @@ input[type="text"] {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 1000px;
 }
+
+
 .modal {
   display: none;
   position: fixed;
@@ -470,8 +539,8 @@ input[type="text"] {
 body {
   min-height: 100vh;
   width: 100%;
-  background: #5e6d6a;
-  color: #e4f9f5;
+  /* background: url("../public/pitch.jpg"); */
+  color: #101212;
 }
 .container {
   position: absolute;
@@ -521,7 +590,7 @@ body {
 }
 .form a {
   font-size: 16px;
-  color: #009579;
+  /* color: #009579; */
   text-decoration: none;
 }
 .form a:hover {
@@ -537,27 +606,30 @@ body {
   cursor: pointer;
   transition: 0.4s;
 }
-.form input.button:hover {
-  background: #006653;
+.button1:hover {
+  background: #748307;
 }
 .signup {
   font-size: 17px;
   text-align: center;
   color: white;
 }
+.signup123 {
+  color: #9aae00;
+}
 
 .signup1 {
   font-size: 17px;
   text-align: center;
-  color: #009579;
+  color: #9aae00;
 }
 .signup2 {
   font-size: 17px;
   text-align: center;
-  color: #009579;
+  color: #9aae00;
 }
 .signup label {
-  color: #009579;
+  color: #9aae00;
   cursor: pointer;
 }
 .signup label:hover {

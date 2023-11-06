@@ -61,11 +61,13 @@ export default function AIResponse({ handleSearch }) {
     <div className="ai-response">
       <input
         type="text"
-        placeholder="🏀🏈⚾️🎾"
+        placeholder="Teams"
         value={inputText}
         onChange={handleInputChange}
+        className="search"
       />
-      <button className="match" onClick={fetchData}>
+      <br />
+      <button className="match, search" onClick={fetchData}>
         Match!
       </button>
       {isLoading ? <Spinner /> : null}

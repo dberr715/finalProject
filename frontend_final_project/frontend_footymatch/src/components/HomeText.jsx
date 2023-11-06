@@ -39,7 +39,35 @@ export default function HomeText() {
           soccer, we've got you covered. Get ready to find your new favorite
           soccer team and dive into the excitement of the beautiful game!
         </p>
-
+        <div className="card-container">
+          <div className="card">
+            <p>
+              Enter the names of one or more sports teams to discover your ideal
+              soccer team match!
+            </p>
+            <AIresponse />
+          </div>
+          <div className="search-container">
+            <div className="card">
+              <p>Already have a team in mind?</p>
+              <input
+                className="search"
+                type="text"
+                value={team}
+                onChange={handleInputChange}
+                placeholder="Enter Team"
+              />
+              <button
+                className="match, search"
+                type="submit"
+                onClick={handleSearchClick}
+              >
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+        {/* 
         <p>Type 1 or more sports teams in to find your soccer team match! </p>
         <AIresponse />
 
@@ -55,8 +83,8 @@ export default function HomeText() {
           />
           <button type="submit" onClick={handleSearchClick}>
             Search
-          </button>
-        </div>
+          </button> */}
+        {/* </div> */}
       </div>
     </div>
   );

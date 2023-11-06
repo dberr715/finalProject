@@ -85,7 +85,7 @@ export default function LoginPage() {
         </p> */}
       </div>
       <div className="container" style={{ marginTop: "50px" }}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="logging">
           <div className="login form">
             <header className="apple">Login</header>
             <label className="apple">
@@ -108,13 +108,14 @@ export default function LoginPage() {
                 onChange={handleChangePassword}
               />
             </label>
-            <input type="submit" className="button" value="Login" />
+            <input type="submit" className="button1" value="Login" />
             <div className="signup">
               <span className="signup1">
-                Don't have an account?
+                Don't have an account? -      
                 <label className="signup2">
-                  <br />
-                  <Link to="/create">Sign Up</Link>
+                  <Link to="/create" className="signup123">
+                         Sign Up
+                  </Link>
                 </label>
               </span>
             </div>
