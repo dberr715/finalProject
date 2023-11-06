@@ -59,8 +59,17 @@ body {
 .maincopy {
   text-align: center;
   position: relative;
+  margin-bottom: 20px;
   z-index: 1;
-  margin-bottom:240px ;
+  margin-bottom: 240px;
+  background-color: #4b5c58;
+  color: #e4f9f5;
+  max-width: 700px;
+  width: 700px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  border-radius: 10%;
 }
 
 .search-container {
@@ -367,15 +376,17 @@ body {
 
 .container {
   position: absolute;
-  top: 0;
+  width: 5px;
+  background: transparent;
+  /* top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 1000px;
+  margin-top: "50px"; */
 }
 
 .modal {
@@ -545,17 +556,17 @@ body {
   color: #101212;
 }
 .container {
-  position: relative;
-  z-index: 0;
+  position: absolute;
+  z-index: 1;
   margin-top: 110;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 430px;
   width: 100%;
-  background: #fff;
+  background: transparent;
   border-radius: 7px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+
   height: 450px;
 }
 .container .registration {
@@ -573,6 +584,7 @@ body {
 .container .form {
   padding: 2rem;
 }
+
 .form header {
   font-size: 2rem;
   font-weight: 500;
@@ -613,13 +625,32 @@ body {
 .button1:hover {
   background: #748307;
 }
+
+.login.form {
+  max-width: 400px;
+  padding: 35px;
+  font-size: 18px;
+  width: 100%;
+  height: 500px;
+  text-align: left;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: "50px";
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+}
+
 .signup {
   font-size: 17px;
   text-align: center;
   color: white;
 }
 .signup123 {
-  color: #9aae00;
+  color: #5e6d6a;
 }
 
 .signup1 {
