@@ -73,9 +73,10 @@ export default function ResponseModal({ rec, onClose }) {
             placeholder="Enter FootyMatch Team"
             required=""
           />
-          <label for="name" className="form__label">
+          <br />
+          {/* <label for="name" className="form__label">
             Enter FootyMatch Team
-          </label>
+          </label> */}
           <button
             className="match, search"
             id="modal-search-button"
