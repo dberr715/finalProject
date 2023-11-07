@@ -264,7 +264,7 @@ export default function TeamPage() {
                   <h1>{teamName}</h1>
                 </div>
                 <div className="country-div">
-                  <h3>{country}</h3>
+                  <h2>{country}</h2>
                 </div>
 
                 <div className="fave-button">

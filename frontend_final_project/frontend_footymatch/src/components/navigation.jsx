@@ -69,10 +69,13 @@ export default function Navigation() {
         </div>
         <div>
           {isAuth ? (
-            <div>
-              <Link to="/logout">Logout</Link>
+            <>
+              <div>
+                <Link to="/logout">Logout</Link>
+              </div>
+
               <div className="username">{username}</div>
-            </div>
+            </>
           ) : (
             <Link to="/login">Login</Link>
           )}

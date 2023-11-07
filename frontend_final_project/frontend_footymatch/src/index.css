@@ -1,7 +1,3 @@
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
-
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
 *,
@@ -21,7 +17,19 @@
   --color-theme-primary: #623ce6;
 }
 
+.logo-image {
+  max-width: 100px; /* Adjust the width as needed */
+}
+
+.logo-small {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .teamContainer {
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,18 +43,26 @@
   width: 100%;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.55);
-}
-
-.team-logo-main,
-.teamname-main,
-.country-div {
-  /* Add these styles to your existing classes */
-  display: flex;
-  align-items: center;
+  border-top-right-radius: 50px;
+  border-top-left-radius: 50px;
 }
 
 .team-logo-main {
-  margin-right: 16px; /* Adjust the margin as needed */
+  align-items: center;
+}
+
+.teamname-main {
+  display: flex;
+  align-items: center;
+}
+.country-div {
+  display: flex;
+  align-items: center;
+  font-style: italic;
+}
+
+.team-logo-main {
+  margin-right: 16px;
 }
 
 .teamname-main {
@@ -124,13 +140,11 @@ figcaption {
 }
 
 .versus h5 {
-  /* Style your team names as needed */
-  font-size: 16px; /* Adjust font size as needed */
+  font-size: 16px;
 }
 
 .versus img {
-  /* Style your team logos as needed */
-  max-width: 50px; /* Adjust logo size as needed */
+  max-width: 50px;
 }
 
 .livegames {
@@ -167,11 +181,11 @@ main {
 
 .main-container {
   position: fixed;
-  top: 50px; /* Adjust this value to leave space for the navigation bar */
+  top: 50px;
   left: 0;
   right: 0;
   bottom: 0;
-  overflow-y: auto; /* Add scrollbars if the content overflows */
+  overflow-y: auto;
   padding-top: 20px;
 }
 
@@ -194,23 +208,18 @@ main {
   border-radius: 10%;
 }
 
-/* .kalyn {
-  text-align: center;
-  width: 850px;
-} */
-
 .search-container {
   margin-top: 20px;
 }
 
 .smaller-card {
-  width: 30%; /* Adjust the width as needed to make it wider */
-  background-color: #e0e0e0; /* Background color for the smaller card */
-  padding: 10px; /* Reduce padding to make it smaller */
+  width: 30%;
+  background-color: #e0e0e0;
+  padding: 10px;
 }
 .ai-response {
   height: 300px;
-  /* background-color: #f0f0f0;  */
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -386,8 +395,8 @@ p {
 }
 .card-container {
   display: flex;
-  flex-direction: column; /* Stack cards vertically */
-  align-items: center; /* Center cards horizontally */
+  flex-direction: column;
+  align-items: center;
 }
 p:not(:last-child) {
   margin-bottom: 1.5em;
@@ -408,9 +417,9 @@ body {
 }
 
 .card-container {
-  display: flex; /* Use Flexbox to display children horizontally */
-  justify-content: space-between; /* Add space between the elements */
-  align-items: center; /* Center vertically within the container */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .card {
   max-width: 300px;
@@ -426,7 +435,7 @@ body {
 
   margin: 10px;
   text-align: center;
-  width: 100%; /* Take the full width of the container */
+  width: 100%;
 
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 20px;
@@ -528,15 +537,6 @@ body {
   background: transparent;
   border-radius: 7px;
   height: auto;
-  /* top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 1000px;
-  margin-top: "50px"; */
 }
 
 .modal {
@@ -621,7 +621,6 @@ body {
   position: relative;
 }
 
-/* Dropdown button style */
 .dropdown .dropbtn {
   font-size: 17px;
   border: none;
@@ -634,11 +633,12 @@ body {
 }
 
 .sticky-topnav {
-  position: sticky;
+  position: fixed;
+  width: 100%;
+  background-color: #333; /* Example background color */
+  padding: 15px 0; /* Adjust padding to create space below the navigation bar */
   top: 0;
-  background-color: #333; /* Set your desired background color */
-  color: #fff; /* Set your desired text color */
-  z-index: 100;
+  z-index: 1;
 }
 
 /* Dropdown content style */
@@ -651,11 +651,10 @@ body {
   color: black;
 
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 999999999; /* Higher z-index to appear on top */
+  z-index: 999999999;
   width: 130px;
 }
 
-/* Show dropdown content when hovering over the dropdown button */
 .dropdown:hover .dropdown-content {
   display: block;
 }
