@@ -35,7 +35,7 @@ export default function CreateAccount() {
         setTimeout(() => {
           setShowSuccessAlert(false);
           navigate("/login");
-        }, 2200);
+        }, 3200);
       } else if (response.status === 400) {
         setShowErrorAlert(true);
       } else {
@@ -67,6 +67,11 @@ export default function CreateAccount() {
 
   return (
     <div className="registration form">
+      <img
+        src="../../public/footymatch.png"
+        alt="FootyMatch"
+        className="footy"
+      />
       <header>Sign Up</header>
       <form onSubmit={handleSubmit}>
         <input
@@ -98,9 +103,10 @@ export default function CreateAccount() {
         </div>
       </div>
       {showSuccessAlert && (
-        <div className="modal success">
-          <div className="modal-content">
-            <p>Account creation success!👏</p>
+        <div className="modal-create success">
+          <div className="modal-content-create">
+            <h4>Account creation success!👏</h4>
+            <p>Please log in with your credentials🔓</p>
           </div>
         </div>
       )}

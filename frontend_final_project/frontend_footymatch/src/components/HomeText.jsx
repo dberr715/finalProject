@@ -23,68 +23,70 @@ export default function HomeText() {
 
   return (
     <>
-      <img
-        src="../../public/footymatch.png"
-        alt="FootyMatch"
-        className="footy"
-      />
-      <div className="home-container">
-        <div className="top-container">
-          <div className="intro-container card1">
-            <h3>Your Gateway to the World of Soccer.</h3>
+      <div className="home-container-outer">
+        <img
+          src="../../public/footymatch.png"
+          alt="FootyMatch"
+          className="footy"
+        />
+        <div className="home-container">
+          <div className="top-container">
+            <div className="intro-container card1">
+              <h3>Your Gateway to the World of Soccer.</h3>
 
-            <p>
-              Do you love sports like basketball, baseball, or hockey? We'll
-              help you discover your perfect soccer team based on the sports you
-              already love. Whether you're a die-hard fan or just curious about
-              the world of soccer, we've got you covered.
-            </p>
-            <p>
-              Get ready to find your new favorite soccer team and dive into the
-              excitement of the beautiful game!
-            </p>
+              <p>
+                Do you love sports like basketball, baseball, or hockey? We'll
+                help you discover your perfect soccer team based on the sports
+                you already love. Whether you're a die-hard fan or just curious
+                about the world of soccer, we've got you covered.
+              </p>
+              <p>
+                Get ready to find your new favorite soccer team and dive into
+                the excitement of the beautiful game!
+              </p>
 
-            <div className="match-container">
-              <div className="match-find-container card1">
-                <p>
-                  Enter the names of one or more sports teams to discover your
-                  ideal soccer team match!
-                </p>
-                <AIresponse />
+              <div className="match-container">
+                <div className="match-find-container card1">
+                  <p>
+                    Enter the names of one or more sports teams to discover your
+                    ideal soccer team match!
+                  </p>
+                  <AIresponse />
+                </div>
               </div>
             </div>
-          </div>
-          <div className="search-container card1">
-            <div className="card1">
-              <p>Already have a team in mind?</p>
-              {/* <input
+            <div className="search-container card1">
+              <div className="card1">
+                <p>Already have a team in mind?</p>
+                {/* <input
                 className="search, form__input "
                 type="text"
                 value={team}
                 onChange={handleInputChange}
                 placeholder="Enter Soccer Team"
               /> */}
-              <div class="form__group">
-                <input
-                  type="text"
-                  className="form__input"
-                  id="name"
-                  value={team}
-                  onChange={handleInputChange}
-                  placeholder="Enter Soccer Team"
-                  required=""
-                />
-                <label for="name" class="form__label">
-                  Enter Soccer Team
-                </label>
+                <div className="form__group">
+                  <input
+                    type="text"
+                    className="form__input"
+                    id="name"
+                    value={team}
+                    onChange={handleInputChange}
+                    placeholder="Enter Soccer Team"
+                    required=""
+                  />
+                  <label for="name" className="form__label">
+                    Enter Soccer Team
+                  </label>
+                <button
+                  className="match, search, searchbutton"
+                  type="submit"
+                  onClick={handleSearchClick}
+                  >
+                  Find Team
+                </button>
+                  </div>
               </div>
-              <button
-                className="match, search, searchbutton"
-                type="submit"
-                onClick={handleSearchClick}
-              >
-                Find Team
-              </button>
             </div>
           </div>
         </div>

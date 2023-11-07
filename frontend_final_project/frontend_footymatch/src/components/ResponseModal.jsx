@@ -63,20 +63,33 @@ export default function ResponseModal({ rec, onClose }) {
         <h2>Your FootyMatch: </h2>
         <p>{rec}</p>
 
-        <input
-          type="text"
-          value={team}
-          onChange={handleInputChange}
-          placeholder="🔍"
-        />
-        <button type="submit" onClick={handleSearchClick}>
-          Search
-        </button>
-        {error && (
-          // Display the error message if an error occurred
-          <p className="error-message">{error}</p>
-        )}
+        <div className="form__group">
+          <input
+            type="text"
+            className="form__input"
+            id="name"
+            value={team}
+            onChange={handleInputChange}
+            placeholder="Enter FootyMatch Team"
+            required=""
+          />
+          <label for="name" className="form__label">
+            Enter FootyMatch Team
+          </label>
+          <button
+            className="match, search"
+            id="modal-search-button"
+            type="submit"
+            onClick={handleSearchClick}
+          >
+            Search and Learn!
+          </button>
+        </div>
       </div>
+      {error && (
+        // Display the error message if an error occurred
+        <p className="error-message">{error}</p>
+      )}
     </div>
   );
 }

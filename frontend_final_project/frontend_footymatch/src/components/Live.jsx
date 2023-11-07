@@ -40,7 +40,12 @@ export default function Live() {
   return (
     <>
       <Navigation />
-      <div>
+      <div className="livepage">
+        <img
+          src="../../public/footymatch.png"
+          alt="FootyMatch"
+          className="footy"
+        />
         <h1 className="livegames">Live Games</h1>
         {fixture.length === 0 ? (
           <div className="no-live-games-message">

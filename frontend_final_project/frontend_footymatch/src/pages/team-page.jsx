@@ -267,82 +267,93 @@ export default function TeamPage() {
   return (
     <>
       <Navigation />
-      <div>
-        {error ? (
-          <p className="error-message">{error}</p>
-        ) : (
-          <>
-            <div className="teamContainer">
-              <div className="top-row">
-                <div className="team-logo-main">
-                  <img src={logo} alt="Team Logo" />
-                </div>
-                <div className="teamname-main">
-                  <h1>{teamName}</h1>
-                </div>
-                <div className="country-div">
-                  <h2>{country}</h2>
-                </div>
-                <div className="fave-button">
-                  {isAuth && (
-                    <>
-                      <FavoritesButton
-                        teamName={teamName}
-                        isFavorite={isFavorite}
-                        onToggleFavorite={() => handleFavoriteTeam()}
-                      />
-                      {isAlreadyInFavorites && (
-                        <p style={{ color: "black" }}>{favoriteMessage}</p>
-                      )}
-                    </>
-                  )}
-                </div>
-              </div>
-              <div className="team-images">
-                <figure>
-                  <figcaption>{stadium}</figcaption>
-                  <img src={stadiumPic} alt="Stadium Pic" />
-                </figure>
-              </div>
-              <h2 className="upcoming">Upcoming Games</h2>
-              <div className="next-games">
-                <div className="game-card">
-                  <h3>{league1}</h3>
-                  <h4>{time1}</h4>
-                  <div className="versus">
-                    <img src={teamsHomeLogo1} alt="Home Team Logo" />
-                    <h5>{teamsHomeName1}</h5>
-                    <h2>V</h2>
-                    <h5>{teamsAwayName1}</h5>
-                    <img src={teamsAwayLogo1} alt="Away Team Logo" />
+      <div className="teampage123">
+        <img
+          src="../../public/footymatch.png"
+          alt="FootyMatch"
+          className="footy"
+        />
+        <div>
+          {error ? (
+            <p className="error-message">{error}</p>
+          ) : (
+            <>
+              <div className="teamContainer">
+                <div className="top-row">
+                  <div className="team-logo-main">
+                    <img src={logo} alt="Team Logo" className="tLogo" />
+                  </div>
+                  <div className="teamname-main">
+                    <h1 className="teamname-inner">{teamName}</h1>
+                  </div>
+                  <div className="country-div">
+                    <h2>{country}</h2>
+                  </div>
+                  <div className="fave-button">
+                    {isAuth && (
+                      <>
+                        <FavoritesButton
+                          teamName={teamName}
+                          isFavorite={isFavorite}
+                          onToggleFavorite={() => handleFavoriteTeam()}
+                        />
+                        {isAlreadyInFavorites && (
+                          <p style={{ color: "black" }}>{favoriteMessage}</p>
+                        )}
+                      </>
+                    )}
                   </div>
                 </div>
-                <div className="game-card">
-                  <h3>{league2}</h3>
-                  <h4>{time2}</h4>
-                  <div className="versus">
-                    <img src={teamsHomeLogo2} alt="Home Team Logo" />
-                    <h5>{teamsHomeName2}</h5>
-                    <h2>V</h2>
-                    <h5>{teamsAwayName2}</h5>
-                    <img src={teamsAwayLogo2} alt="Away Team Logo" />
-                  </div>
+                <div className="team-images">
+                  <figure>
+                    <figcaption>{stadium}</figcaption>
+                    <img
+                      src={stadiumPic}
+                      alt="Stadium Pic"
+                      className="stadium"
+                    />
+                  </figure>
                 </div>
-                <div className="game-card">
-                  <h3>{league3}</h3>
-                  <h4>{time3}</h4>
-                  <div className="versus">
-                    <img src={teamsHomeLogo3} alt="Home Team Logo" />
-                    <h5>{teamsHomeName3}</h5>
-                    <h2>V</h2>
-                    <h5>{teamsAwayName3}</h5>
-                    <img src={teamsAwayLogo3} alt="Away Team Logo" />
+                <h2 className="upcoming">Upcoming Games</h2>
+                <div className="next-games">
+                  <div className="game-card">
+                    <h3>{league1}</h3>
+                    <h4>{time1}</h4>
+                    <div className="versus">
+                      <img src={teamsHomeLogo1} alt="Home Team Logo" />
+                      <h5>{teamsHomeName1}</h5>
+                      <h2>V</h2>
+                      <h5>{teamsAwayName1}</h5>
+                      <img src={teamsAwayLogo1} alt="Away Team Logo" />
+                    </div>
+                  </div>
+                  <div className="game-card">
+                    <h3>{league2}</h3>
+                    <h4>{time2}</h4>
+                    <div className="versus">
+                      <img src={teamsHomeLogo2} alt="Home Team Logo" />
+                      <h5>{teamsHomeName2}</h5>
+                      <h2>V</h2>
+                      <h5>{teamsAwayName2}</h5>
+                      <img src={teamsAwayLogo2} alt="Away Team Logo" />
+                    </div>
+                  </div>
+                  <div className="game-card">
+                    <h3>{league3}</h3>
+                    <h4>{time3}</h4>
+                    <div className="versus">
+                      <img src={teamsHomeLogo3} alt="Home Team Logo" />
+                      <h5>{teamsHomeName3}</h5>
+                      <h2>V</h2>
+                      <h5>{teamsAwayName3}</h5>
+                      <img src={teamsAwayLogo3} alt="Away Team Logo" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </>
-        )}
+            </>
+          )}
+        </div>
       </div>
     </>
   );

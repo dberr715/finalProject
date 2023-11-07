@@ -60,12 +60,8 @@ export default function AIResponse({ handleSearch }) {
   return (
     <div className="match-container">
       <div className="match-find-container">
-        {/* <input
-          type="text"
-          placeholder="Other sports teams"
-          className="search, form__input"
-        /> */}
         <div class="form__group">
+          
           <input
             type="text"
             class="form__input"
@@ -75,14 +71,14 @@ export default function AIResponse({ handleSearch }) {
             placeholder="Other sports teams"
             required=""
           />
+          {isLoading && <Spinner className="input-spinner" />}
           <label for="name" class="form__label">
             Other sports teams
           </label>
+          <button className="searchbutton" onClick={fetchData}>
+            Match Me!
+          </button>
         </div>
-        <button className="searchbutton" onClick={fetchData}>
-          Match Me!
-        </button>
-        {isLoading ? <Spinner /> : null}
         {isModalOpen && (
           <ResponseModal
             rec={rec}
@@ -93,4 +89,5 @@ export default function AIResponse({ handleSearch }) {
       </div>
     </div>
   );
+
 }
