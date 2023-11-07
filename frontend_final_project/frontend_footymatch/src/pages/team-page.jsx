@@ -7,7 +7,11 @@ import FavoritesButton from "../components/FavoritesButton"; // Correct import p
 import "../index.css";
 
 export default function TeamPage() {
-  const revalidator = useRevalidator();
+  const [isAlreadyInFavorites, setIsAlreadyInFavorites] = useState(false);
+  const [favoriteMessage, setFavoriteMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  // const revalidator = useRevalidator();
   const params = useParams();
   const { isAuth } = useAuth();
   const [teamName, setTeamName] = useState("");
@@ -37,6 +41,11 @@ export default function TeamPage() {
   const [teamsHomeLogo3, setTeamsHomeLogo3] = useState("");
   const [teamsAwayLogo3, setTeamsAwayLogo3] = useState("");
 
+  function displayPrompt(message) {
+    setPromptMessage(message);
+    setTimeout(() => setPromptMessage(""), 5000); // Clear the prompt after 5 seconds
+  }
+
   async function fetchData1() {
     // Your existing code for fetching team data
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
@@ -60,16 +69,16 @@ export default function TeamPage() {
         const stadiumPic = result.response[0].venue.image;
         const country = result.response[0].team.country;
         const teamId = result.response[0].team.id;
-        console.log("RESULT FOR TEAM ID:", result);
+        // console.log("RESULT FOR TEAM ID:", result);
         setTeamName(name);
         setLogo(logo);
         setStadium(stadium);
         setStadiumPic(stadiumPic);
         setCountry(country);
         setTeamId(teamId);
-        console.log("FIRST FETCH:", teamId);
+        // console.log("FIRST FETCH:", teamId);
         fetchData2(teamId);
-        console.log({ teamName });
+        // console.log({ teamName });
       } else {
         setError("Team not found. Please try again.");
       }
@@ -100,10 +109,10 @@ export default function TeamPage() {
 
     try {
       const response = await fetch(idUrl, options);
-      console.log("RESPONSE:", response);
+      // console.log("RESPONSE:", response);
       if (response.ok) {
         const result = await response.json();
-        console.log("RESULT:", result.response);
+        // console.log("RESULT:", result.response);
         const time1 = result.response[0].fixture.date;
         const time2 = result.response[1].fixture.date;
         const time3 = result.response[0].fixture.date;
@@ -155,67 +164,72 @@ export default function TeamPage() {
     // After fetching data, check if the team is a favorite
     fetchFavoriteTeams();
   }
-  console.log("Time1: ", time1);
-  console.log("Time2: ", time2);
-  console.log("Time3: ", time3);
+  // console.log("Time1: ", time1);
+  // console.log("Time2: ", time2);
+  // console.log("Time3: ", time3);
   // Function to add or remove a team from favorites
   async function handleFavoriteTeam() {
-    const apiUrl = "http://localhost:8000/favorite-teams/"; // Correct API endpoint
+    if (isFavorite) {
+      setIsAlreadyInFavorites(true);
+      setFavoriteMessage("That team is already in your favorites!");
+      return;
+    }
+
+    const apiUrl = "http://localhost:8000/favorite-teams/";
     const token = localStorage.getItem("access_token");
     const user_id = localStorage.getItem("user_id");
-    const data = { team_name: teamName, user: user_id };
 
     try {
-      if (isFavorite) {
-        // Remove from favorites
-        const response = await fetch(apiUrl + teamName + "/", {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+      const response = await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-        if (response.ok) {
-          console.log("Team removed from favorites successfully.");
-          setIsFavorite(false);
-          revalidator.revalidate();
+      if (response.ok) {
+        const favoriteTeams = await response.json();
+        if (favoriteTeams.some((team) => team.team_name === teamName)) {
+          setIsAlreadyInFavorites(true);
+          setFavoriteMessage("That team is already in your favorites!");
         } else {
-          console.error("Failed to remove team from favorites.");
+          const data = { team_name: teamName, user: user_id };
+          const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(data),
+          });
+
+          if (response.ok) {
+            console.log("Team added to favorites successfully.");
+            setIsFavorite(true);
+          } else {
+            console.error("Failed to add team to favorites.");
+          }
         }
       } else {
-        // Add to favorites
-        const response = await fetch(apiUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(data),
-        });
-
-        if (response.ok) {
-          console.log("Team added to favorites successfully.");
-          setIsFavorite(true);
-        } else {
-          console.error("Failed to add team to favorites.");
-        }
+        console.error("Failed to fetch favorite teams.");
       }
     } catch (error) {
       console.error("An error occurred:", error);
     }
   }
+
   // console.log({ isFavorite });
-  console.log({ params });
+  // console.log({ params });
   // Fetch the user's favorite teams and check if the current team is a favorite
   const fetchFavoriteTeams = async () => {
-    console.log("FETCHING FAVORITE TEAM");
+    // console.log("FETCHING FAVORITE TEAM");
 
     const access_token = localStorage.getItem("access_token");
     const url = "http://localhost:8000/favorite-teams/";
 
     try {
-      console.log("TRYING TO GET FAVORITE TEAM");
+      // console.log("TRYING TO GET FAVORITE TEAM");
       const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -223,15 +237,15 @@ export default function TeamPage() {
           Authorization: `Bearer ${access_token}`,
         },
       });
-      console.log("RESPONSE OK?", response.ok);
+      // console.log("RESPONSE OK?", response.ok);
       if (response.ok) {
-        console.log("INSIDE");
+        // console.log("INSIDE");
         const favoriteTeams = await response.json();
         const isFavorite = favoriteTeams.some(
           (team) => team.team_name === params.teamname
         );
 
-        console.log(favoriteTeams);
+        // console.log(favoriteTeams);
         return setIsFavorite(isFavorite);
       } else {
         console.error("Failed to fetch favorite teams.");
@@ -244,7 +258,7 @@ export default function TeamPage() {
   useEffect(() => {
     fetchData1();
     fetchFavoriteTeams();
-    console.log("HERE");
+    // console.log("HERE");
   }, []);
 
   return (
@@ -266,15 +280,18 @@ export default function TeamPage() {
                 <div className="country-div">
                   <h2>{country}</h2>
                 </div>
-
                 <div className="fave-button">
-                  {" "}
                   {isAuth && (
-                    <FavoritesButton
-                      teamName={teamName}
-                      isFavorite={isFavorite}
-                      onToggleFavorite={() => handleFavoriteTeam()}
-                    />
+                    <>
+                      <FavoritesButton
+                        teamName={teamName}
+                        isFavorite={isFavorite}
+                        onToggleFavorite={() => handleFavoriteTeam()}
+                      />
+                      {isAlreadyInFavorites && (
+                        <p style={{ color: "black" }}>{favoriteMessage}</p>
+                      )}
+                    </>
                   )}
                 </div>
               </div>
@@ -292,9 +309,9 @@ export default function TeamPage() {
                   <div className="versus">
                     <img src={teamsHomeLogo1} alt="Home Team Logo" />
                     <h5>{teamsHomeName1}</h5>
-                    <h2> V</h2>
+                    <h2>V</h2>
                     <h5>{teamsAwayName1}</h5>
-                    <img src={teamsAwayLogo1} alt="Home Team Logo" />
+                    <img src={teamsAwayLogo1} alt="Away Team Logo" />
                   </div>
                 </div>
                 <div className="game-card">
@@ -305,7 +322,7 @@ export default function TeamPage() {
                     <h5>{teamsHomeName2}</h5>
                     <h2>V</h2>
                     <h5>{teamsAwayName2}</h5>
-                    <img src={teamsAwayLogo2} alt="Home Team Logo" />
+                    <img src={teamsAwayLogo2} alt="Away Team Logo" />
                   </div>
                 </div>
                 <div className="game-card">
@@ -316,7 +333,7 @@ export default function TeamPage() {
                     <h5>{teamsHomeName3}</h5>
                     <h2>V</h2>
                     <h5>{teamsAwayName3}</h5>
-                    <img src={teamsAwayLogo3} alt="Home Team Logo" />
+                    <img src={teamsAwayLogo3} alt="Away Team Logo" />
                   </div>
                 </div>
               </div>
@@ -327,54 +344,3 @@ export default function TeamPage() {
     </>
   );
 }
-
-//   return (
-//     <>
-//       <Navigation />
-//       <div>
-//         {error ? (
-//           <p className="error-message">{error}</p>
-//         ) : (
-//           <>
-//             <p>Team ID: {teamId}</p>
-//             <p>Country: {country}</p>
-//             <p>Team Name: {teamName}</p>
-//             <img src={logo} alt="Team Logo" />
-
-//             <p>Stadium Name: {stadium}</p>
-//             <img src={stadiumPic} alt="Stadium Pic" />
-//             {isAuth && (
-//               <FavoritesButton
-//                 teamName={teamName} // Pass the teamName as a prop
-//                 isFavorite={isFavorite} // Pass isFavorite as a prop
-//                 onToggleFavorite={() => handleFavoriteTeam()} // Pass the function to toggle favorite as a prop
-//               />
-//             )}
-//             <h2>Next Games</h2>
-//             <h3>League:{league1}</h3>
-//             <h4>Time: {time1}</h4>
-//             <img src={teamsHomeLogo1} alt="Home Team Logo" />
-//             <p>Home:{teamsHomeName1}</p>
-//             <p>vs.</p>
-//             <p>Away: {teamsAwayName1}</p>
-//             <img src={teamsAwayLogo1} alt="Away Team Logo" />
-//             <h3>League:{league2}</h3>
-//             <h4>Time: {time2}</h4>
-//             <img src={teamsHomeLogo2} alt="Home Team Logo" />
-//             <p>Home:{teamsHomeName2}</p>
-//             <p>vs.</p>
-//             <p>Away: {teamsAwayName2}</p>
-//             <img src={teamsAwayLogo2} alt="Away Team Logo" />
-//             <h3>League:{league3}</h3>
-//             <h4>Time: {time3}</h4>
-//             <img src={teamsHomeLogo3} alt="Home Team Logo" />
-//             <p>Home:{teamsHomeName3}</p>
-//             <p>vs.</p>
-//             <p>Away: {teamsAwayName3}</p>
-//             <img src={teamsAwayLogo3} alt="Away Team Logo" />
-//           </>
-//         )}
-//       </div>
-//     </>
-//   );
-// }

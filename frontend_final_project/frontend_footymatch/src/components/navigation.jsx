@@ -25,7 +25,7 @@ export default function Navigation() {
 
         if (response.ok) {
           const data = await response.json();
-          console.log("Data: ", data);
+          // console.log("Data: ", data);
           setFavorites(data);
         } else {
           console.error("Failed to fetch favorite teams.");
