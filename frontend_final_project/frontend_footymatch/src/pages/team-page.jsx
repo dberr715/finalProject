@@ -257,12 +257,14 @@ export default function TeamPage() {
           <>
             <div className="teamContainer">
               <div className="top-row">
-                <div className="teamname-main">
-                  <h1>{teamName}</h1>
-                  <p>{country}</p>
-                </div>
                 <div className="team-logo-main">
                   <img src={logo} alt="Team Logo" />
+                </div>
+                <div className="teamname-main">
+                  <h1>{teamName}</h1>
+                </div>
+                <div className="country-div">
+                  <h3>{country}</h3>
                 </div>
 
                 <div className="fave-button">
