@@ -60,14 +60,26 @@ export default function AIResponse({ handleSearch }) {
   return (
     <div className="match-container">
       <div className="match-find-container">
-        <input
+        {/* <input
           type="text"
           placeholder="Other sports teams"
-          value={inputText}
-          onChange={handleInputChange}
-          className="search"
-        />
-        <button className="search" onClick={fetchData}>
+          className="search, form__input"
+        /> */}
+        <div class="form__group">
+          <input
+            type="text"
+            class="form__input"
+            id="name"
+            value={inputText}
+            onChange={handleInputChange}
+            placeholder="Other sports teams"
+            required=""
+          />
+          <label for="name" class="form__label">
+            Other sports teams
+          </label>
+        </div>
+        <button className="searchbutton" onClick={fetchData}>
           Match Me!
         </button>
         {isLoading ? <Spinner /> : null}

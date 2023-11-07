@@ -57,15 +57,29 @@ export default function HomeText() {
           <div className="search-container card1">
             <div className="card1">
               <p>Already have a team in mind?</p>
-              <input
-                className="search"
+              {/* <input
+                className="search, form__input "
                 type="text"
                 value={team}
                 onChange={handleInputChange}
                 placeholder="Enter Soccer Team"
-              />
+              /> */}
+              <div class="form__group">
+                <input
+                  type="text"
+                  className="form__input"
+                  id="name"
+                  value={team}
+                  onChange={handleInputChange}
+                  placeholder="Enter Soccer Team"
+                  required=""
+                />
+                <label for="name" class="form__label">
+                  Enter Soccer Team
+                </label>
+              </div>
               <button
-                className="match, search"
+                className="match, search, searchbutton"
                 type="submit"
                 onClick={handleSearchClick}
               >
