@@ -261,6 +261,9 @@ export default function TeamPage() {
                   <h1>{teamName}</h1>
                   <p>{country}</p>
                 </div>
+                <div className="team-logo-main">
+                  <img src={logo} alt="Team Logo" />
+                </div>
 
                 <div className="fave-button">
                   {" "}
@@ -274,21 +277,20 @@ export default function TeamPage() {
                 </div>
               </div>
               <div className="team-images">
-                <img src={logo} alt="Team Logo" />
                 <figure>
-                  <img src={stadiumPic} alt="Stadium Pic" />
                   <figcaption>{stadium}</figcaption>
+                  <img src={stadiumPic} alt="Stadium Pic" />
                 </figure>
               </div>
+              <h2 className="upcoming">Upcoming Games</h2>
               <div className="next-games">
-                <h2>Upcoming Games</h2>
                 <div className="game-card">
                   <h3>{league1}</h3>
                   <h4>{time1}</h4>
                   <div className="versus">
-                    <h5>{teamsHomeName1}</h5>
                     <img src={teamsHomeLogo1} alt="Home Team Logo" />
-                    <h2>VS.</h2>
+                    <h5>{teamsHomeName1}</h5>
+                    <h2> V</h2>
                     <h5>{teamsAwayName1}</h5>
                     <img src={teamsAwayLogo1} alt="Home Team Logo" />
                   </div>
@@ -297,9 +299,9 @@ export default function TeamPage() {
                   <h3>{league2}</h3>
                   <h4>{time2}</h4>
                   <div className="versus">
-                    <h5>{teamsHomeName2}</h5>
                     <img src={teamsHomeLogo2} alt="Home Team Logo" />
-                    <h2>VS.</h2>
+                    <h5>{teamsHomeName2}</h5>
+                    <h2>V</h2>
                     <h5>{teamsAwayName2}</h5>
                     <img src={teamsAwayLogo2} alt="Home Team Logo" />
                   </div>
@@ -308,9 +310,9 @@ export default function TeamPage() {
                   <h3>{league3}</h3>
                   <h4>{time3}</h4>
                   <div className="versus">
-                    <h5>{teamsHomeName3}</h5>
                     <img src={teamsHomeLogo3} alt="Home Team Logo" />
-                    <h2>VS.</h2>
+                    <h5>{teamsHomeName3}</h5>
+                    <h2>V</h2>
                     <h5>{teamsAwayName3}</h5>
                     <img src={teamsAwayLogo3} alt="Home Team Logo" />
                   </div>
