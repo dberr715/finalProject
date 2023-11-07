@@ -169,53 +169,56 @@ export default function TeamPage() {
   // console.log("Time3: ", time3);
   // Function to add or remove a team from favorites
   async function handleFavoriteTeam() {
-    if (isFavorite) {
-      setIsAlreadyInFavorites(true);
-      setFavoriteMessage("That team is already in your favorites!");
-      return;
-    }
-
     const apiUrl = "http://localhost:8000/favorite-teams/";
     const token = localStorage.getItem("access_token");
     const user_id = localStorage.getItem("user_id");
 
-    try {
-      const response = await fetch(apiUrl, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+    if (isFavorite) {
+      // Team is already a favorite, so we want to remove it
+      try {
+        const response = await fetch(apiUrl, {
+          method: "DELETE", // Use DELETE method to remove the team from favorites
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ team_name: teamName, user: user_id }),
+        });
 
-      if (response.ok) {
-        const favoriteTeams = await response.json();
-        if (favoriteTeams.some((team) => team.team_name === teamName)) {
-          setIsAlreadyInFavorites(true);
-          setFavoriteMessage("That team is already in your favorites!");
+        if (response.ok) {
+          console.log("Team removed from favorites successfully.");
+          setIsFavorite(false); // Update the state to reflect the change
+          setSuccessMessage("Removed from favorites"); // Show success message
+          setTimeout(() => setSuccessMessage(""), 3000); // Clear the message after 3 seconds
         } else {
-          const data = { team_name: teamName, user: user_id };
-          const response = await fetch(apiUrl, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(data),
-          });
-
-          if (response.ok) {
-            console.log("Team added to favorites successfully.");
-            setIsFavorite(true);
-          } else {
-            console.error("Failed to add team to favorites.");
-          }
+          console.error("Failed to remove team from favorites.");
         }
-      } else {
-        console.error("Failed to fetch favorite teams.");
+      } catch (error) {
+        console.error("An error occurred:", error);
       }
-    } catch (error) {
-      console.error("An error occurred:", error);
+    } else {
+      // Team is not a favorite, so we want to add it
+      try {
+        const response = await fetch(apiUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ team_name: teamName, user: user_id }),
+        });
+
+        if (response.ok) {
+          console.log("Team added to favorites successfully.");
+          setIsFavorite(true); // Update the state to reflect the change
+          setSuccessMessage("Added to favorites"); // Show success message
+          setTimeout(() => setSuccessMessage(""), 3000); // Clear the message after 3 seconds
+        } else {
+          console.error("Failed to add team to favorites.");
+        }
+      } catch (error) {
+        console.error("An error occurred:", error);
+      }
     }
   }
 

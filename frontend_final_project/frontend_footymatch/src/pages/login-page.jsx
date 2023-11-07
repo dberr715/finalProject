@@ -58,8 +58,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="container">
-      <div className="maincopy">
+    <div className="login-container">
+      <div className="login-head">
         <img
           src="../../public/footymatch.png"
           alt="FootyMatch"
@@ -73,7 +73,7 @@ export default function LoginPage() {
         <p>Minimal input needed!</p>
         <p>Free Sign Up!</p>
       </div>
-      <form onSubmit={handleSubmit} className="logging">
+      <form onSubmit={handleSubmit} className="login-box">
         <div className="login form">
           <header className="apple">Login</header>
           <label className="apple">

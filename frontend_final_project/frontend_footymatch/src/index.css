@@ -17,6 +17,30 @@
   --color-theme-primary: #623ce6;
 }
 
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.login-head {
+  margin-bottom: 50px;
+  background-color: rgba(255, 255, 255, 0.55);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom: #7a8383 dashed;
+}
+.login-box{
+  margin-bottom: 50px;
+  box-shadow: 0 60px 80px rgba(0, 0, 0, 0.6), 0 45px 26px rgba(0, 0, 0, 0.14);
+}
+
 .logo-image {
   max-width: 100px; /* Adjust the width as needed */
 }
@@ -148,6 +172,7 @@ figcaption {
 }
 
 .livegames {
+  margin-top: 25px;
   text-align: center;
 }
 button,
