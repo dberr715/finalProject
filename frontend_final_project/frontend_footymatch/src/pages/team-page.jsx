@@ -255,45 +255,122 @@ export default function TeamPage() {
           <p className="error-message">{error}</p>
         ) : (
           <>
-            <p>Team ID: {teamId}</p>
-            <p>Country: {country}</p>
-            <p>Team Name: {teamName}</p>
-            <img src={logo} alt="Team Logo" />
+            <div className="teamContainer">
+              <div className="top-row">
+                <div className="teamname-main">
+                  <h1>{teamName}</h1>
+                  <p>{country}</p>
+                </div>
 
-            <p>Stadium Name: {stadium}</p>
-            <img src={stadiumPic} alt="Stadium Pic" />
-            {isAuth && (
-              <FavoritesButton
-                teamName={teamName} // Pass the teamName as a prop
-                isFavorite={isFavorite} // Pass isFavorite as a prop
-                onToggleFavorite={() => handleFavoriteTeam()} // Pass the function to toggle favorite as a prop
-              />
-            )}
-            <h2>Next Games</h2>
-            <h3>League:{league1}</h3>
-            <h4>Time: {time1}</h4>
-            <img src={teamsHomeLogo1} alt="Home Team Logo" />
-            <p>Home:{teamsHomeName1}</p>
-            <p>vs.</p>
-            <p>Away: {teamsAwayName1}</p>
-            <img src={teamsAwayLogo1} alt="Away Team Logo" />
-            <h3>League:{league2}</h3>
-            <h4>Time: {time2}</h4>
-            <img src={teamsHomeLogo2} alt="Home Team Logo" />
-            <p>Home:{teamsHomeName2}</p>
-            <p>vs.</p>
-            <p>Away: {teamsAwayName2}</p>
-            <img src={teamsAwayLogo2} alt="Away Team Logo" />
-            <h3>League:{league3}</h3>
-            <h4>Time: {time3}</h4>
-            <img src={teamsHomeLogo3} alt="Home Team Logo" />
-            <p>Home:{teamsHomeName3}</p>
-            <p>vs.</p>
-            <p>Away: {teamsAwayName3}</p>
-            <img src={teamsAwayLogo3} alt="Away Team Logo" />
+                <div className="fave-button">
+                  {" "}
+                  {isAuth && (
+                    <FavoritesButton
+                      teamName={teamName}
+                      isFavorite={isFavorite}
+                      onToggleFavorite={() => handleFavoriteTeam()}
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="team-images">
+                <img src={logo} alt="Team Logo" />
+                <figure>
+                  <img src={stadiumPic} alt="Stadium Pic" />
+                  <figcaption>{stadium}</figcaption>
+                </figure>
+              </div>
+              <div className="next-games">
+                <h2>Upcoming Games</h2>
+                <div className="game-card">
+                  <h3>{league1}</h3>
+                  <h4>{time1}</h4>
+                  <div className="versus">
+                    <h5>{teamsHomeName1}</h5>
+                    <img src={teamsHomeLogo1} alt="Home Team Logo" />
+                    <h2>VS.</h2>
+                    <h5>{teamsAwayName1}</h5>
+                    <img src={teamsAwayLogo1} alt="Home Team Logo" />
+                  </div>
+                </div>
+                <div className="game-card">
+                  <h3>{league2}</h3>
+                  <h4>{time2}</h4>
+                  <div className="versus">
+                    <h5>{teamsHomeName2}</h5>
+                    <img src={teamsHomeLogo2} alt="Home Team Logo" />
+                    <h2>VS.</h2>
+                    <h5>{teamsAwayName2}</h5>
+                    <img src={teamsAwayLogo2} alt="Home Team Logo" />
+                  </div>
+                </div>
+                <div className="game-card">
+                  <h3>{league3}</h3>
+                  <h4>{time3}</h4>
+                  <div className="versus">
+                    <h5>{teamsHomeName3}</h5>
+                    <img src={teamsHomeLogo3} alt="Home Team Logo" />
+                    <h2>VS.</h2>
+                    <h5>{teamsAwayName3}</h5>
+                    <img src={teamsAwayLogo3} alt="Home Team Logo" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </>
         )}
       </div>
     </>
   );
 }
+
+//   return (
+//     <>
+//       <Navigation />
+//       <div>
+//         {error ? (
+//           <p className="error-message">{error}</p>
+//         ) : (
+//           <>
+//             <p>Team ID: {teamId}</p>
+//             <p>Country: {country}</p>
+//             <p>Team Name: {teamName}</p>
+//             <img src={logo} alt="Team Logo" />
+
+//             <p>Stadium Name: {stadium}</p>
+//             <img src={stadiumPic} alt="Stadium Pic" />
+//             {isAuth && (
+//               <FavoritesButton
+//                 teamName={teamName} // Pass the teamName as a prop
+//                 isFavorite={isFavorite} // Pass isFavorite as a prop
+//                 onToggleFavorite={() => handleFavoriteTeam()} // Pass the function to toggle favorite as a prop
+//               />
+//             )}
+//             <h2>Next Games</h2>
+//             <h3>League:{league1}</h3>
+//             <h4>Time: {time1}</h4>
+//             <img src={teamsHomeLogo1} alt="Home Team Logo" />
+//             <p>Home:{teamsHomeName1}</p>
+//             <p>vs.</p>
+//             <p>Away: {teamsAwayName1}</p>
+//             <img src={teamsAwayLogo1} alt="Away Team Logo" />
+//             <h3>League:{league2}</h3>
+//             <h4>Time: {time2}</h4>
+//             <img src={teamsHomeLogo2} alt="Home Team Logo" />
+//             <p>Home:{teamsHomeName2}</p>
+//             <p>vs.</p>
+//             <p>Away: {teamsAwayName2}</p>
+//             <img src={teamsAwayLogo2} alt="Away Team Logo" />
+//             <h3>League:{league3}</h3>
+//             <h4>Time: {time3}</h4>
+//             <img src={teamsHomeLogo3} alt="Home Team Logo" />
+//             <p>Home:{teamsHomeName3}</p>
+//             <p>vs.</p>
+//             <p>Away: {teamsAwayName3}</p>
+//             <img src={teamsAwayLogo3} alt="Away Team Logo" />
+//           </>
+//         )}
+//       </div>
+//     </>
+//   );
+// }

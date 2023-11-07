@@ -20,6 +20,33 @@
   --color-bg-alert: #fdeaec;
   --color-theme-primary: #623ce6;
 }
+
+.team-container {
+  display: flex;
+}
+
+.top-row {
+}
+
+.teamname-main {
+  
+}
+
+.fave-button {
+}
+
+.team-images {
+}
+
+.next-games {
+}
+
+.game-card {
+}
+
+.versus {
+}
+
 .livegames {
   text-align: center;
 }
