@@ -58,27 +58,27 @@ export default function AIResponse({ handleSearch }) {
   };
 
   return (
-    <div className="ai-response">
-      <input
-        type="text"
-        placeholder="Teams"
-        value={inputText}
-        onChange={handleInputChange}
-        className="search"
-      />
-      <br />
-      <button className="match, search" onClick={fetchData}>
-        Match!
-      </button>
-      {isLoading ? <Spinner /> : null}
-
-      {isModalOpen && (
-        <ResponseModal
-          rec={rec}
-          onClose={closeModal}
-          handleSearch={handleSearch}
+    <div className="match-container">
+      <div className="match-find-container">
+        <input
+          type="text"
+          placeholder="Other sports teams"
+          value={inputText}
+          onChange={handleInputChange}
+          className="search"
         />
-      )}
+        <button className="search" onClick={fetchData}>
+          Match Me!
+        </button>
+        {isLoading ? <Spinner /> : null}
+        {isModalOpen && (
+          <ResponseModal
+            rec={rec}
+            onClose={closeModal}
+            handleSearch={handleSearch}
+          />
+        )}
+      </div>
     </div>
   );
 }
