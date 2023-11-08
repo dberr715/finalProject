@@ -392,7 +392,17 @@ export default function TeamPage() {
                   <div className="country-div">
                     <h2>{country}</h2>
                   </div>
-                  <div className="fave-button">
+                </div>
+                <div className="team-images">
+                  <figure>
+                    <figcaption>{stadium}</figcaption>
+                    <img
+                      src={stadiumPic}
+                      alt="Stadium Pic"
+                      className="stadium"
+                    />
+                  </figure>
+                  <div className="favorites-button-container">
                     {isAuth && (
                       <>
                         <FavoritesButton
@@ -406,16 +416,6 @@ export default function TeamPage() {
                       </>
                     )}
                   </div>
-                </div>
-                <div className="team-images">
-                  <figure>
-                    <figcaption>{stadium}</figcaption>
-                    <img
-                      src={stadiumPic}
-                      alt="Stadium Pic"
-                      className="stadium"
-                    />
-                  </figure>
                 </div>
                 <h2 className="upcoming">Upcoming Games</h2>
                 <div className="next-games">

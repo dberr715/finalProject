@@ -64,7 +64,7 @@ export default function AIResponse({ handleSearch }) {
           <div class="input-container">
             <input
               type="text"
-              class="form__input"
+              className="form__input"
               id="name"
               value={inputText}
               onChange={handleInputChange}
@@ -73,7 +73,7 @@ export default function AIResponse({ handleSearch }) {
             />
             {isLoading && <Spinner className="input-spinner" />}
           </div>
-          <br/>
+          <br />
           {/* <label for="name" class="form__label">
             Other sports teams
           </label> */}
@@ -91,6 +91,4 @@ export default function AIResponse({ handleSearch }) {
       </div>
     </div>
   );
-
-
 }

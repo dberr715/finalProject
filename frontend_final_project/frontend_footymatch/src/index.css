@@ -57,6 +57,30 @@
   backdrop-filter: blur(15px);
 }
 
+.star-button {
+  background: none;
+  border: none;
+  font-size: 32px; /* Adjust the font size to make it larger */
+  color: transparent; /* Make the star transparent to remove the border */
+  cursor: pointer;
+}
+
+.fas.fa-star {
+  color: yellow;
+}
+.star-empty::before {
+  content: "☆";
+}
+
+.star-filled::before {
+  content: "★";
+  color: yellow; /* Change color to yellow when filled */
+}
+
+/*  */
+
+
+
 .search-container {
   display: flex;
   flex-direction: column;
