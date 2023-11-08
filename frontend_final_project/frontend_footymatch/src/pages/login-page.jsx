@@ -61,7 +61,7 @@ export default function LoginPage() {
     <div className="login-container">
       <div className="login-head">
         <img
-          src="../../public/footymatch.png"
+          src="../../public/newfootymatch.png"
           alt="FootyMatch"
           className="footy"
         />

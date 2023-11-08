@@ -68,7 +68,7 @@ export default function HomeText() {
   return (
     <div className="home-container-outer">
       <img
-        src="../../public/footymatch.png"
+        src="../../public/newfootymatch.png"
         alt="FootyMatch"
         className="footy"
       />

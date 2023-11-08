@@ -372,7 +372,7 @@ export default function TeamPage() {
       <Navigation />
       <div className="teampage123">
         <img
-          src="../../public/footymatch.png"
+          src="../../public/newfootymatch.png"
           alt="FootyMatch"
           className="footy"
         />

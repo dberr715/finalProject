@@ -42,7 +42,7 @@ export default function Live() {
       <Navigation />
       <div className="livepage">
         <img
-          src="../../public/footymatch.png"
+          src="../../public/newfootymatch.png"
           alt="FootyMatch"
           className="footy"
         />

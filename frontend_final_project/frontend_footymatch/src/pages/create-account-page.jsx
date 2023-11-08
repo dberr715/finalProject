@@ -68,7 +68,7 @@ export default function CreateAccount() {
   return (
     <div className="registration form">
       <img
-        src="../../public/footymatch.png"
+        src="../../public/newfootymatch.png"
         alt="FootyMatch"
         className="footy"
       />
