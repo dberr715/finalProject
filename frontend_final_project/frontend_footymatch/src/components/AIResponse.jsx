@@ -68,7 +68,7 @@ export default function AIResponse({ handleSearch }) {
               id="name"
               value={inputText}
               onChange={handleInputChange}
-              placeholder="Other sports teams"
+              placeholder=" team1, team2, etc..."
               required=""
             />
             {isLoading && <Spinner className="input-spinner" />}

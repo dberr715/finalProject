@@ -72,11 +72,11 @@ export default function HomeText() {
                     id="name"
                     value={team}
                     onChange={handleInputChange}
-                    placeholder="Enter Soccer Team"
+                    placeholder="Soccer Team Name"
                     required=""
                   />
                   <label for="name" className="form__label">
-                    Enter Soccer Team
+                    Soccer Team Name
                   </label>
                 <button
                   className="match, search, searchbutton"
