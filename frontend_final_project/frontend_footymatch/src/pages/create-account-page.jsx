@@ -94,8 +94,8 @@ export default function CreateAccount() {
         />
         <input
           type="submit"
-          className="button"
-          id="createbutton1"
+          className="button prev-next-button"
+          // id="createbutton1"
           value="Sign Up"
         />
       </form>

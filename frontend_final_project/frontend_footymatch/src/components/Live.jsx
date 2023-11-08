@@ -102,30 +102,6 @@ export default function Live() {
           </div>
         ) : (
           <>
-            <div className="pagination-buttons">
-              {!isFirstPage && (
-                <button
-                  className={`prev-next-button ${
-                    isFirstPage ? "disabled" : ""
-                  }`}
-                  type="submit"
-                  onClick={handlePreviousPage}
-                  disabled={isFirstPage}
-                >
-                  Previous Page
-                </button>
-              )}
-              {!isLastPage && (
-                <button
-                  className={`prev-next-button ${isLastPage ? "disabled" : ""}`}
-                  type="submit"
-                  onClick={handleNextPage}
-                  disabled={isLastPage}
-                >
-                  Next Page
-                </button>
-              )}
-            </div>
             <div className="live-matches-container">
               {filteredFixtures.map((score) => (
                 <div key={score.fixture.id} className="match">
@@ -197,18 +173,14 @@ export default function Live() {
               ))}
             </div>
             <div className="pagination-buttons">
-              {!isFirstPage && (
-                <button
-                  className={`prev-next-button ${
-                    isFirstPage ? "disabled" : ""
-                  }`}
-                  type="submit"
-                  onClick={handlePreviousPage}
-                  disabled={isFirstPage}
-                >
-                  Previous Page
-                </button>
-              )}
+              <button
+                className={`prev-next-button ${isFirstPage ? "disabled" : ""}`} // Add "disabled" class conditionally
+                type="submit"
+                onClick={handlePreviousPage}
+                disabled={isFirstPage}
+              >
+                Previous Page
+              </button>
               <button
                 className={`prev-next-button ${isLastPage ? "disabled" : ""}`}
                 type="submit"

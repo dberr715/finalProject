@@ -17,6 +17,11 @@
   --color-theme-primary: #623ce6;
 }
 
+.pagination-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
 .prev-next-button {
   background-color: #3d9d34;
   border: 2px solid #111;
@@ -37,12 +42,42 @@
   text-decoration: none;
   user-select: none;
   touch-action: manipulation;
+  transition: opacity 0.3s; /* Added a transition for opacity changes */
 }
 
 .prev-next-button.disabled {
-  background-color: #ccc; /* Use a different color for disabled buttons */
+  background-color: #ccc;
   cursor: not-allowed;
   pointer-events: none;
+  opacity: 0.5; /* Lower opacity for disabled button */
+}
+
+
+.page-list {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Adjust the gap between page buttons */
+}
+
+.page-button {
+  background: #3d9d34;
+  border: 2px solid #111;
+  border-radius: 50%;
+  color: #f0eeee;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.page-button.active {
+  background: #623ce6; /* Active page button color */
 }
 
 

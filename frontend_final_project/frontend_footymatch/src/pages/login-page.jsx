@@ -47,7 +47,7 @@ export default function LoginPage() {
         setUsername(username);
 
         setIsAuth(true);
-       
+
         return navigate(`/home`);
       } else {
         setError("Login failed. Check your credentials.");
@@ -96,7 +96,7 @@ export default function LoginPage() {
               onChange={handleChangePassword}
             />
           </label>
-          <input type="submit" className="button1" value="Login" />
+          <input type="submit" className=" prev-next-button" value="Login" />
           <div className="signup">
             <span className="signup1">
               Don't have an account? <br />

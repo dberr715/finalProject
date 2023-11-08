@@ -88,8 +88,8 @@ export default function ResponseModal({ rec, onClose }) {
             Enter FootyMatch Team
           </label> */}
           <button
-            className="match, search"
-            id="modal-search-button"
+            className=" prev-next-button"
+            // id="modal-search-button"
             type="submit"
             onClick={handleSearchClick}
           >
