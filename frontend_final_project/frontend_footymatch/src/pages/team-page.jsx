@@ -368,7 +368,7 @@ export default function TeamPage() {
 
   return (
     <>
-      <Navigation />
+      <Navigation isFavorite={isFavorite} />
       <div className="teampage123">
         <img
           src="../../public/footymatch.png"

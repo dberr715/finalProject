@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../index.css";
 import AIresponse from "./AIResponse";
@@ -16,32 +16,31 @@ export default function HomeText() {
       .join(" ");
   }
 
-  
-const handleInputChange = (event) => {
-  const inputValue = event.target.value; // Get the input value
-  const capitalizedValue = capitalizeFirstLetter(inputValue); // Capitalize the first letter of each word
-  setTeam(capitalizedValue); // Update the state with the capitalized value
-  setErrorMessage(""); // Clear any previous error message when input changes
-};
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value; // Get the input value
+    const capitalizedValue = capitalizeFirstLetter(inputValue); // Capitalize the first letter of each word
+    setTeam(capitalizedValue); // Update the state with the capitalized value
+    setErrorMessage(""); // Clear any previous error message when input changes
+  };
 
-const handleSearchClick = async () => {
-  setLoading(true);
+  const handleSearchClick = async () => {
+    setLoading(true);
 
-  try {
-    const isValidTeam = await validateTeamName(team);
-    if (isValidTeam) {
-      // Perform the desired action when it's a valid team (e.g., navigate to the team page)
-      navigate(`/team/${team}`, { team });
-    } else {
-      setErrorMessage("Not a team. Check spelling and try again");
+    try {
+      const isValidTeam = await validateTeamName(team);
+      if (isValidTeam) {
+        // Perform the desired action when it's a valid team (e.g., navigate to the team page)
+        navigate(`/team/${team}`, { team });
+      } else {
+        setErrorMessage("Not a team. Check spelling and try again");
+      }
+    } catch (error) {
+      console.error("Error validating team:", error);
+      setErrorMessage("An error occurred while validating the team name");
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.error("Error validating team:", error);
-    setErrorMessage("An error occurred while validating the team name");
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   // Helper function to validate the team name using footballAPI
   const validateTeamName = async (teamName) => {
@@ -105,7 +104,14 @@ const handleSearchClick = async () => {
           <div className="search-container">
             <div className="card1">
               <p>Already have a team in mind?</p>
-                {errorMessage && <p className="error-message" style={{ fontSize: 14, color: "red"}}>{errorMessage}</p>}
+              {errorMessage && (
+                <p
+                  className="error-message"
+                  style={{ fontSize: 14, color: "red" }}
+                >
+                  {errorMessage}
+                </p>
+              )}
               <div className="form__group">
                 <input
                   type="text"

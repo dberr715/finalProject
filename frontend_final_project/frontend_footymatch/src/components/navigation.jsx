@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 import "../index.css";
 
-export default function Navigation() {
+export default function Navigation({ isFavorite }) {
   const { isAuth, username } = useAuth();
 
   const [favorites, setFavorites] = useState([]);
@@ -39,7 +39,7 @@ export default function Navigation() {
   // Fetch favorite teams whenever isAuth changes
   useEffect(() => {
     fetchFavoriteTeams();
-  }, [isAuth]);
+  }, [isAuth, isFavorite]);
 
   return (
     <div className="sticky-topnav">

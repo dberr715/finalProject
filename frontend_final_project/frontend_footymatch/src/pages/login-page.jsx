@@ -47,6 +47,7 @@ export default function LoginPage() {
         setUsername(username);
 
         setIsAuth(true);
+       
         return navigate(`/home`);
       } else {
         setError("Login failed. Check your credentials.");

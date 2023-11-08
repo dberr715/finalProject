@@ -15,7 +15,7 @@ export function AuthProvider({ children }) {
         setUsername(storedUsername);
       }
     }
-  }, []);
+  }, [isAuth]);
 
   return (
     <AuthContext.Provider value={{ isAuth, setIsAuth, username }}>
