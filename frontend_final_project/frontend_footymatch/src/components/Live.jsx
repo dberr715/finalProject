@@ -4,6 +4,11 @@ import Navigation from "./Navigation";
 export default function Live() {
   const [fixtures, setFixtures] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedLeague, setSelectedLeague] = useState(null);
+  const [leagues, setLeagues] = useState([]); // Add the leagues state
+  const filteredFixtures = selectedLeague
+    ? fixtures.filter((fixture) => fixture.league.name === selectedLeague)
+    : fixtures;
 
   useEffect(() => {
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
@@ -33,6 +38,12 @@ export default function Live() {
         const fixturesToDisplay = sortedFixtures.slice(startIndex, endIndex);
 
         setFixtures(fixturesToDisplay);
+
+        // Extracting unique leagues
+        const uniqueLeagues = [
+          ...new Set(sortedFixtures.map((fixture) => fixture.league.name)),
+        ];
+        setLeagues(uniqueLeagues);
       } catch (error) {
         console.error(error);
       }
@@ -40,6 +51,14 @@ export default function Live() {
 
     fetchFixtures();
   }, [currentPage]);
+
+  const handleLeagueFilter = (league) => {
+    if (league === selectedLeague) {
+      setSelectedLeague(null); // Deselect the league if it's already selected
+    } else {
+      setSelectedLeague(league);
+    }
+  };
 
   const handleNextPage = () => {
     setCurrentPage(currentPage + 1);
@@ -64,6 +83,19 @@ export default function Live() {
           className="footy"
         />
         <h1 className="livegames">Live Games</h1>
+        <div className="league-filter-bar">
+          {leagues.map((league) => (
+            <button
+              key={league}
+              className={`league-button ${
+                league === selectedLeague ? "selected" : ""
+              }`}
+              onClick={() => handleLeagueFilter(league)}
+            >
+              {league}
+            </button>
+          ))}
+        </div>
         {fixtures.length === 0 ? (
           <div className="no-live-games-message">
             No current live games anywhere in the world. Check back later!
@@ -79,10 +111,10 @@ export default function Live() {
               )}
             </div>
             <div className="live-matches-container">
-              {fixtures.map((score) => (
+              {filteredFixtures.map((score) => (
                 <div key={score.fixture.id} className="match">
                   <div className="match-header">
-                    {/* Match status, league, and other details */}
+                    {/* Add code for match status, league, and other details */}
                     <div className="match-tournament">
                       <div className="tournament-info">
                         <img src={score.league.logo} alt="League Logo" />
