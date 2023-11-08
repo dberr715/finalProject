@@ -21,17 +21,20 @@ class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 
-class FavoriteTeamDelete(APIView):
+class FavoriteTeamDelete(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated]
 
-    def delete(self, request, team_name):
-        try:
-            # Get the favorite record for the team and user
-            favorite = Favorites.objects.get(user=request.user, team_name=team_name)
-            favorite.delete()  # Remove the favorite
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        except Favorites.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+    queryset = Favorites.objects.all()
+    serializer_class = FavoritesSerializer
+
+    # def delete(self, request, teamId):
+    #     try:
+    #         # Get the favorite record for the team and user
+    #         favorite = Favorites.objects.get(user=request.user, teamId=teamId)
+    #         favorite.delete()  # Remove the favorite
+    #         return Response(status=status.HTTP_204_NO_CONTENT)
+    #     except Favorites.DoesNotExist:
+    #         return Response(status=status.HTTP_404_NOT_FOUND)
 
 
 class FavoriteTeam(APIView):
@@ -41,12 +44,13 @@ class FavoriteTeam(APIView):
         try:
             serializer = FavoritesSerializer(data=request.data)
             if serializer.is_valid():
-                serializer.save(user=request.user)  # Set the user to the currently authenticated user
+                serializer.save(
+                    user=request.user
+                )  # Set the user to the currently authenticated user
                 return Response(status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-
 
     def get(self, request):
         user = request.user

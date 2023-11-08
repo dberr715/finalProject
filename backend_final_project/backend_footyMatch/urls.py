@@ -19,7 +19,7 @@ urlpatterns = [
     path("register/", views.UserCreateView.as_view(), name="user_register"),
     path("favorite-teams/", views.FavoriteTeam.as_view(), name="favorite-teams"),
     path(
-        "favorite-teams/<str:team_name>/",
+        "favorite-teams/<int:pk>",
         views.FavoriteTeamDelete.as_view(),
         name="favorite-team-delete",
     ),

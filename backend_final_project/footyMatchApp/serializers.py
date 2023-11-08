@@ -17,8 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
 class FavoritesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favorites
-        fields = ["team_name"]
-
+        fields = ["team_name", "id"]
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
