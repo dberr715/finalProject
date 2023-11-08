@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Navigation from "./Navigation";
 
 export default function Live() {
-  const [fixture, setfixture] = useState([]);
+  const [fixtures, setFixtures] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
 
-    const fetchfixture = async () => {
+    const fetchFixtures = async () => {
+      const pageSize = 10; // Number of fixtures per page
+      const startIndex = (currentPage - 1) * pageSize;
+      const endIndex = startIndex + pageSize;
+
       const url = "https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all";
       const options = {
         method: "GET",
@@ -22,20 +26,33 @@ export default function Live() {
         const response = await fetch(url, options);
         const data = await response.json();
 
-        const sortedfixture = data.response.sort(
+        const sortedFixtures = data.response.sort(
           (a, b) => b.fixture.elapsed - a.fixture.elapsed
         );
 
-        const closestToTheEnd = sortedfixture.slice(0, 10);
+        const fixturesToDisplay = sortedFixtures.slice(startIndex, endIndex);
 
-        setfixture(closestToTheEnd);
+        setFixtures(fixturesToDisplay);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchfixture();
-  }, []);
+    fetchFixtures();
+  }, [currentPage]);
+
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const isFirstPage = currentPage === 1;
+  const isLastPage = fixtures.length < 10;
 
   return (
     <>
@@ -47,78 +64,99 @@ export default function Live() {
           className="footy"
         />
         <h1 className="livegames">Live Games</h1>
-        {fixture.length === 0 ? (
+        {fixtures.length === 0 ? (
           <div className="no-live-games-message">
             No current live games anywhere in the world. Check back later!
           </div>
         ) : (
-          <div className="live-matches-container">
-            {fixture.map((score) => (
-              <div key={score.fixture.id} className="match">
-                <div className="match-header">
-                  {/* <div className="match-status">Live</div> */}
-                  <div className="match-tournament">
-                    <div className="tournament-info">
-                      <img src={score.league.logo} alt="League Logo" />
-                      <div className="league-name">{score.league.name}</div>
+          <>
+            <div className="pagination-buttons">
+              {!isFirstPage && (
+                <button onClick={handlePreviousPage}>Previous Page</button>
+              )}
+              {!isLastPage && (
+                <button onClick={handleNextPage}>Next Page</button>
+              )}
+            </div>
+            <div className="live-matches-container">
+              {fixtures.map((score) => (
+                <div key={score.fixture.id} className="match">
+                  <div className="match-header">
+                    {/* Match status, league, and other details */}
+                    <div className="match-tournament">
+                      <div className="tournament-info">
+                        <img src={score.league.logo} alt="League Logo" />
+                        <div className="league-name">{score.league.name}</div>
+                      </div>
+                    </div>
+                    <div className="match-actions"></div>
+                  </div>
+                  <div className="match-content">
+                    <div className="column">
+                      <div className="team team--home">
+                        <div className="team-logo">
+                          <img
+                            src={score.teams.home.logo}
+                            alt={score.teams.home.name}
+                          />
+                        </div>
+                        <h2 className="team-name">{score.teams.home.name}</h2>
+                      </div>
+                    </div>
+                    <div className="column">
+                      <div className="match-details">
+                        <div className="match-date">
+                          {new Date(score.fixture.date).toLocaleString(
+                            "en-US",
+                            {
+                              day: "numeric",
+                              month: "short",
+                              hour: "numeric",
+                              minute: "numeric",
+                            }
+                          )}
+                        </div>
+                        <div className="match-score">
+                          <span className="match-score-number match-score-number--leading">
+                            {score.goals.home}
+                          </span>
+                          <span className="match-score-divider">:</span>
+                          <span className="match-score-number">
+                            {score.goals.away}
+                          </span>
+                        </div>
+                        <div className="match-time-lapsed">
+                          {score.fixture.status.elapsed}'
+                        </div>
+                        <div className="match-referee">
+                          Referee: <strong>{score.fixture.referee}</strong>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="column">
+                      <div className="team team--away">
+                        <div className="team-logo">
+                          <img
+                            src={score.teams.away.logo}
+                            alt={score.teams.away.name}
+                          />
+                        </div>
+                        <h2 className="team-name">{score.teams.away.name}</h2>
+                      </div>
                     </div>
                   </div>
-                  <div className="match-actions"></div>
                 </div>
-                <div className="match-content">
-                  <div className="column">
-                    <div className="team team--home">
-                      <div className="team-logo">
-                        <img
-                          src={score.teams.home.logo}
-                          alt={score.teams.home.name}
-                        />
-                      </div>
-                      <h2 className="team-name">{score.teams.home.name}</h2>
-                    </div>
-                  </div>
-                  <div className="column">
-                    <div className="match-details">
-                      <div className="match-date">
-                        {new Date(score.fixture.date).toLocaleString("en-US", {
-                          day: "numeric",
-                          month: "short",
-                          hour: "numeric",
-                          minute: "numeric",
-                        })}
-                      </div>
-                      <div className="match-score">
-                        <span className="match-score-number match-score-number--leading">
-                          {score.goals.home}
-                        </span>
-                        <span className="match-score-divider">:</span>
-                        <span className="match-score-number">
-                          {score.goals.away}
-                        </span>
-                      </div>
-                      <div className="match-time-lapsed">
-                        {score.fixture.status.elapsed}'
-                      </div>
-                      <div className="match-referee">
-                        Referee: <strong>{score.fixture.referee}</strong>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="column">
-                    <div className="team team--away">
-                      <div className="team-logo">
-                        <img
-                          src={score.teams.away.logo}
-                          alt={score.teams.away.name}
-                        />
-                      </div>
-                      <h2 className="team-name">{score.teams.away.name}</h2>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+            <div className="pagination-buttons">
+              {!isFirstPage && (
+                <button onClick={handlePreviousPage}>Previous Page</button>
+              )}
+              {!isLastPage && (
+                <button onClick={handleNextPage}>Next Page</button>
+              )}
+            </div>
+          </>
         )}
       </div>
     </>

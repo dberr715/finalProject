@@ -60,8 +60,8 @@ export default function AIResponse({ handleSearch }) {
   return (
     <div className="match-container">
       <div className="match-find-container">
-        <div class="form__group">
-          <div class="input-container">
+        <div className="form__group">
+          <div className="input-container">
             <input
               type="text"
               className="form__input"

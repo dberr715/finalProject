@@ -266,14 +266,15 @@ export default function TeamPage() {
   //     console.error("An error occurred:", error);
   //   }
   // }
-  async function handleFavoriteTeam() {
+  async function handleFavoriteTeam(isFav) {
     const apiUrl = "http://localhost:8000/favorite-teams/"; // Correct API endpoint
     const token = localStorage.getItem("access_token");
     const user_id = localStorage.getItem("user_id");
     const data = { team_name: teamName, user: user_id };
-
+    console.log({ isFav });
+    console.log({ teamId });
     try {
-      if (isFavorite) {
+      if (isFav) {
         // Remove from favorites
         // apiUrl + teamId
         const response = await fetch(apiUrl + teamId + "/", {
@@ -371,7 +372,7 @@ export default function TeamPage() {
       <Navigation isFavorite={isFavorite} />
       <div className="teampage123">
         <img
-          src="../../public/footymatch.png"
+          src="../../public/newfootymatch.png"
           alt="FootyMatch"
           className="footy"
         />
@@ -407,7 +408,7 @@ export default function TeamPage() {
                         <FavoritesButton
                           teamName={teamName}
                           isFavorite={isFavorite}
-                          onToggleFavorite={() => handleFavoriteTeam()}
+                          onToggleFavorite={handleFavoriteTeam}
                         />
                         {isFavorite && (
                           <p style={{ color: "black" }}>{favoriteMessage}</p>
