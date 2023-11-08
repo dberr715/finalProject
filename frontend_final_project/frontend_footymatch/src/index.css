@@ -17,6 +17,36 @@
   --color-theme-primary: #623ce6;
 }
 
+.prev-next-button {
+  background-color: #3d9d34;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #f0eeee;
+  cursor: pointer;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.prev-next-button.disabled {
+  background-color: #ccc; /* Use a different color for disabled buttons */
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
+
 /* ////HOME PAGE///// */
 
 .footy {

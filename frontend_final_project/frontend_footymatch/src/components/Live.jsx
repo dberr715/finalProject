@@ -104,10 +104,26 @@ export default function Live() {
           <>
             <div className="pagination-buttons">
               {!isFirstPage && (
-                <button onClick={handlePreviousPage}>Previous Page</button>
+                <button
+                  className={`prev-next-button ${
+                    isFirstPage ? "disabled" : ""
+                  }`}
+                  type="submit"
+                  onClick={handlePreviousPage}
+                  disabled={isFirstPage}
+                >
+                  Previous Page
+                </button>
               )}
               {!isLastPage && (
-                <button onClick={handleNextPage}>Next Page</button>
+                <button
+                  className={`prev-next-button ${isLastPage ? "disabled" : ""}`}
+                  type="submit"
+                  onClick={handleNextPage}
+                  disabled={isLastPage}
+                >
+                  Next Page
+                </button>
               )}
             </div>
             <div className="live-matches-container">
@@ -182,11 +198,25 @@ export default function Live() {
             </div>
             <div className="pagination-buttons">
               {!isFirstPage && (
-                <button onClick={handlePreviousPage}>Previous Page</button>
+                <button
+                  className={`prev-next-button ${
+                    isFirstPage ? "disabled" : ""
+                  }`}
+                  type="submit"
+                  onClick={handlePreviousPage}
+                  disabled={isFirstPage}
+                >
+                  Previous Page
+                </button>
               )}
-              {!isLastPage && (
-                <button onClick={handleNextPage}>Next Page</button>
-              )}
+              <button
+                className={`prev-next-button ${isLastPage ? "disabled" : ""}`}
+                type="submit"
+                onClick={handleNextPage}
+                disabled={isLastPage}
+              >
+                Next Page
+              </button>
             </div>
           </>
         )}
