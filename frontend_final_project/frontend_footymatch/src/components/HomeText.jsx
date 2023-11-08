@@ -55,7 +55,7 @@ export default function HomeText() {
                 </div>
               </div>
             </div>
-            <div className="search-container card1">
+            <div className="search-container">
               <div className="card1">
                 <p>Already have a team in mind?</p>
                 {/* <input

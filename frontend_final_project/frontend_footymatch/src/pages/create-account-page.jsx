@@ -92,7 +92,12 @@ export default function CreateAccount() {
           name="confirm_password"
           onChange={handleChange}
         />
-        <input type="submit" className="button" value="Sign Up" />
+        <input
+          type="submit"
+          className="button"
+          id="createbutton1"
+          value="Sign Up"
+        />
       </form>
       <div className="signup">
         <span className="signup">Already have an account?</span>
