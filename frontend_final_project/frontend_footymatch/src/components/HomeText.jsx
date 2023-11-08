@@ -9,33 +9,39 @@ export default function HomeText() {
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleInputChange = (event) => {
-    const inputValue = event.target.value; // Get the input value
-    const lowercaseValue = inputValue.toLowerCase(); // Convert to lowercase
-    setTeam(lowercaseValue); // Update the state with the lowercase value
-    setErrorMessage(""); // Clear any previous error message when input changes
-  };
+  function capitalizeFirstLetter(string) {
+    return string
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  }
 
-  const handleSearchClick = async () => {
-    setLoading(true);
+  
+const handleInputChange = (event) => {
+  const inputValue = event.target.value; // Get the input value
+  const capitalizedValue = capitalizeFirstLetter(inputValue); // Capitalize the first letter of each word
+  setTeam(capitalizedValue); // Update the state with the capitalized value
+  setErrorMessage(""); // Clear any previous error message when input changes
+};
 
-    try {
-      const isValidTeam = await validateTeamName(team);
-      if (isValidTeam) {
-        // Perform the desired action when it's a valid team (e.g., navigate to the team page)
-        navigate(`/team/${team}`, { team });
-      } else {
-        setErrorMessage(
-          "Not a team. Check spelling and try again"
-        );
-      }
-    } catch (error) {
-      console.error("Error validating team:", error);
-      setErrorMessage("An error occurred while validating the team name");
-    } finally {
-      setLoading(false);
+const handleSearchClick = async () => {
+  setLoading(true);
+
+  try {
+    const isValidTeam = await validateTeamName(team);
+    if (isValidTeam) {
+      // Perform the desired action when it's a valid team (e.g., navigate to the team page)
+      navigate(`/team/${team}`, { team });
+    } else {
+      setErrorMessage("Not a team. Check spelling and try again");
     }
-  };
+  } catch (error) {
+    console.error("Error validating team:", error);
+    setErrorMessage("An error occurred while validating the team name");
+  } finally {
+    setLoading(false);
+  }
+};
 
   // Helper function to validate the team name using footballAPI
   const validateTeamName = async (teamName) => {

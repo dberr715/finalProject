@@ -11,14 +11,24 @@ export default function ResponseModal({ rec, onClose }) {
   const [stadiumPic, setStadiumPic] = useState("");
   const [error, setError] = useState(null);
 
+  function capitalizeFirstLetter(string) {
+    return string
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  }
+
   const handleInputChange = (e) => {
     setTeam(e.target.value);
   };
 
   const handleSearchClick = async () => {
+    // Capitalize the first letter of each word in the team input
+    const teamCapitalized = capitalizeFirstLetter(team);
+
     // API fetch logic
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
-    const nameUrl = `https://api-football-v1.p.rapidapi.com/v3/teams?name=${team}`;
+    const nameUrl = `https://api-football-v1.p.rapidapi.com/v3/teams?name=${teamCapitalized}`;
     const options = {
       method: "GET",
       headers: {
@@ -43,7 +53,7 @@ export default function ResponseModal({ rec, onClose }) {
         setStadiumPic(stadiumPic);
         setCountry(country);
 
-        navigate(`/team/${team}`);
+        navigate(`/team/${teamCapitalized}`);
       } else {
         setError("Team not found. Please try again.");
       }

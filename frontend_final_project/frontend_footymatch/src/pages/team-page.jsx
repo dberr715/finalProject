@@ -90,7 +90,7 @@ export default function TeamPage() {
         "That is not a professional soccer team, please check your spelling and try again!"
       );
     }
-
+    setTeamId(teamId);
     // After fetching data, check if the team is a favorite
     fetchFavoriteTeams();
   }
@@ -210,7 +210,6 @@ export default function TeamPage() {
     // After fetching data, check if the team is a favorite
     fetchFavoriteTeams();
   }
-
 
   // console.log("Time1: ", time1);
   // console.log("Time2: ", time2);
@@ -372,7 +371,7 @@ export default function TeamPage() {
       <Navigation />
       <div className="teampage123">
         <img
-          src="../../public/newfootymatch.png"
+          src="../../public/footymatch.png"
           alt="FootyMatch"
           className="footy"
         />
