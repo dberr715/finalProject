@@ -16,7 +16,7 @@ export default function TeamPage() {
   const params = useParams();
   const { isAuth } = useAuth();
   const [teamName, setTeamName] = useState("");
-  
+
   const [logo, setLogo] = useState("");
   const [country, setCountry] = useState("");
   const [stadium, setStadium] = useState("");
@@ -100,7 +100,6 @@ export default function TeamPage() {
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
 
     const idUrl = `https://api-football-v1.p.rapidapi.com/v3/fixtures?team=${teamId}&next=3`;
-    //  const nameUrl = `https://api-football-v1.p.rapidapi.com/v3/teams?name=${params.teamname}`;
     const options = {
       method: "GET",
       headers: {
@@ -111,48 +110,93 @@ export default function TeamPage() {
 
     try {
       const response = await fetch(idUrl, options);
-      // console.log("RESPONSE:", response);
+
       if (response.ok) {
         const result = await response.json();
-        // console.log("RESULT:", result.response);
-        const time1 = result.response[0].fixture.date;
-        const time2 = result.response[1].fixture.date;
-        const time3 = result.response[0].fixture.date;
-        const league1 = result.response[0].league.name;
-        const league2 = result.response[1].league.name;
-        const league3 = result.response[2].league.name;
-        const teamsHomeName1 = result.response[0].teams.home.name;
-        const teamsHomeName2 = result.response[1].teams.home.name;
-        const teamsHomeName3 = result.response[2].teams.home.name;
-        const teamsAwayName1 = result.response[0].teams.away.name;
-        const teamsAwayName2 = result.response[1].teams.away.name;
-        const teamsAwayName3 = result.response[2].teams.away.name;
-        const teamsHomeLogo1 = result.response[0].teams.home.logo;
-        const teamsHomeLogo2 = result.response[1].teams.home.logo;
-        const teamsHomeLogo3 = result.response[2].teams.home.logo;
-        const teamsAwayLogo1 = result.response[0].teams.away.logo;
-        const teamsAwayLogo2 = result.response[1].teams.away.logo;
-        const teamsAwayLogo3 = result.response[2].teams.away.logo;
+        const fixtures = result.response;
 
-        setTime1(time1);
-        setTime2(time2);
-        setTime3(time3);
-        setLeague1(league1);
-        setLeague2(league2);
-        setLeague3(league3);
-        setTeamsHomeName1(teamsHomeName1);
-        setTeamsHomeName2(teamsHomeName2);
-        setTeamsHomeName3(teamsHomeName3);
-        setTeamsAwayName1(teamsAwayName1);
-        setTeamsAwayName2(teamsAwayName2);
-        setTeamsAwayName3(teamsAwayName3);
+        // Check if there are 3 or more fixtures
+        if (fixtures.length >= 3) {
+          const time1 = fixtures[0].fixture.date;
+          const time2 = fixtures[1].fixture.date;
+          const time3 = fixtures[2].fixture.date;
+          const league1 = fixtures[0].league.name;
+          const league2 = fixtures[1].league.name;
+          const league3 = fixtures[2].league.name;
+          const teamsHomeName1 = fixtures[0].teams.home.name;
+          const teamsHomeName2 = fixtures[1].teams.home.name;
+          const teamsHomeName3 = fixtures[2].teams.home.name;
+          const teamsAwayName1 = fixtures[0].teams.away.name;
+          const teamsAwayName2 = fixtures[1].teams.away.name;
+          const teamsAwayName3 = fixtures[2].teams.away.name;
+          const teamsHomeLogo1 = fixtures[0].teams.home.logo;
+          const teamsHomeLogo2 = fixtures[1].teams.home.logo;
+          const teamsHomeLogo3 = fixtures[2].teams.home.logo;
+          const teamsAwayLogo1 = fixtures[0].teams.away.logo;
+          const teamsAwayLogo2 = fixtures[1].teams.away.logo;
+          const teamsAwayLogo3 = fixtures[2].teams.away.logo;
 
-        setTeamsHomeLogo1(teamsHomeLogo1);
-        setTeamsHomeLogo2(teamsHomeLogo2);
-        setTeamsHomeLogo3(teamsHomeLogo3);
-        setTeamsAwayLogo1(teamsAwayLogo1);
-        setTeamsAwayLogo2(teamsAwayLogo2);
-        setTeamsAwayLogo3(teamsAwayLogo3);
+          setTime1(time1);
+          setTime2(time2);
+          setTime3(time3);
+          setLeague1(league1);
+          setLeague2(league2);
+          setLeague3(league3);
+          setTeamsHomeName1(teamsHomeName1);
+          setTeamsHomeName2(teamsHomeName2);
+          setTeamsHomeName3(teamsHomeName3);
+          setTeamsAwayName1(teamsAwayName1);
+          setTeamsAwayName2(teamsAwayName2);
+          setTeamsAwayName3(teamsAwayName3);
+
+          setTeamsHomeLogo1(teamsHomeLogo1);
+          setTeamsHomeLogo2(teamsHomeLogo2);
+          setTeamsHomeLogo3(teamsHomeLogo3);
+          setTeamsAwayLogo1(teamsAwayLogo1);
+          setTeamsAwayLogo2(teamsAwayLogo2);
+          setTeamsAwayLogo3(teamsAwayLogo3);
+        } else {
+          // Handle the case when there are 1 or 2 upcoming games
+          if (fixtures.length >= 1) {
+            const time1 = fixtures[0].fixture.date;
+            const league1 = fixtures[0].league.name;
+            const teamsHomeName1 = fixtures[0].teams.home.name;
+            const teamsAwayName1 = fixtures[0].teams.away.name;
+            const teamsHomeLogo1 = fixtures[0].teams.home.logo;
+            const teamsAwayLogo1 = fixtures[0].teams.away.logo;
+
+            setTime1(time1);
+            setLeague1(league1);
+            setTeamsHomeName1(teamsHomeName1);
+            setTeamsAwayName1(teamsAwayName1);
+            setTeamsHomeLogo1(teamsHomeLogo1);
+            setTeamsAwayLogo1(teamsAwayLogo1);
+          }
+
+          if (fixtures.length >= 2) {
+            const time2 = fixtures[1].fixture.date;
+            const league2 = fixtures[1].league.name;
+            const teamsHomeName2 = fixtures[1].teams.home.name;
+            const teamsAwayName2 = fixtures[1].teams.away.name;
+            const teamsHomeLogo2 = fixtures[1].teams.home.logo;
+            const teamsAwayLogo2 = fixtures[1].teams.away.logo;
+
+            setTime2(time2);
+            setLeague2(league2);
+            setTeamsHomeName2(teamsHomeName2);
+            setTeamsAwayName2(teamsAwayName2);
+            setTeamsHomeLogo2(teamsHomeLogo2);
+            setTeamsAwayLogo2(teamsAwayLogo2);
+          }
+
+          // Clear values for the third game card
+          setTime3("");
+          setLeague3("");
+          setTeamsHomeName3("");
+          setTeamsAwayName3("");
+          setTeamsHomeLogo3("");
+          setTeamsAwayLogo3("");
+        }
       } else {
         setError("Team not found. Please try again.");
       }
@@ -166,6 +210,8 @@ export default function TeamPage() {
     // After fetching data, check if the team is a favorite
     fetchFavoriteTeams();
   }
+
+
   // console.log("Time1: ", time1);
   // console.log("Time2: ", time2);
   // console.log("Time3: ", time3);
@@ -295,13 +341,13 @@ export default function TeamPage() {
           (team) => team.team_name === params.teamname
         );
 
-        // Grab the favorites for a user by their names 
+        // Grab the favorites for a user by their names
         // Take the array you get back (see Postman) and filter(?) it?
         // teams.filter(team => team.toLower() === teamname.toLower() ? {team_name, team_id: id} : {})
         // Return the ID of the entry based on the above (this should limit to one per user)
-  
+
         // Take the name from the params, convert it to lowercase, check the database, return True & the ID if found
-        // Return False is not found. 
+        // Return False is not found.
         // Converting to lowercase on both the database and URL side will "normalize" the spelling
         // If it does exist, add setTeamId([SOME ID VALUE]), then use `teamId` in your DELETE route API call
 
@@ -374,37 +420,55 @@ export default function TeamPage() {
                 <h2 className="upcoming">Upcoming Games</h2>
                 <div className="next-games">
                   <div className="game-card">
-                    <h3>{league1}</h3>
-                    <h4>{time1}</h4>
-                    <div className="versus">
-                      <img src={teamsHomeLogo1} alt="Home Team Logo" />
-                      <h5>{teamsHomeName1}</h5>
-                      <h2>V</h2>
-                      <h5>{teamsAwayName1}</h5>
-                      <img src={teamsAwayLogo1} alt="Away Team Logo" />
-                    </div>
+                    {time1 ? (
+                      <>
+                        <h3>{league1}</h3>
+                        <h4>{time1}</h4>
+                        <div className="versus">
+                          <img src={teamsHomeLogo1} alt="Home Team Logo" />
+                          <h5>{teamsHomeName1}</h5>
+                          <h2>V</h2>
+                          <h5>{teamsAwayName1}</h5>
+                          <img src={teamsAwayLogo1} alt="Away Team Logo" />
+                        </div>
+                      </>
+                    ) : (
+                      <p>No upcoming games</p>
+                    )}
                   </div>
                   <div className="game-card">
-                    <h3>{league2}</h3>
-                    <h4>{time2}</h4>
-                    <div className="versus">
-                      <img src={teamsHomeLogo2} alt="Home Team Logo" />
-                      <h5>{teamsHomeName2}</h5>
-                      <h2>V</h2>
-                      <h5>{teamsAwayName2}</h5>
-                      <img src={teamsAwayLogo2} alt="Away Team Logo" />
-                    </div>
+                    {time2 ? (
+                      <>
+                        <h3>{league2}</h3>
+                        <h4>{time2}</h4>
+                        <div className="versus">
+                          <img src={teamsHomeLogo2} alt="Home Team Logo" />
+                          <h5>{teamsHomeName2}</h5>
+                          <h2>V</h2>
+                          <h5>{teamsAwayName2}</h5>
+                          <img src={teamsAwayLogo2} alt="Away Team Logo" />
+                        </div>
+                      </>
+                    ) : (
+                      <p>No upcoming games</p>
+                    )}
                   </div>
                   <div className="game-card">
-                    <h3>{league3}</h3>
-                    <h4>{time3}</h4>
-                    <div className="versus">
-                      <img src={teamsHomeLogo3} alt="Home Team Logo" />
-                      <h5>{teamsHomeName3}</h5>
-                      <h2>V</h2>
-                      <h5>{teamsAwayName3}</h5>
-                      <img src={teamsAwayLogo3} alt="Away Team Logo" />
-                    </div>
+                    {time3 ? (
+                      <>
+                        <h3>{league3}</h3>
+                        <h4>{time3}</h4>
+                        <div className="versus">
+                          <img src={teamsHomeLogo3} alt="Home Team Logo" />
+                          <h5>{teamsHomeName3}</h5>
+                          <h2>V</h2>
+                          <h5>{teamsAwayName3}</h5>
+                          <img src={teamsAwayLogo3} alt="Away Team Logo" />
+                        </div>
+                      </>
+                    ) : (
+                      <p>No upcoming games</p>
+                    )}
                   </div>
                 </div>
               </div>

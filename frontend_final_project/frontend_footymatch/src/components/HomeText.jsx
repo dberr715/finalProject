@@ -12,8 +12,10 @@ export default function HomeText() {
   };
 
   const [team, setTeam] = useState("");
-  const handleInputChange = (e) => {
-    setTeam(e.target.value);
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value; // Get the input value
+    const lowercaseValue = inputValue.toLowerCase(); // Convert to lowercase
+    setTeam(lowercaseValue); // Update the state with the lowercase value
   };
 
   const handleSearchClick = () => {
@@ -78,14 +80,14 @@ export default function HomeText() {
                   <label for="name" className="form__label">
                     Soccer Team Name
                   </label>
-                <button
-                  className="match, search, searchbutton"
-                  type="submit"
-                  onClick={handleSearchClick}
+                  <button
+                    className="match, search, searchbutton"
+                    type="submit"
+                    onClick={handleSearchClick}
                   >
-                  Find Team
-                </button>
-                  </div>
+                    Find Team
+                  </button>
+                </div>
               </div>
             </div>
           </div>
