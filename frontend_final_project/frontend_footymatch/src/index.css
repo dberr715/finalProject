@@ -139,7 +139,30 @@
   color: yellow; /* Change color to yellow when filled */
 }
 
-/*  */
+.league-filter-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.league-button {
+  width: 100px;
+  height: 50px;
+  font-size: 14px;
+  margin-right: 5px;
+  border-radius: 8px;
+  font-family: Inter, sans-serif;
+  overflow: hidden;
+ 
+}
+
+
+.selected {
+  background-color: #3d9d34; 
+  color: #f9f7f7; 
+  font-weight: bold;
+  text-decoration: underline;
+}
 
 .search-container {
   display: flex;

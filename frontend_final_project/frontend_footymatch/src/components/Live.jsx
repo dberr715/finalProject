@@ -5,7 +5,8 @@ export default function Live() {
   const [fixtures, setFixtures] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedLeague, setSelectedLeague] = useState(null);
-  const [leagues, setLeagues] = useState([]); // Add the leagues state
+  const [leagues, setLeagues] = useState([]);
+
   const filteredFixtures = selectedLeague
     ? fixtures.filter((fixture) => fixture.league.name === selectedLeague)
     : fixtures;
@@ -14,7 +15,7 @@ export default function Live() {
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
 
     const fetchFixtures = async () => {
-      const pageSize = 10; // Number of fixtures per page
+      const pageSize = 10;
       const startIndex = (currentPage - 1) * pageSize;
       const endIndex = startIndex + pageSize;
 
@@ -39,7 +40,6 @@ export default function Live() {
 
         setFixtures(fixturesToDisplay);
 
-        // Extracting unique leagues
         const uniqueLeagues = [
           ...new Set(sortedFixtures.map((fixture) => fixture.league.name)),
         ];
@@ -54,7 +54,7 @@ export default function Live() {
 
   const handleLeagueFilter = (league) => {
     if (league === selectedLeague) {
-      setSelectedLeague(null); // Deselect the league if it's already selected
+      setSelectedLeague(null);
     } else {
       setSelectedLeague(league);
     }
@@ -73,6 +73,13 @@ export default function Live() {
   const isFirstPage = currentPage === 1;
   const isLastPage = fixtures.length < 10;
 
+  const createNoGamesCard = () => (
+    <div className="no-games-card">
+      <h3>No current games with this filter!</h3>
+      <p>Check back later for updates or try a different filter.</p>
+    </div>
+  );
+
   return (
     <>
       <Navigation />
@@ -84,10 +91,16 @@ export default function Live() {
         />
         <h1 className="livegames">Live Games</h1>
         <div className="league-filter-bar">
+          <button
+            className={`league-button   ${selectedLeague ? "" : "selected"}`}
+            onClick={() => handleLeagueFilter(null)}
+          >
+            All Leagues
+          </button>
           {leagues.map((league) => (
             <button
               key={league}
-              className={`league-button ${
+              className={`league-button  ${
                 league === selectedLeague ? "selected" : ""
               }`}
               onClick={() => handleLeagueFilter(league)}
@@ -96,17 +109,14 @@ export default function Live() {
             </button>
           ))}
         </div>
-        {fixtures.length === 0 ? (
-          <div className="no-live-games-message">
-            No current live games anywhere in the world. Check back later!
-          </div>
+        {filteredFixtures.length === 0 ? (
+          <div className="live-matches-container">{createNoGamesCard()}</div>
         ) : (
           <>
             <div className="live-matches-container">
               {filteredFixtures.map((score) => (
                 <div key={score.fixture.id} className="match">
                   <div className="match-header">
-                    {/* Add code for match status, league, and other details */}
                     <div className="match-tournament">
                       <div className="tournament-info">
                         <img src={score.league.logo} alt="League Logo" />
@@ -174,7 +184,7 @@ export default function Live() {
             </div>
             <div className="pagination-buttons">
               <button
-                className={`prev-next-button ${isFirstPage ? "disabled" : ""}`} // Add "disabled" class conditionally
+                className={`prev-next-button  ${isFirstPage ? "disabled" : ""}`}
                 type="submit"
                 onClick={handlePreviousPage}
                 disabled={isFirstPage}
@@ -182,7 +192,7 @@ export default function Live() {
                 Previous Page
               </button>
               <button
-                className={`prev-next-button ${isLastPage ? "disabled" : ""}`}
+                className={`prev-next-button  ${isLastPage ? "disabled" : ""}`}
                 type="submit"
                 onClick={handleNextPage}
                 disabled={isLastPage}

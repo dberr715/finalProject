@@ -96,7 +96,7 @@ export default function LoginPage() {
               onChange={handleChangePassword}
             />
           </label>
-          <input type="submit" className=" prev-next-button" value="Login" />
+          <input type="submit" className="prev-next-button " value="Login" />
           <div className="signup">
             <span className="signup1">
               Don't have an account? <br />
