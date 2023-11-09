@@ -294,6 +294,7 @@ export default function TeamPage() {
         }
       } else {
         // Add to favorites
+        console.log("FIRED FAVES");
         const response = await fetch(apiUrl, {
           method: "POST",
           headers: {
@@ -352,7 +353,7 @@ export default function TeamPage() {
         // If it does exist, add setTeamId([SOME ID VALUE]), then use `teamId` in your DELETE route API call
 
         // console.log(favoriteTeams);
-        return setIsFavorite(isFavorite);
+        // return setIsFavorite(isFavorite);
       } else {
         console.error("Failed to fetch favorite teams.");
       }
@@ -365,7 +366,7 @@ export default function TeamPage() {
     fetchData1();
     fetchFavoriteTeams();
     console.log("USE EFFECT RUNNING");
-  }, [params]);
+  }, [isFavorite]);
 
   return (
     <>

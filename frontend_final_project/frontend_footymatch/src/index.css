@@ -313,7 +313,7 @@
 }
 
 .logo-image {
-  max-width: 100px; /* Adjust the width as needed */
+  max-width: 100%; /* Adjust the width as needed */
 }
 
 .logo-small {
@@ -483,7 +483,7 @@ body {
   background-color: var(--color-bg-secondary);
 }
 main {
-  width: 1000px;
+  width: 100%;
 }
 
 .main-container {
@@ -1287,7 +1287,7 @@ body {
 
 @media screen and (max-width: 768px) {
   .live-matches-container {
-    width: 100%;
+    width: 85%;
   }
 
   .match {
@@ -1334,11 +1334,31 @@ body {
   }
 }
 
+/* Styles for screens up to 768px */
 @media screen and (max-width: 768px) {
-  .teampage123, .login-head, .registration {
+  .teampage123,
+  .login-head {
     max-width: 75%; /* Set max width for smaller screens */
     margin: 0 auto; /* Center the content horizontally */
     padding: 0 20px; /* Add padding to the sides if needed */
+  }
+
+  .top-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .team-logo-main {
+    margin-bottom: 10px; /* Adjust the spacing between logo and text */
+  }
+
+  .teamname-inner {
+    font-size: 1.5em; /* Adjust the font size if needed */
+  }
+
+  .country-div {
+    margin-top: 5px; /* Adjust the spacing between text and country */
   }
 
   .footy {
@@ -1350,4 +1370,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center; /* Center the cards horizontally */
-  }}
+  }
+
+  /* Optionally, adjust other styles within .teampage123 as needed */
+}
+
+/* ... (other styles) ... */
+
