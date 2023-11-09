@@ -974,6 +974,11 @@ body {
   display: none;
 }
 
+.league-dropdown, option {
+  border-radius: 8px;
+  background-color:rgba(236, 232, 232, 0.76);;
+}
+
 .topnav a:hover,
 .dropdown:hover .dropbtn {
   background-color: #ddd;
