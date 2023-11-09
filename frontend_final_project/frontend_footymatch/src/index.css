@@ -1303,3 +1303,40 @@ body {
     margin: 10px 5% 10px 5%; /* Adjust margins as needed */
   }
 }
+
+
+@media screen and (max-width: 768px) {
+  .home-container {
+    max-width: 75%; /* Set max width for smaller screens */
+    margin: 0 auto; /* Center the content horizontally */
+    padding: 0 20px; /* Add padding to the sides if needed */
+  }
+
+  .top-container {
+    flex-direction: column;
+  }
+
+  .intro-container, .search-container {
+    max-width: 100%;
+  }
+  .footy{
+    margin-bottom: 10px;
+  }
+}
+
+/* Styles for screens up to 375px */
+@media only screen and (max-width: 375px) {
+  .home-container {
+    max-width: 75%; /* Set max width for smaller screens */
+    margin: 0 auto; /* Center the content horizontally */
+    padding: 0 20px; /* Add padding to the sides if needed */
+  }
+
+  .top-container {
+    flex-direction: column;
+  }
+
+  .intro-container, .search-container {
+    max-width: 100%;
+  }
+}
