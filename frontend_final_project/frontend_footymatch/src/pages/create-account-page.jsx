@@ -56,6 +56,7 @@ export default function CreateAccount() {
   const handleSuccessAlertClose = () => {
     setShowSuccessAlert(false);
   };
+ 
 
   const handleErrorAlertClose = () => {
     setShowErrorAlert(false);
@@ -66,14 +67,14 @@ export default function CreateAccount() {
   };
 
   return (
-    <div className="registration form">
+    <div className="registration form card1">
       <img
         src="../../public/newfootymatch.png"
         alt="FootyMatch"
         className="footy"
       />
       <header>Sign Up</header>
-      <form onSubmit={handleSubmit}>
+      <form className="create-account" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Enter a username"
@@ -94,7 +95,7 @@ export default function CreateAccount() {
         />
         <input
           type="submit"
-          className="button prev-next-button"
+          className="prev-next-button"
           // id="createbutton1"
           value="Sign Up"
         />

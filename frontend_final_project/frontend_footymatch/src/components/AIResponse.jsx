@@ -64,7 +64,7 @@ export default function AIResponse({ handleSearch }) {
           <div className="input-container">
             <input
               type="text"
-              className="form__input"
+              className="form__input searchbars"
               id="name"
               value={inputText}
               onChange={handleInputChange}
