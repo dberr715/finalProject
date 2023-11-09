@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate, redirect } from "react-router-dom";
-import { useRevalidator } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+
 import { useAuth } from "../AuthContext";
 import Navigation from "../components/Navigation";
-import FavoritesButton from "../components/FavoritesButton"; // Correct import path
+import FavoritesButton from "../components/FavoritesButton";
 import "../index.css";
-// import { normalizeUnits } from "moment";
 
 export default function TeamPage() {
   const [isAlreadyInFavorites, setIsAlreadyInFavorites] = useState(false);
   const [favoriteMessage, setFavoriteMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [teamName, setTeamName] = useState("");
 
-  // const revalidator = useRevalidator();
   const params = useParams();
   const { isAuth } = useAuth();
-  const [teamName, setTeamName] = useState("");
+  const navigate = useNavigate();
+  const [key, setKey] = useState(0);
 
   const [logo, setLogo] = useState("");
   const [country, setCountry] = useState("");
@@ -78,9 +78,7 @@ export default function TeamPage() {
         setStadiumPic(stadiumPic);
         setCountry(country);
         setTeamId(teamId);
-        // console.log("FIRST FETCH:", teamId);
         fetchData2(teamId);
-        // console.log({ teamName });
       } else {
         setError("Team not found. Please try again.");
       }
@@ -90,8 +88,8 @@ export default function TeamPage() {
         "That is not a professional soccer team, please check your spelling and try again!"
       );
     }
-    setTeamId(teamId);
-    // After fetching data, check if the team is a favorite
+    // setTeamId(teamId);
+
     fetchFavoriteTeams();
   }
 
@@ -211,72 +209,14 @@ export default function TeamPage() {
     fetchFavoriteTeams();
   }
 
-  // console.log("Time1: ", time1);
-  // console.log("Time2: ", time2);
-  // console.log("Time3: ", time3);
-  // Function to add or remove a team from favorites
-
-  // async function handleFavoriteTeam() {
-  //   if (isFavorite) {
-  //     setIsAlreadyInFavorites(true);
-  //     setFavoriteMessage("That team is already in your favorites!");
-  //     return;
-  //   }
-
-  //   const apiUrl = "http://localhost:8000/favorite-teams/";
-  //   const token = localStorage.getItem("access_token");
-  //   const user_id = localStorage.getItem("user_id");
-
-  //   try {
-  //     const response = await fetch(apiUrl, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-
-  //     if (response.ok) {
-  //       const favoriteTeams = await response.json();
-  //       if (favoriteTeams.some((team) => team.team_name === teamName)) {
-  //         setIsAlreadyInFavorites(true);
-  //         setFavoriteMessage("That team is already in your favorites!");
-  //       } else {
-  //         const data = { team_name: teamName, user: user_id };
-  //         const response = await fetch(apiUrl, {
-  //           method: "POST",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             Authorization: `Bearer ${token}`,
-  //           },
-  //           body: JSON.stringify(data),
-  //         });
-
-  //         if (response.ok) {
-  //           console.log("Team added to favorites successfully.");
-  //           setIsFavorite(true);
-  //         } else {
-  //           console.error("Failed to add team to favorites.");
-  //         }
-  //       }
-  //     } else {
-  //       console.error("Failed to fetch favorite teams.");
-  //     }
-  //   } catch (error) {
-  //     console.error("An error occurred:", error);
-  //   }
-  // }
   async function handleFavoriteTeam(isFav) {
     const apiUrl = "http://localhost:8000/favorite-teams/"; // Correct API endpoint
     const token = localStorage.getItem("access_token");
     const user_id = localStorage.getItem("user_id");
     const data = { team_name: teamName, user: user_id };
-    console.log({ isFav });
-    console.log({ teamId });
+
     try {
       if (isFav) {
-        // Remove from favorites
-        // apiUrl + teamId
         const response = await fetch(apiUrl + teamId + "/", {
           method: "DELETE",
           headers: {
@@ -288,12 +228,12 @@ export default function TeamPage() {
         if (response.ok) {
           console.log("Team removed from favorites successfully.");
           setIsFavorite(false);
-          // revalidator.revalidate();
+          setKey((prevKey) => prevKey + 1);
+          console.log("Updated key:", key);
         } else {
           console.error("Failed to remove team from favorites.");
         }
       } else {
-        // Add to favorites
         console.log("FIRED FAVES");
         const response = await fetch(apiUrl, {
           method: "POST",
@@ -307,6 +247,8 @@ export default function TeamPage() {
         if (response.ok) {
           console.log("Team added to favorites successfully.");
           setIsFavorite(true);
+          setKey((prevKey) => prevKey + 1);
+          console.log("Updated key:", key);
         } else {
           console.error("Failed to add team to favorites.");
         }
@@ -316,12 +258,7 @@ export default function TeamPage() {
     }
   }
 
-  // console.log({ isFavorite });
-  // console.log({ params });
-  // Fetch the user's favorite teams and check if the current team is a favorite
   const fetchFavoriteTeams = async () => {
-    // console.log("FETCHING FAVORITE TEAM");
-
     const access_token = localStorage.getItem("access_token");
     const url = "http://localhost:8000/favorite-teams/";
 
@@ -366,11 +303,11 @@ export default function TeamPage() {
     fetchData1();
     fetchFavoriteTeams();
     console.log("USE EFFECT RUNNING");
-  }, [isFavorite]);
+  }, [key]);
 
   return (
     <>
-      <Navigation isFavorite={isFavorite} />
+      <Navigation isFavorite={isFavorite} currentTeamName={teamName} />
       <div className="teampage123">
         <img
           src="../../public/newfootymatch.png"
