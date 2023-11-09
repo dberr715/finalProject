@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navigation from "./Navigation";
+// import "../styles/live.css"; // Import your CSS file
 
 export default function Live() {
   const [fixtures, setFixtures] = useState([]);
@@ -97,17 +98,19 @@ export default function Live() {
           >
             All Leagues
           </button>
-          {leagues.map((league) => (
-            <button
-              key={league}
-              className={`league-button  ${
-                league === selectedLeague ? "selected" : ""
-              }`}
-              onClick={() => handleLeagueFilter(league)}
+          {leagues.length > 0 && (
+            <select
+              className="league-dropdown"
+              onChange={(e) => handleLeagueFilter(e.target.value)}
             >
-              {league}
-            </button>
-          ))}
+              <option value="">All Leagues</option>
+              {leagues.map((league) => (
+                <option key={league} value={league}>
+                  {league}
+                </option>
+              ))}
+            </select>
+          )}
         </div>
         {filteredFixtures.length === 0 ? (
           <div className="live-matches-container">{createNoGamesCard()}</div>

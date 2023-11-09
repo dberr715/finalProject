@@ -141,7 +141,10 @@
 
 .league-filter-bar {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+    /* display: flex; */
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 
@@ -535,76 +538,71 @@ main {
 input[type="text"] {
   margin-right: 8px;
 }
-
 .match-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 1000px;
-  padding: 0 10%;
-  margin: 0 auto;
-
-}
-
-.apple {
-  color: #181b1a;
+  max-width: 100%;
+  padding: 0 2%; /* Adjust padding for smaller screens */
+  margin: 0;
 }
 
 .match {
   background-color: rgba(255, 255, 255, 0.6);
   color: rgb(13, 6, 6);
-  min-width: 300px;
-  margin: 10px 10%;
-  border-radius: 30px;
-  margin-top: 8px;
+  min-width: 100%; /* Adjust to take full width on smaller screens */
+  margin: 10px 0; /* Adjust margin for smaller screens */
+  border-radius: 15px; /* Smaller border radius */
   box-shadow: 0 0 2px 0 rgba(#303030, 0.1), 0 4px 4px 0 rgba(#303030, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  border-radius: 30px;
-}
-
-@media screen and (max-width: 768px) {
-  .match-container {
-    padding: 0 5%;
-    margin: 0;
-  }
-
-  .match {
-    min-width: 100%;
-    margin: 10px 5% 10px 10%;
-  }
 }
 
 .match-header {
   display: flex;
   align-items: center;
   border-bottom: 2px solid rgba(#303030, 0.1);
-  padding: 16px;
+  padding: 8px; /* Reduce padding for smaller screens */
 }
 
-.match-status {
-  background-color: var(--color-bg-alert);
-  color: var(--color-text-alert);
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 14px;
+.team-logo img {
+  max-width: 60px; /* Adjust max-width for team logos */
+  max-height: 60px; /* Adjust max-height for team logos */
+}
+
+.match-content {
+  padding: 8px; /* Reduce padding for smaller screens */
+}
+
+.team-name {
+  font-size: 14px; /* Adjust font size for team names */
+}
+
+.match-details {
+  font-size: 12px; /* Adjust font size for match details */
+}
+
+.pagination-buttons {
   display: flex;
-  align-items: center;
-  line-height: 1;
-  width: fit-content;
-  height: fit-content;
-  margin-right: auto;
-  &:before {
-    content: "";
-    display: block;
-    width: 6px;
-    height: 6px;
-    background-color: currentColor;
-    border-radius: 50%;
-    margin-right: 8px;
+  justify-content: space-between;
+  margin: 10px 0; /* Adjust margin for smaller screens */
+}
+
+.prev-next-button {
+  padding: 8px; /* Adjust padding for smaller screens */
+  font-size: 14px; /* Adjust font size for buttons */
+}
+
+@media screen and (min-width: 376px) and (max-width: 428px) {
+  .match-container {
+    padding: 0; /* Adjust padding for smaller screens */
+  }
+
+  .match {
+    min-width: 100%; /* Adjust to take full width on smaller screens */
+    margin: 10px 0; /* Adjust margin for smaller screens */
   }
 }
 
@@ -673,7 +671,8 @@ input[type="text"] {
   box-shadow: 0 4px 4px 0 black, 0 0 0 15px var(--color-bg-secondary);
 }
 .team-logo img {
-  width: 50px;
+  max-width: 100%; /* Set maximum width to 100% */
+  height: auto; /* Maintain aspect ratio */
 }
 
 #createbutton1 {
@@ -1215,4 +1214,92 @@ body {
 
 .tLogo {
   height: 100px;
+}
+
+@media only screen and (max-width: 600px) {
+  /* Adjustments for small screens */
+  .home-container {
+    margin-top: 5px;
+  }
+
+  .card1 {
+    padding: 20px;
+  }
+
+  .pagination-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .page-list {
+    flex-direction: column;
+  }
+
+  .page-button {
+    margin-top: 8px;
+  }
+
+  /* Adjust other styles as needed */
+}
+
+@media screen and (min-width: 600px) {
+  .card {
+    max-width: 300px; /* or any preferred value */
+  }
+
+  .pagination-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .prev-next-button {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .league-dropdown {
+    display: block;
+    width: 25%;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  .league-button {
+    display: inline-block; /* Show the button as inline block */
+    width: 25%; /* Set the width as needed */
+    padding: 10px;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .livepage {
+    max-width: 100%; /* Set max width for smaller screens */
+    margin: 0 auto; /* Center the content horizontally */
+    padding: 0 10px; /* Add padding to the sides if needed */
+  }
+
+  .league-filter-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .league-button,
+  .league-dropdown {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .live-matches-container {
+    width: 100%;
+  }
+
+  .match {
+    min-width: 100%;
+    margin: 10px 5% 10px 5%; /* Adjust margins as needed */
+  }
 }
