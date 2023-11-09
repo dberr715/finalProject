@@ -45,6 +45,20 @@
   transition: opacity 0.3s; /* Added a transition for opacity changes */
 }
 
+.add-favorite {
+  background-color: #3d9d34;
+  color: white;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+}
+
+.remove-favorite {
+  background-color: rgb(212, 22, 22);
+  color: white;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+}
+
 .prev-next-button.disabled {
   background-color: #ccc;
   cursor: not-allowed;
@@ -370,6 +384,10 @@
   flex-direction: column;
   align-items: center;
   font-size: 24px;
+}
+
+.favebut{
+  margin-top: 20px;
 }
 
 .fave-button {
@@ -974,9 +992,10 @@ body {
   display: none;
 }
 
-.league-dropdown, option {
+.league-dropdown,
+option {
   border-radius: 8px;
-  background-color:rgba(236, 232, 232, 0.76);;
+  background-color: rgba(236, 232, 232, 0.76);
 }
 
 .topnav a:hover,

@@ -45,7 +45,7 @@ export default function TeamPage() {
 
   function displayPrompt(message) {
     setPromptMessage(message);
-    setTimeout(() => setPromptMessage(""), 5000); // Clear the prompt after 5 seconds
+    setTimeout(() => setPromptMessage(""), 5000);
   }
 
   async function fetchData1() {
@@ -275,6 +275,7 @@ export default function TeamPage() {
       if (response.ok) {
         // console.log("INSIDE");
         const favoriteTeams = await response.json();
+        console.log("FAVE TEAMS: ", favoriteTeams);
         const isFavorite = favoriteTeams.some(
           (team) => team.team_name === params.teamname
         );
@@ -339,7 +340,6 @@ export default function TeamPage() {
                       alt="Stadium Pic"
                       className="stadium"
                     />
-                  </figure>
                   <div className="favorites-button-container">
                     {isAuth && (
                       <>
@@ -354,6 +354,7 @@ export default function TeamPage() {
                       </>
                     )}
                   </div>
+                  </figure>
                 </div>
                 <h2 className="upcoming">Upcoming Games</h2>
                 <div className="next-games">
