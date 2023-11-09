@@ -423,7 +423,15 @@ export default function TeamPage() {
                     {time1 ? (
                       <>
                         <h3>{league1}</h3>
-                        <h4>{time1}</h4>
+                        <h4>
+                          {new Date(time1).toLocaleString("en-US", {
+                            day: "numeric",
+                            month: "short",
+                            hour: "numeric",
+                            minute: "numeric",
+                          })}
+                        </h4>
+
                         <div className="versus">
                           <img src={teamsHomeLogo1} alt="Home Team Logo" />
                           <h5>{teamsHomeName1}</h5>
@@ -440,7 +448,15 @@ export default function TeamPage() {
                     {time2 ? (
                       <>
                         <h3>{league2}</h3>
-                        <h4>{time2}</h4>
+                        <h4>
+                          {new Date(time2).toLocaleString("en-US", {
+                            day: "numeric",
+                            month: "short",
+                            hour: "numeric",
+                            minute: "numeric",
+                          })}
+                        </h4>
+
                         <div className="versus">
                           <img src={teamsHomeLogo2} alt="Home Team Logo" />
                           <h5>{teamsHomeName2}</h5>
@@ -457,7 +473,15 @@ export default function TeamPage() {
                     {time3 ? (
                       <>
                         <h3>{league3}</h3>
-                        <h4>{time3}</h4>
+                        <h4>
+                          {new Date(time3).toLocaleString("en-US", {
+                            day: "numeric",
+                            month: "short",
+                            hour: "numeric",
+                            minute: "numeric",
+                          })}
+                        </h4>
+
                         <div className="versus">
                           <img src={teamsHomeLogo3} alt="Home Team Logo" />
                           <h5>{teamsHomeName3}</h5>
