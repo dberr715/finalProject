@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navigation from "./Navigation";
-// import "../styles/live.css"; // Import your CSS file
+
 
 export default function Live() {
   const [fixtures, setFixtures] = useState([]);
@@ -51,7 +51,7 @@ export default function Live() {
     };
 
     fetchFixtures();
-  }, [currentPage]);
+  }, [currentPage, selectedLeague]);
 
   const handleLeagueFilter = (league) => {
     if (league === selectedLeague) {
@@ -93,11 +93,14 @@ export default function Live() {
         <h1 className="livegames">Live Games</h1>
         <div className="league-filter-bar">
           <button
-            className={`league-button   ${selectedLeague ? "" : "selected"}`}
-            onClick={() => handleLeagueFilter(null)}
-          >
-            All Leagues
-          </button>
+  className={`league-button   ${selectedLeague ? "" : "selected"}`}
+  onClick={() => {
+    handleLeagueFilter(null);
+    window.location.reload();
+  }}
+>
+  All Leagues
+</button>
           {leagues.length > 0 && (
             <select
               className="league-dropdown"
@@ -163,7 +166,7 @@ export default function Live() {
                           </span>
                         </div>
                         <div className="match-time-lapsed">
-                          {score.fixture.status.elapsed}'
+                          Minute {score.fixture.status.elapsed}'
                         </div>
                         <div className="match-referee">
                           {score.fixture.referee && (
