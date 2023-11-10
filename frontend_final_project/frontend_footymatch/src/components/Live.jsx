@@ -166,7 +166,11 @@ export default function Live() {
                           {score.fixture.status.elapsed}'
                         </div>
                         <div className="match-referee">
-                          Referee: <strong>{score.fixture.referee}</strong>
+                          {score.fixture.referee && (
+                            <>
+                              Referee: <strong>{score.fixture.referee}</strong>
+                            </>
+                          )}
                         </div>
                       </div>
                     </div>
