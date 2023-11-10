@@ -74,12 +74,19 @@ export default function Navigation({ isFavorite }) {
                 <Link to="/logout">Logout</Link>
               </div>
 
-              <div className="username">{username}</div>
             </>
           ) : (
             <Link to="/login">Login</Link>
-          )}
+            )}
         </div>
+        <div className="logo-container">
+          <img
+            src="../../newfootymatch.png" // replace with the actual path to your logo image
+            alt="Company Logo"
+            className="company-logo"
+          />
+        </div>
+            <div className="username">{username}</div>
       </div>
     </div>
   );

@@ -310,11 +310,6 @@ export default function TeamPage() {
     <>
       <Navigation isFavorite={isFavorite} currentTeamName={teamName} />
       <div className="teampage123">
-        <img
-          src="../../public/newfootymatch.png"
-          alt="FootyMatch"
-          className="footy"
-        />
         <div>
           {error ? (
             <p className="error-message">{error}</p>
@@ -332,31 +327,21 @@ export default function TeamPage() {
                     <h2>{country}</h2>
                   </div>
                 </div>
-                <div className="team-images">
-                  <figure>
-                    <figcaption>{stadium}</figcaption>
-                    <img
-                      src={stadiumPic}
-                      alt="Stadium Pic"
-                      className="stadium"
-                    />
-                  <div className="favorites-button-container">
-                    {isAuth && (
-                      <>
-                        <FavoritesButton
-                          teamName={teamName}
-                          isFavorite={isFavorite}
-                          onToggleFavorite={handleFavoriteTeam}
-                        />
-                        {isFavorite && (
-                          <p style={{ color: "black" }}>{favoriteMessage}</p>
-                        )}
-                      </>
-                    )}
-                  </div>
-                  </figure>
-                </div>
                 <h2 className="upcoming">Upcoming Games</h2>
+                          <div className="favorites-button-container">
+                            {isAuth && (
+                              <>
+                                <FavoritesButton
+                                  teamName={teamName}
+                                  isFavorite={isFavorite}
+                                  onToggleFavorite={handleFavoriteTeam}
+                                />
+                                {isFavorite && (
+                                  <p style={{ color: "black" }}>{favoriteMessage}</p>
+                                )}
+                              </>
+                            )}
+                          </div>
                 <div className="next-games">
                   <div className="game-card">
                     {time1 ? (
@@ -433,6 +418,16 @@ export default function TeamPage() {
                       <p>No upcoming games</p>
                     )}
                   </div>
+                </div>
+                <div className="team-images">
+                  <figure>
+                    <figcaption>{stadium}</figcaption>
+                    <img
+                      src={stadiumPic}
+                      alt="Stadium Pic"
+                      className="stadium"
+                    />
+                  </figure>
                 </div>
               </div>
             </>

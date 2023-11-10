@@ -60,11 +60,11 @@ export default function HomeText() {
 
   return (
     <div className="home-container-outer">
-      <img
+      {/* <img
         src="../../public/newfootymatch.png"
         alt="FootyMatch"
         className="footy"
-      />
+      /> */}
       <div className="home-container">
         <div className="top-container">
           <div className="intro-container card1">
