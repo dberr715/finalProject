@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import Spinner from "./Spinner";
 import ResponseModal from "./ResponseModal";
 
-export default function AIResponse({ handleSearch }) {
+export default function AIResponse({ openModal }) {
   const key = import.meta.env.VITE_OPENAI_API_KEY;
   const [inputText, setInputText] = useState("");
-  const [rec, setRec] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleInputChange = (e) => {
     setInputText(e.target.value);
@@ -44,17 +42,13 @@ export default function AIResponse({ handleSearch }) {
 
       const data = await response.json();
 
-      setRec(data.choices[0].message.content);
-      setIsModalOpen(true);
+      // Open the modal with the recommendation
+      openModal(data.choices[0].message.content);
     } catch (error) {
       console.log("Unable to fetch data: ", error);
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
   };
 
   return (
@@ -65,7 +59,7 @@ export default function AIResponse({ handleSearch }) {
             <input
               type="text"
               className="form__input searchbars"
-              id="name"
+              // id="find-team"
               value={inputText}
               onChange={handleInputChange}
               placeholder=" team1, team2, etc..."
@@ -73,21 +67,10 @@ export default function AIResponse({ handleSearch }) {
             />
             {isLoading && <Spinner className="input-spinner" />}
           </div>
-          <br />
-          {/* <label for="name" class="form__label">
-            Other sports teams
-          </label> */}
-          <button className="searchbutton" onClick={fetchData}>
+          <button className="searchbutton" id="find-team" onClick={fetchData}>
             Match Me!
           </button>
         </div>
-        {isModalOpen && (
-          <ResponseModal
-            rec={rec}
-            onClose={closeModal}
-            handleSearch={handleSearch}
-          />
-        )}
       </div>
     </div>
   );

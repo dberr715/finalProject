@@ -77,19 +77,16 @@ export default function ResponseModal({ rec, onClose }) {
           <input
             type="text"
             className="form__input searchbars"
-            id="name"
+            id="find-team"
             value={team}
             onChange={handleInputChange}
             placeholder="Enter FootyMatch Team"
             required=""
           />
-          <br />
-          {/* <label for="name" className="form__label">
-            Enter FootyMatch Team
-          </label> */}
+          {/* <br /> */}
+
           <button
             className=" prev-next-button"
-            // id="modal-search-button"
             type="submit"
             onClick={handleSearchClick}
           >
@@ -97,10 +94,7 @@ export default function ResponseModal({ rec, onClose }) {
           </button>
         </div>
       </div>
-      {error && (
-        // Display the error message if an error occurred
-        <p className="error-message">{error}</p>
-      )}
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 }

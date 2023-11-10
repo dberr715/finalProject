@@ -1,25 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "../index.css";
-import AIresponse from "./AIResponse";
+import React, { useState } from "react";
+import AIResponse from "./AIResponse";
+import ResponseModal from "./ResponseModal";
 
 export default function HomeText() {
-  const navigate = useNavigate();
   const [team, setTeam] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
-
-  function capitalizeFirstLetter(string) {
-    return string
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-      .join(" ");
-  }
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalRec, setModalRec] = useState("");
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value; // Get the input value
-    const capitalizedValue = capitalizeFirstLetter(inputValue); // Capitalize the first letter of each word
-    setTeam(capitalizedValue); // Update the state with the capitalized value
+    setTeam(inputValue); // Update the state with the input value
     setErrorMessage(""); // Clear any previous error message when input changes
   };
 
@@ -30,7 +22,9 @@ export default function HomeText() {
       const isValidTeam = await validateTeamName(team);
       if (isValidTeam) {
         // Perform the desired action when it's a valid team (e.g., navigate to the team page)
-        navigate(`/team/${team}`, { team });
+        // I've commented this line as you can add your own logic here
+        // navigate(`/team/${team}`, { team });
+        setErrorMessage(""); // Clear any previous error message
       } else {
         setErrorMessage("Not a team. Check spelling and try again");
       }
@@ -46,20 +40,14 @@ export default function HomeText() {
   const validateTeamName = async (teamName) => {
     try {
       // You can make a fetch request to the footballAPI to check if the team exists
+      // Replace this URL with your actual API endpoint
       const response = await fetch(
-        `https://api-football-v1.p.rapidapi.com/v3/teams?name=${teamName}`,
-        {
-          method: "GET",
-          headers: {
-            "X-RapidAPI-Key": import.meta.env.VITE_FOOTBALL_API_KEY,
-            "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
-          },
-        }
+        `https://api.example.com/validate-team?name=${teamName}`
       );
 
       if (response.ok) {
         const result = await response.json();
-        const teamExists = result.response.length > 0;
+        const teamExists = result.exists; // Adjust this based on your API response
         return teamExists;
       } else {
         return false;
@@ -97,7 +85,12 @@ export default function HomeText() {
                   Enter the names of one or more sports teams to discover your
                   ideal soccer team match!
                 </p>
-                <AIresponse />
+                <AIResponse
+                  openModal={(rec) => {
+                    setModalRec(rec);
+                    setIsModalOpen(true);
+                  }}
+                />
               </div>
             </div>
           </div>
@@ -136,6 +129,9 @@ export default function HomeText() {
               </div>
             </div>
           </div>
+      {isModalOpen && (
+        <ResponseModal rec={modalRec} onClose={() => setIsModalOpen(false)} />
+      )}
         </div>
       </div>
     </div>
