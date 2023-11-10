@@ -50,6 +50,7 @@ const router = createBrowserRouter([
         path: "home/",
         element: <HomePage />,
       },
+
       // {
       //   path: "home/*",
       //   element: <PrivateRoute element={<HomePage />} />,

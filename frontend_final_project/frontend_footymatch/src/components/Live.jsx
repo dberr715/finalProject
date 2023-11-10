@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navigation from "./Navigation";
 
-
 export default function Live() {
   const [fixtures, setFixtures] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -85,22 +84,17 @@ export default function Live() {
     <>
       <Navigation />
       <div className="livepage">
-        <img
-          src="../../public/newfootymatch.png"
-          alt="FootyMatch"
-          className="footy"
-        />
         <h1 className="livegames">Live Games</h1>
         <div className="league-filter-bar">
           <button
-  className={`league-button   ${selectedLeague ? "" : "selected"}`}
-  onClick={() => {
-    handleLeagueFilter(null);
-    window.location.reload();
-  }}
->
-  All Leagues
-</button>
+            className={`league-button   ${selectedLeague ? "" : "selected"}`}
+            onClick={() => {
+              handleLeagueFilter(null);
+              window.location.reload();
+            }}
+          >
+            All Leagues
+          </button>
           {leagues.length > 0 && (
             <select
               className="league-dropdown"
