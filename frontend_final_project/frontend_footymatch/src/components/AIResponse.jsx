@@ -67,6 +67,7 @@ export default function AIResponse({ openModal }) {
             />
             {isLoading && <Spinner className="input-spinner" />}
           </div>
+          <br />
           <button className="searchbutton" id="find-team" onClick={fetchData}>
             Match Me!
           </button>

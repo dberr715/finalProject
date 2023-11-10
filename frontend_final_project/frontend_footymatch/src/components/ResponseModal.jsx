@@ -88,6 +88,7 @@ export default function ResponseModal({ rec, onClose }) {
           <button
             className=" prev-next-button"
             type="submit"
+            id="blacktext"
             onClick={handleSearchClick}
           >
             Search and Learn!

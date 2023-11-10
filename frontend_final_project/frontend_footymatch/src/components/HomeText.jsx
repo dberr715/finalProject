@@ -108,8 +108,8 @@ export default function HomeText() {
               <div className="form__group">
                 <input
                   type="text"
-                  className="form__input searchbars"
-                  id="name"
+                  className="form__input "
+                  // id="name"
                   value={team}
                   onChange={handleInputChange}
                   placeholder="Soccer Team Name"
