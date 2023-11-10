@@ -75,52 +75,43 @@ export default function HomeText() {
               already love. Whether you're a die-hard fan or just curious about
               the world of soccer, we've got you covered.
             </p>
-            <p>
+            <p className="copy">
               Get ready to find your new favorite soccer team and dive into the
               excitement of the beautiful game!
             </p>
             <div className="match-container">
-              <div className="match-find-container card1">
-                <p>
-                  Enter the names of one or more sports teams to discover your
-                  ideal soccer team match!
-                </p>
-                <AIResponse
-                  openModal={(rec) => {
-                    setModalRec(rec);
-                    setIsModalOpen(true);
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="search-container">
-            <div className="card1">
-              <p>Already have a team in mind?</p>
-              {errorMessage && (
-                <p
-                  className="error-message"
-                  style={{ fontSize: 14, color: "red" }}
-                >
-                  {errorMessage}
-                </p>
-              )}
-              <div className="form__group">
+              <AIResponse
+                openModal={(rec) => {
+                  setModalRec(rec);
+                  setIsModalOpen(true);
+                }}
+              />
+
+              <div className="card1">
+                <p>Already have a team in mind?</p>
+                {errorMessage && (
+                  <p
+                    className="error-message"
+                    style={{ fontSize: 14, color: "red" }}
+                  >
+                    {errorMessage}
+                  </p>
+                )}
+
                 <input
                   type="text"
-                  className="form__input "
+                  className="form__input searchbars "
                   // id="name"
                   value={team}
                   onChange={handleInputChange}
                   placeholder="Soccer Team Name"
                   required=""
                 />
-                <label htmlFor="name" className="form__label">
-                  Soccer Team Name
-                </label>
+
                 <button
                   className="match, search, searchbutton"
                   type="submit"
+                  id="find-team"
                   onClick={handleSearchClick}
                   disabled={loading}
                 >
@@ -129,9 +120,12 @@ export default function HomeText() {
               </div>
             </div>
           </div>
-      {isModalOpen && (
-        <ResponseModal rec={modalRec} onClose={() => setIsModalOpen(false)} />
-      )}
+          {isModalOpen && (
+            <ResponseModal
+              rec={modalRec}
+              onClose={() => setIsModalOpen(false)}
+            />
+          )}
         </div>
       </div>
     </div>

@@ -52,8 +52,12 @@ export default function AIResponse({ openModal }) {
   };
 
   return (
-    <div className="match-container">
-      <div className="match-find-container">
+    <div className="match-container ">
+      <div className="match-find-container card1">
+        <p>
+          Enter the names of one or more sports teams to discover your ideal
+          soccer team match!
+        </p>
         <div className="form__group">
           <div className="input-container">
             <input
@@ -67,7 +71,7 @@ export default function AIResponse({ openModal }) {
             />
             {isLoading && <Spinner className="input-spinner" />}
           </div>
-          <br />
+
           <button className="searchbutton" id="find-team" onClick={fetchData}>
             Match Me!
           </button>

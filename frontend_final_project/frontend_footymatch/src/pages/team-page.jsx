@@ -327,7 +327,6 @@ export default function TeamPage() {
                     <h2>{country}</h2>
                   </div>
                 </div>
-                <h2 className="upcoming">Upcoming Games</h2>
                           <div className="favorites-button-container">
                             {isAuth && (
                               <>
@@ -342,6 +341,7 @@ export default function TeamPage() {
                               </>
                             )}
                           </div>
+                <h2 className="upcoming">Upcoming Games</h2>
                 <div className="next-games">
                   <div className="game-card">
                     {time1 ? (
