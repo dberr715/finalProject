@@ -319,20 +319,27 @@
   max-width: 250px;
   padding: 4px;
   height: auto;
-  border-radius: 8px; /* Maintain aspect ratio */
+  margin-left: 30%;;
+  border-radius: 8px; 
+  
 }
 
 .topnav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.logo-container {
-  flex: 1; /* This will make the logo container take up all available space */
+  flex: 1;
   display: flex;
-  justify-content: center;
   align-items: center;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  width: 100%;
+  min-height: 56px;
+  z-index: 100;
 }
 
 .login-container {
@@ -363,6 +370,11 @@
 
 .logo-image {
   max-width: 100%; /* Adjust the width as needed */
+}
+
+.logo-container {
+  flex: 1; /* Take up remaining space */
+  text-align: center;
 }
 
 .logo-small {
@@ -593,7 +605,7 @@ main {
   justify-content: center;
 }
 
-.copy{
+.copy {
   margin-bottom: 20px;
 }
 input[type="text"] {
@@ -968,21 +980,6 @@ body {
   margin: 0;
 }
 
-.topnav {
-  background-color: #333;
-  /* overflow: hidden; */
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: #333;
-  color: #fff;
-  z-index: 100;
-  width: 100%;
-  min-height: 56px;
-  z-index: 100;
-}
-
 .topnav a {
   float: left;
   display: block;
@@ -1024,7 +1021,7 @@ body {
   background-color: #333; /* Example background color */
   padding: 15px 0; /* Adjust padding to create space below the navigation bar */
   top: 0;
-  z-index: 1;
+  z-index: 100;
 }
 
 /* Dropdown content style */
