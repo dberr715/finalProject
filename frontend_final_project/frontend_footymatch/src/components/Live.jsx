@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navigation from "./Navigation";
+import { useNavigate } from "react-router-dom";
 
 export default function Live() {
   const [fixtures, setFixtures] = useState([]);
@@ -10,6 +11,9 @@ export default function Live() {
   const filteredFixtures = selectedLeague
     ? fixtures.filter((fixture) => fixture.league.name === selectedLeague)
     : fixtures;
+
+    const navigate = useNavigate();
+
 
   useEffect(() => {
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
@@ -80,6 +84,11 @@ export default function Live() {
     </div>
   );
 
+   const handleMoreInfo = (gameId) => {
+     // Navigate to the GameDetails page with the game ID as a parameter
+     navigate(`/game/${gameId}`);
+   };
+
   return (
     <>
       <Navigation />
@@ -123,7 +132,15 @@ export default function Live() {
                         <div className="league-name">{score.league.name}</div>
                       </div>
                     </div>
-                    <div className="match-actions"></div>
+                    <div className="match-actions">
+                      {/* "More info" button */}
+                      <button
+                        className="more-info-button"
+                        onClick={() => handleMoreInfo(score.fixture.id)}
+                      >
+                        More Info
+                      </button>
+                    </div>
                   </div>
                   <div className="match-content">
                     <div className="column">

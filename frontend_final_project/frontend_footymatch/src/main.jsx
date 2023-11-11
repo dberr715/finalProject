@@ -11,9 +11,10 @@ import CreateAccount from "./pages/create-account-page";
 import "./index.css";
 import TeamPage from "./pages/team-page";
 import Live from "./components/Live";
-import GameDetails from "./pages/game-details";
+
 // import { PrivateRoute } from "./components/PrivateRoute";
 import HomePage from "./pages/home-page";
+import GameDetails from "./components/GameDetails";
 
 const router = createBrowserRouter([
   {
@@ -25,10 +26,7 @@ const router = createBrowserRouter([
         path: "login/",
         element: <LoginPage />,
       },
-      {
-        path: "game/:id",
-        element: <GameDetails />,
-      },
+
       {
         path: "live/",
         element: <Live />,
@@ -49,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "home/",
         element: <HomePage />,
+      },
+      {
+        path: "game/:id",
+        element: <GameDetails/>
       },
 
       // {

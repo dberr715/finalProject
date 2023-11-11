@@ -906,6 +906,82 @@ body {
 }
 /* //////MODAL////// */
 
+
+.card2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.soccer-scoring-card {
+ 
+  padding: 20px;
+  margin-top: 20px;
+  text-align: center;
+  max-width: 600px; /* Adjust the maximum width as needed */
+  width: 100%; /* Ensure the card takes 100% width within its container */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.league-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.teams-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.team {
+  flex: 1;
+}
+
+.team-logo {
+  /* Add styling for team logo */
+}
+
+.team-details {
+  margin-top: 10px;
+}
+
+.events-container {
+  text-align: center;
+}
+
+.events-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.match-event {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.event-details {
+  flex: 1;
+}
+
+.home-team-event {
+  /* Add styling for home team event */
+}
+
+.away-team-event {
+  /* Add styling for away team event */
+}
+
+.player-name {
+  /* Add styling for player name */
+}
+
 .modal {
   display: flex;
   position: fixed;
