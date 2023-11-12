@@ -686,6 +686,7 @@ input[type="text"] {
 
 .league-name {
   font-size: 14px;
+  text-align: center;
 }
 
 .match-tournament {
@@ -908,7 +909,8 @@ body {
 /* Add these styles to your existing CSS or create a new CSS file */
 
 .card1 {
-  width: 100%; /* Set the width of the container to 100% */
+  width: 100%;
+  margin-top: 50px; /* Set the width of the container to 100% */
 }
 
 .soccer-scoring-card {
@@ -916,9 +918,11 @@ body {
   width: 80%; /* Adjust the width as needed */
   margin: auto; /* Center the container */
   padding: 20px; /* Add padding for better spacing */
-  border: 1px solid #ccc; /* Add a border for visual separation */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+
+  
 }
+
+
 
 .league-name {
   font-size: 1.5rem; /* Example font size for the league name */

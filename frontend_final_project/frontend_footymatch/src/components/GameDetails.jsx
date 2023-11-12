@@ -71,7 +71,7 @@ export default function GameDetails() {
         {/* <h1>Game Details for Game ID: {id}</h1> */}
         {fixtureDetails && (
           <div className="soccer-scoring-card">
-            <div className="league-name">League Name</div>
+            <div className="league-name">Game Details</div>
             <div className="teams-container">
               <div className="team">
                 <div className="team-logo">
