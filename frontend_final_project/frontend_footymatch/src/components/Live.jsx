@@ -8,18 +8,18 @@ export default function Live() {
   const [selectedLeague, setSelectedLeague] = useState(null);
   const [leagues, setLeagues] = useState([]);
 
+  const pageSize = 5;
+
   const filteredFixtures = selectedLeague
     ? fixtures.filter((fixture) => fixture.league.name === selectedLeague)
     : fixtures;
 
-    const navigate = useNavigate();
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
 
     const fetchFixtures = async () => {
-      const pageSize = 10;
       const startIndex = (currentPage - 1) * pageSize;
       const endIndex = startIndex + pageSize;
 
@@ -75,7 +75,7 @@ export default function Live() {
   };
 
   const isFirstPage = currentPage === 1;
-  const isLastPage = fixtures.length < 10;
+  const isLastPage = currentPage * pageSize >= filteredFixtures.length;
 
   const createNoGamesCard = () => (
     <div className="no-games-card">
@@ -84,10 +84,9 @@ export default function Live() {
     </div>
   );
 
-   const handleMoreInfo = (gameId) => {
-     // Navigate to the GameDetails page with the game ID as a parameter
-     navigate(`/game/${gameId}`);
-   };
+  const handleMoreInfo = (gameId) => {
+    navigate(`/game/${gameId}`);
+  };
 
   return (
     <>
@@ -133,7 +132,6 @@ export default function Live() {
                       </div>
                     </div>
                     <div className="match-actions">
-                      {/* "More info" button */}
                       <button
                         className="more-info-button"
                         onClick={() => handleMoreInfo(score.fixture.id)}

@@ -7,6 +7,8 @@ export default function GameDetails() {
   const [fixtureDetails, setFixtureDetails] = useState(null);
   const [homeTeamEvents, setHomeTeamEvents] = useState([]);
   const [awayTeamEvents, setAwayTeamEvents] = useState([]);
+  const [homeLogo, setHomeLogo] = useState(null);
+  const [awayLogo, setAwayLogo] = useState(null);
 
   useEffect(() => {
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
@@ -34,6 +36,11 @@ export default function GameDetails() {
           // Find home and away team names dynamically
           const homeTeamName = result.response[0]?.team.name; // Assuming the first event has team information
           const awayTeamName = result.response[1]?.team.name; // Assuming the second event has team information
+          const homeLogo = result.response[0]?.team.logo;
+          const awayLogo = result.response[1]?.team.logo;
+
+          setHomeLogo(homeLogo);
+          setAwayLogo(awayLogo);
 
           // Filter events for home and away teams
           const homeEvents = events.filter(
@@ -68,11 +75,13 @@ export default function GameDetails() {
             <div className="teams-container">
               <div className="team">
                 <div className="team-logo">
-                  {/* <img src={fixtureDetails.teams.home.logo} alt="home Team Logo" /> */}
+                  <img src={homeLogo} alt="home Team Logo" />
                 </div>
                 <div className="team-details">
                   <h2 className="team-name">{homeTeamEvents[0]?.team.name}</h2>
-                  {/* Additional home team details can be added here */}
+                </div>
+                <div className="team-score">
+                  Score: {fixtureDetails.response[0]?.goals?.home ?? "N/A"}
                 </div>
                 <div className="events-container">
                   <h3 className="events-header">Events</h3>
@@ -133,10 +142,6 @@ export default function GameDetails() {
                           <div className="player-name smaller bold">
                             &nbsp;{event.player.name} &nbsp;
                           </div>
-                          {/* <div className="event-detail smaller">
-                          {event.detail}
-                        </div> */}
-                          {/* Additional home team event details can be added here */}
                         </div>
                       </div>
                     ))}
@@ -145,11 +150,13 @@ export default function GameDetails() {
               <div className="vertical-line"></div>
               <div className="team">
                 <div className="team-logo">
-                  {/* <img src={fixtureDetails.teams.away.logo} alt="away team log" /> */}
+                  <img src={awayLogo} alt="away team log" />
                 </div>
                 <div className="team-details">
                   <h2 className="team-name">{awayTeamEvents[0]?.team.name}</h2>
-                  {/* Additional away team details can be added here */}
+                </div>
+                <div className="team-score">
+                  Score: {fixtureDetails.response[0]?.goals?.away ?? "N/A"}
                 </div>
                 <div className="events-container">
                   <h3 className="events-header">Events</h3>
