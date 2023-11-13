@@ -84,8 +84,15 @@ export default function Live() {
     </div>
   );
 
-  const handleMoreInfo = (gameId) => {
-    navigate(`/game/${gameId}`);
+  const handleMoreInfo = (gameId, league, leagueLogo, homeTeam, awayTeam) => {
+    navigate(`/game/${gameId}`, {
+      state: {
+        league: league,
+        leagueLogo: leagueLogo,
+        homeTeam: homeTeam,
+        awayTeam: awayTeam,
+      },
+    });
   };
 
   return (
@@ -132,14 +139,28 @@ export default function Live() {
                       </div>
                     </div>
                   </div>
-                    <div className="match-actions">
-                      <button
-                        className="more-info-button"
-                        onClick={() => handleMoreInfo(score.fixture.id)}
-                      >
-                        Match Details
-                      </button>
-                    </div>
+                  <div className="match-actions">
+                    <button
+                      className="more-info-button"
+                      onClick={() =>
+                        handleMoreInfo(
+                          score.fixture.id,
+                          score.league.name,
+                          score.league.logo,
+                          {
+                            homeTeam: score.teams.home.name,
+                            homeLogo: score.teams.home.logo,
+                          },
+                          {
+                            awayTeam: score.teams.away.name,
+                            awayLogo: score.teams.away.logo,
+                          }
+                        )
+                      }
+                    >
+                      Match Details
+                    </button>
+                  </div>
                   <div className="match-content">
                     <div className="column">
                       <div className="team team--home">
