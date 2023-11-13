@@ -1034,14 +1034,6 @@ body {
   padding: 10px; /* Add padding for spacing */
 }
 
-.team-logo {
-  /* Add styles for the team logo if needed */
-}
-
-.team-details {
-  /* Add styles for the team details */
-}
-
 .team-name {
   font-size: 1.2rem; /* Example font size for the team name */
   margin-bottom: 8px; /* Add spacing below the team name */
@@ -1065,7 +1057,7 @@ body {
 
 .events-header {
   font-size: 1rem; /* Example font size for the events header */
-
+  text-decoration: none;
   text-align: center; /* Add spacing below the header */
 }
 

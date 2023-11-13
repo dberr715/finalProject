@@ -10,7 +10,7 @@ export default function GameDetails() {
   const [homeLogo, setHomeLogo] = useState(null);
   const [awayLogo, setAwayLogo] = useState(null);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
@@ -66,11 +66,10 @@ export default function GameDetails() {
     fetchDetails();
   }, [id]);
 
-    const handleBackButtonClick = () => {
-      // Go back to the previous page using useNavigate
-      navigate(-1);
-    };
-
+  const handleBackButtonClick = () => {
+    // Go back to the previous page using useNavigate
+    navigate(-1);
+  };
 
   return (
     <>
@@ -84,7 +83,7 @@ export default function GameDetails() {
         </button>
         {fixtureDetails && (
           <div className="soccer-scoring-card">
-            <div className="league-name">Game Details</div>
+            <h1 className="league-name">Match Events</h1>
             <div className="teams-container">
               <div className="team">
                 <div className="team-logo">
@@ -97,7 +96,6 @@ export default function GameDetails() {
                   </div>
                 </div>
                 <div className="events-container">
-                  <h3 className="events-header">Events</h3>
                   {homeTeamEvents.map((event, index) => (
                     <div key={index} className="match-event">
                       <div className="event-details">
@@ -152,12 +150,12 @@ export default function GameDetails() {
                 </div>
                 <div className="team-details">
                   <h2 className="team-name">{awayTeamEvents[0]?.team.name}</h2>
+                </div>
+                <div className="events-container">
                   <div className="team-score">
                     Score: {fixtureDetails.response[0]?.goals?.away ?? "N/A"}
                   </div>
-                </div>
-                <div className="events-container">
-                  <h3 className="events-header">Events</h3>
+
                   {awayTeamEvents.map((event, index) => (
                     <div key={index} className="match-event">
                       <div className="event-details">
@@ -211,5 +209,4 @@ export default function GameDetails() {
       </div>
     </>
   );
-
 }

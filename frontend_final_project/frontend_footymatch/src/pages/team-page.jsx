@@ -253,6 +253,7 @@ export default function TeamPage() {
           console.error("Failed to add team to favorites.");
         }
       }
+      setIsFavorite(!isFav);
     } catch (error) {
       console.error("An error occurred:", error);
     }
@@ -272,39 +273,49 @@ export default function TeamPage() {
         },
       });
       // console.log("RESPONSE OK?", response.ok);
-      if (response.ok) {
-        // console.log("INSIDE");
-        const favoriteTeams = await response.json();
-        console.log("FAVE TEAMS: ", favoriteTeams);
-        const isFavorite = favoriteTeams.some(
-          (team) => team.team_name === params.teamname
-        );
+          if (response.ok) {
+            const favoriteTeams = await response.json();
+            const isFavorite = favoriteTeams.some(
+              (team) =>
+                team.team_name.toLowerCase() === params.teamname.toLowerCase()
+            );
+            setIsFavorite(isFavorite);
 
-        // Grab the favorites for a user by their names
-        // Take the array you get back (see Postman) and filter(?) it?
-        // teams.filter(team => team.toLower() === teamname.toLower() ? {team_name, team_id: id} : {})
-        // Return the ID of the entry based on the above (this should limit to one per user)
+            // Grab the favorites for a user by their names
+            // Take the array you get back (see Postman) and filter(?) it?
+            // teams.filter(team => team.toLower() === teamname.toLower() ? {team_name, team_id: id} : {})
+            // Return the ID of the entry based on the above (this should limit to one per user)
 
-        // Take the name from the params, convert it to lowercase, check the database, return True & the ID if found
-        // Return False is not found.
-        // Converting to lowercase on both the database and URL side will "normalize" the spelling
-        // If it does exist, add setTeamId([SOME ID VALUE]), then use `teamId` in your DELETE route API call
+            // Take the name from the params, convert it to lowercase, check the database, return True & the ID if found
+            // Return False is not found.
+            // Converting to lowercase on both the database and URL side will "normalize" the spelling
+            // If it does exist, add setTeamId([SOME ID VALUE]), then use `teamId` in your DELETE route API call
 
-        // console.log(favoriteTeams);
-        // return setIsFavorite(isFavorite);
-      } else {
-        console.error("Failed to fetch favorite teams.");
-      }
+            // console.log(favoriteTeams);
+            // return setIsFavorite(isFavorite);
+          } else {
+            console.error("Failed to fetch favorite teams.");
+          }
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
+  // useEffect(() => {
+  //   fetchData1();
+  //   fetchFavoriteTeams();
+  //   console.log("USE EFFECT RUNNING");
+  // }, [key]);
+
   useEffect(() => {
     fetchData1();
-    fetchFavoriteTeams();
-    console.log("USE EFFECT RUNNING");
   }, [key]);
+
+  useEffect(() => {
+    if (teamId) {
+      fetchFavoriteTeams();
+    }
+  }, [teamId]);
 
   return (
     <>
