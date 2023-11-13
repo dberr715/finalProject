@@ -60,11 +60,6 @@ export default function HomeText() {
 
   return (
     <div className="home-container-outer">
-      {/* <img
-        src="../../public/newfootymatch.png"
-        alt="FootyMatch"
-        className="footy"
-      /> */}
       <div className="home-container">
         <div className="top-container">
           <div className="intro-container card1">
@@ -87,8 +82,8 @@ export default function HomeText() {
                 }}
               />
 
-              <div className="card1">
-                <p>Already have a team in mind?</p>
+              <div className="card1 card2">
+                <p id="already">Already have a team in mind?</p>
                 {errorMessage && (
                   <p
                     className="error-message"
@@ -100,8 +95,7 @@ export default function HomeText() {
 
                 <input
                   type="text"
-                  className="form__input searchbars "
-                  // id="name"
+                  className="form__input searchbars searchboi "
                   value={team}
                   onChange={handleInputChange}
                   placeholder="Soccer Team Name"

@@ -131,6 +131,7 @@ export default function Live() {
                         <div className="league-name">{score.league.name}</div>
                       </div>
                     </div>
+                  </div>
                     <div className="match-actions">
                       <button
                         className="more-info-button"
@@ -139,7 +140,6 @@ export default function Live() {
                         More Info
                       </button>
                     </div>
-                  </div>
                   <div className="match-content">
                     <div className="column">
                       <div className="team team--home">

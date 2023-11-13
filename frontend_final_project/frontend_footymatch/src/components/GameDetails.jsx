@@ -93,7 +93,6 @@ export default function GameDetails() {
                           <div className="event-time smaller ">
                             {event.time.elapsed} min &nbsp;
                           </div>
-                          {/* <div className="event-type smaller">{event.type}</div> */}
                           <div className="event-type-icon">
                             {/* Use a switch or if-else statements to determine the event type */}
                             {event.detail === "Red Card" && (
@@ -139,8 +138,11 @@ export default function GameDetails() {
                               />
                             )}
                           </div>
+                          <div className="event-type smaller">
+                            &nbsp;{event.type}&nbsp;
+                          </div>
                           <div className="player-name smaller bold">
-                            &nbsp;{event.player.name} &nbsp;
+                            &nbsp; {event.player.name} &nbsp;
                           </div>
                         </div>
                       </div>
@@ -168,7 +170,6 @@ export default function GameDetails() {
                           <div className="event-time smaller ">
                             {event.time.elapsed} min &nbsp;
                           </div>
-                          {/* <div className="event-type smaller">{event.type}</div> */}
                           <div className="event-type-icon">
                             {/* Use a switch or if-else statements to determine the event type */}
                             {event.detail === "Red Card" && (
@@ -213,6 +214,9 @@ export default function GameDetails() {
                                 className="small-icon"
                               />
                             )}
+                          </div>
+                          <div className="event-type smaller">
+                            &nbsp; {event.type} &nbsp;
                           </div>
                           <div className="player-name smaller bold">
                             &nbsp;{event.player.name} &nbsp;{" "}

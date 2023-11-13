@@ -114,9 +114,9 @@
   align-items: center;
   margin-top: 10px;
 }
-.home-container-outer {
+/* .home-container-outer {
   margin-top: 50px;
-}
+} */
 .top-container {
   flex-direction: row;
   justify-content: space-between;
@@ -625,7 +625,7 @@ input[type="text"] {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex: 1;
+  /* flex: 1; */
 }
 
 .match,
@@ -701,7 +701,7 @@ input[type="text"] {
 
 .match-actions {
   display: flex;
-  margin-left: auto;
+  /* margin-left: auto; */
 }
 
 .btn-icon {
@@ -921,6 +921,99 @@ body {
 
   
 }
+
+
+.more-info-button{
+ 
+
+
+  appearance: none;
+  background-color: #2ea44f;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button-3:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.button-3:hover {
+  background-color: #2c974b;
+}
+
+.button-3:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.button-3:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.button-3:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+
+.searchboi{
+  margin-top: 63px;
+}
+.home-container-outer {
+  display: flex;
+  justify-content: center;
+}
+
+.home-container {
+  max-width: 800px; /* Adjust the max-width as needed */
+  width: 100%;
+}
+
+.top-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.intro-container {
+  flex: 0.1; /* Takes up 2/3 of the space */
+  margin-right: 16px; /* Adjust the margin as needed */
+}
+
+.card1 {
+  flex: 1; /* Takes up 1/3 of the space */
+}
+
+
+
+/* .match-container {
+  display: flex;
+} */
+
+/* Add the rest of your styling here */
+
+
 
 
 
