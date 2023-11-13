@@ -48,24 +48,12 @@ export default function GameDetails() {
           // Assuming the response contains fixture details
           setFixtureDetails(result);
 
-          // Find unique home and away team names
-          const uniqueTeamNames = [
-            ...new Set(events.map((event) => event.team.name)),
-          ];
-          const homeTeamName = uniqueTeamNames[0] || homeTeam.homeTeam;
-          const awayTeamName = uniqueTeamNames[1] || awayTeam.awayTeam;
-          const homeLogo =
-            events.find((event) => event.team.name === homeTeamName)?.team
-              .logo || homeTeam.homeLogo;
-          const awayLogo =
-            events.find((event) => event.team.name === awayTeamName)?.team
-              .logo || awayTeam.awayLogo;
+          // Extract home and away team names from the state
+          const { homeTeam, awayTeam } = state;
+          const homeTeamName = homeTeam.homeTeam;
+          const awayTeamName = awayTeam.awayTeam;
 
-          setHomeLogo(homeLogo);
-          setAwayLogo(awayLogo);
-          setHomeTeamName(homeTeamName);
-          setAwayTeamName(awayTeamName);
-
+          // Filter events for home and away teams
           const homeEvents = events.filter(
             (event) => event.team.name === homeTeamName
           );
@@ -81,12 +69,28 @@ export default function GameDetails() {
             (event) => event.type === "Goal"
           ).length;
 
-          setHomeScore(homeScore);
-          setAwayScore(awayScore);
-
           // Set home and away team events
           setHomeTeamEvents(homeEvents);
           setAwayTeamEvents(awayEvents);
+
+          // Set home and away team names
+          setHomeTeamName(homeTeamName);
+          setAwayTeamName(awayTeamName);
+
+          // Set home and away team logos
+          const homeLogo =
+            events.find((event) => event.team.name === homeTeamName)?.team
+              .logo || homeTeam.homeLogo;
+          const awayLogo =
+            events.find((event) => event.team.name === awayTeamName)?.team
+              .logo || awayTeam.awayLogo;
+
+          setHomeLogo(homeLogo);
+          setAwayLogo(awayLogo);
+
+          // Set home and away scores
+          setHomeScore(homeScore);
+          setAwayScore(awayScore);
         } else {
           console.error("Failed to fetch details");
         }
@@ -94,6 +98,7 @@ export default function GameDetails() {
         console.error(error);
       }
     };
+
     fetchDetails();
   }, [id]);
 
@@ -102,166 +107,168 @@ export default function GameDetails() {
   };
 
   return (
-    <>
-      <Navigation />
-      <div className="card1 card3">
-        <button
-          className="back-button more-info-button"
-          onClick={handleBackButtonClick}
-        >
-          Back
-        </button>
-        <h1 className="league-name">Match Events</h1>
-        {fixtureDetails && (
-          <div className="soccer-scoring-card">
-            <div className="league-box">
-              <div className="league-info">
-                <div className="leagueLogo1">
-                  <img
-                    className="leagueLogoPic"
-                    src={leagueLogo}
-                    alt={league}
-                  />
-                </div>
-                <div className="league-name1">{league}</div>
+  <>
+    <Navigation />
+    <div className="card1 card3">
+      <button
+        className="back-button more-info-button"
+        onClick={handleBackButtonClick}
+      >
+        Back
+      </button>
+      <h1 className="league-name">Match Events</h1>
+      {fixtureDetails && (
+        <div className="soccer-scoring-card">
+          <div className="league-box">
+            <div className="league-info">
+              <div className="leagueLogo1">
+                <img
+                  className="leagueLogoPic"
+                  src={leagueLogo}
+                  alt={league}
+                />
+              </div>
+              <div className="league-name1">{league}</div>
+            </div>
+          </div>
+          <div className="teams-container">
+            <div className="team">
+              <div className="team-logo">
+                <img src={homeLogo} alt="home team logo" />
+              </div>
+              <div className="team-details">
+                <h2 className="team-name">{homeTeamName}</h2>
+              </div>
+              <div className="events-container">
+                {homeTeamEvents.length === 0 && (
+                  <div className="placeholder-message">
+                    No match events yet for home team
+                  </div>
+                )}
+                {homeTeamEvents.map((event, index) => (
+                  <div key={index} className="match-event">
+                    <div className="event-details">
+                      <div className="event-time smaller ">
+                        {event.time.elapsed} min &nbsp;
+                      </div>
+                      <div className="event-type-icon">
+                        {event.detail === "Red Card" && (
+                          <img
+                            src="../../public/redcard.png"
+                            alt="Red Card"
+                            className="small-icon"
+                          />
+                        )}
+                        {event.detail === "Yellow Card" && (
+                          <img
+                            src="../../public/yellowcard.png"
+                            alt="Yellow Card"
+                            className="small-icon"
+                          />
+                        )}
+                        {event.detail.startsWith("Substitution") && (
+                          <img
+                            src="../../public/substitution.png"
+                            alt={`Substitution ${event.detail.charAt(13)}`}
+                            className="small-icon"
+                          />
+                        )}
+                        {event.detail === "Normal Goal" && (
+                          <img
+                            src="../../public/soccerballicon.png"
+                            alt="Goal"
+                            className="small-icon"
+                          />
+                        )}
+                      </div>
+                      <div className="event-type smaller">
+                        &nbsp; {event.type} &nbsp;
+                      </div>
+                      <div className="player-name smaller bold">
+                        &nbsp;{event.player.name} &nbsp;{" "}
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="teams-container">
-              <div className="team">
-                <div className="team-logo">
-                  <img src={awayLogo} alt="away team logo" />
-                </div>
-                <div className="team-details">
-                  <h2 className="team-name">{awayTeamName}</h2>
-                </div>
-                <div className="events-container">
-                  {awayTeamEvents.length === 0 && (
-                    <div className="placeholder-message">
-                      No match events yet
-                    </div>
-                  )}
-                  {awayTeamEvents.map((event, index) => (
-                    <div key={index} className="match-event">
-                      <div className="event-details">
-                        <div className="event-time smaller ">
-                          {event.time.elapsed} min &nbsp;
-                        </div>
-                        <div className="event-type-icon">
-                          {event.detail === "Red Card" && (
-                            <img
-                              src="../../public/redcard.png"
-                              alt="Red Card"
-                              className="small-icon"
-                            />
-                          )}
-                          {event.detail === "Yellow Card" && (
-                            <img
-                              src="../../public/yellowcard.png"
-                              alt="Yellow Card"
-                              className="small-icon"
-                            />
-                          )}
-                          {event.detail.startsWith("Substitution") && (
-                            <img
-                              src="../../public/substitution.png"
-                              alt={`Substitution ${event.detail.charAt(13)}`}
-                              className="small-icon"
-                            />
-                          )}
-                          {event.detail === "Normal Goal" && (
-                            <img
-                              src="../../public/soccerballicon.png"
-                              alt="Goal"
-                              className="small-icon"
-                            />
-                          )}
-                        </div>
-                        <div className="event-type smaller">
-                          &nbsp; {event.type} &nbsp;
-                        </div>
-                        <div className="player-name smaller bold">
-                          &nbsp;{event.player.name} &nbsp;{" "}
-                        </div>
+            <div className="vertical-line"></div>
+            <div className="score-column">
+              <div className="match-score">
+                <span className="match-score-number match-score-number--leading">
+                  {homeScore}
+                </span>
+                <span className="match-score-divider">:</span>
+                <span className="match-score-number">{awayScore}</span>
+              </div>
+            </div>
+            <div className="vertical-line"></div>
+            <div className="team">
+              <div className="team-logo">
+                <img src={awayLogo} alt="away team logo" />
+              </div>
+              <div className="team-details">
+                <h2 className="team-name">{awayTeamName}</h2>
+              </div>
+              <div className="events-container">
+                {awayTeamEvents.length === 0 && (
+                  <div className="placeholder-message">
+                    No match events yet for away team
+                  </div>
+                )}
+                {awayTeamEvents.map((event, index) => (
+                  <div key={index} className="match-event">
+                    <div className="event-details">
+                      <div className="event-time smaller ">
+                        {event.time.elapsed} min &nbsp;
+                      </div>
+                      <div className="event-type-icon">
+                        {event.detail === "Red Card" && (
+                          <img
+                            src="../../public/redcard.png"
+                            alt="Red Card"
+                            className="small-icon"
+                          />
+                        )}
+                        {event.detail === "Yellow Card" && (
+                          <img
+                            src="../../public/yellowcard.png"
+                            alt="Yellow Card"
+                            className="small-icon"
+                          />
+                        )}
+                        {event.detail.startsWith("Substitution") && (
+                          <img
+                            src="../../public/substitution.png"
+                            alt={`Substitution ${event.detail.charAt(13)}`}
+                            className="small-icon"
+                          />
+                        )}
+                        {event.detail === "Normal Goal" && (
+                          <img
+                            src="../../public/soccerballicon.png"
+                            alt="Goal"
+                            className="small-icon"
+                          />
+                        )}
+                      </div>
+                      <div className="event-type smaller">
+                        &nbsp; {event.type} &nbsp;
+                      </div>
+                      <div className="player-name smaller bold">
+                        &nbsp;{event.player.name} &nbsp;{" "}
                       </div>
                     </div>
-                  ))}
-                </div>
-              </div>
-              <div className="vertical-line"></div>
-              <div className="score-column">
-                <div className="match-score">
-                  <span className="match-score-number match-score-number--leading">
-                    {awayScore}
-                  </span>
-                  <span className="match-score-divider">:</span>
-                  <span className="match-score-number">{homeScore}</span>
-                </div>
-              </div>
-              <div className="vertical-line"></div>
-              <div className="team">
-                <div className="team-logo">
-                  <img src={homeLogo} alt="home Team Logo" />
-                </div>
-                <div className="team-details">
-                  <h2 className="team-name">{homeTeamName}</h2>
-                </div>
-                <div className="events-container">
-                  {homeTeamEvents.length === 0 && (
-                    <div className="placeholder-message">
-                      No match events yet
-                    </div>
-                  )}
-                  {homeTeamEvents.map((event, index) => (
-                    <div key={index} className="match-event">
-                      <div className="event-details">
-                        <div className="event-time smaller ">
-                          {event.time.elapsed} min &nbsp;
-                        </div>
-                        <div className="event-type-icon">
-                          {event.detail === "Red Card" && (
-                            <img
-                              src="../../public/redcard.png"
-                              alt="Red Card"
-                              className="small-icon"
-                            />
-                          )}
-                          {event.detail === "Yellow Card" && (
-                            <img
-                              src="../../public/yellowcard.png"
-                              alt="Yellow Card"
-                              className="small-icon"
-                            />
-                          )}
-                          {event.detail.startsWith("Substitution") && (
-                            <img
-                              src="../../public/substitution.png"
-                              alt={`Substitution ${event.detail.charAt(13)}`}
-                              className="small-icon"
-                            />
-                          )}
-                          {event.detail === "Normal Goal" && (
-                            <img
-                              src="../../public/soccerballicon.png"
-                              alt="Goal"
-                              className="small-icon"
-                            />
-                          )}
-                        </div>
-                        <div className="event-type smaller">
-                          &nbsp;{event.type}&nbsp;
-                        </div>
-                        <div className="player-name smaller bold">
-                          &nbsp; {event.player.name} &nbsp;
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-        )}
-      </div>
-    </>
-  );
+        </div>
+      )}
+    </div>
+  </>
+);
+
+  
 }

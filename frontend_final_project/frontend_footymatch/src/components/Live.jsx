@@ -40,6 +40,7 @@ export default function Live() {
           (a, b) => b.fixture.elapsed - a.fixture.elapsed
         );
 
+        // Update the fixtures to display based on the current page
         const fixturesToDisplay = sortedFixtures.slice(startIndex, endIndex);
 
         setFixtures(fixturesToDisplay);
@@ -65,12 +66,12 @@ export default function Live() {
   };
 
   const handleNextPage = () => {
-    setCurrentPage(currentPage + 1);
+    setCurrentPage((prevPage) => prevPage + 1);
   };
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+      setCurrentPage((prevPage) => prevPage - 1);
     }
   };
 

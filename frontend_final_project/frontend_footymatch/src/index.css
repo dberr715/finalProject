@@ -655,6 +655,7 @@ input[type="text"] {
 }
 .card3 {
   max-height: 100%;
+  
 }
 
 .match-find-container {
@@ -796,6 +797,10 @@ input[type="text"] {
   margin-top: 24px;
   font-size: 20px;
   font-weight: 600;
+}
+
+.match {
+  width: 800px;
 }
 
 .match-details {
