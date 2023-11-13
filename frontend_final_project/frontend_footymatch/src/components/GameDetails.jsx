@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Navigation from "./Navigation";
 
 export default function GameDetails() {
@@ -9,6 +9,8 @@ export default function GameDetails() {
   const [awayTeamEvents, setAwayTeamEvents] = useState([]);
   const [homeLogo, setHomeLogo] = useState(null);
   const [awayLogo, setAwayLogo] = useState(null);
+
+    const navigate = useNavigate();
 
   useEffect(() => {
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
@@ -64,10 +66,19 @@ export default function GameDetails() {
     fetchDetails();
   }, [id]);
 
+    const handleBackButtonClick = () => {
+      // Go back to the previous page using useNavigate
+      navigate(-1);
+    };
+
+
   return (
     <>
       <Navigation />
-      <div className="card1 card2">
+      <div className="card1 card3">
+        <button className="back-button more-info-button" onClick={handleBackButtonClick}>
+          Back
+        </button>
         {fixtureDetails && (
           <div className="soccer-scoring-card">
             <div className="league-name">Game Details</div>
