@@ -37,11 +37,18 @@ export default function GameDetails() {
           // Assuming the response contains fixture details
           setFixtureDetails(result);
 
-          // Find home and away team names dynamically
-          const homeTeamName = result.response[0]?.team.name; // Assuming the first event has team information
-          const awayTeamName = result.response[1]?.team.name; // Assuming the second event has team information
-          const homeLogo = result.response[0]?.team.logo;
-          const awayLogo = result.response[1]?.team.logo;
+          // Find unique home and away team names
+          const uniqueTeamNames = [
+            ...new Set(events.map((event) => event.team.name)),
+          ];
+          const homeTeamName = uniqueTeamNames[0] || "Home Team";
+          const awayTeamName = uniqueTeamNames[1] || "Away Team";
+          const homeLogo = events.find(
+            (event) => event.team.name === homeTeamName
+          )?.team.logo;
+          const awayLogo = events.find(
+            (event) => event.team.name === awayTeamName
+          )?.team.logo;
 
           setHomeLogo(homeLogo);
           setAwayLogo(awayLogo);
