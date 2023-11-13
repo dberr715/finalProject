@@ -881,7 +881,7 @@ body {
   font-size: 28px;
   font-weight: 700;
   line-height: 1;
-  color: var(--color-text-icon);
+  color: rgb(14, 14, 14);
   margin-left: 10px;
   margin-right: 10px;
 }
