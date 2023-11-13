@@ -52,7 +52,7 @@ export default function AIResponse({ openModal }) {
   };
 
   return (
-    <div className="match-container ">
+    <div className="match-container2 ">
       <div className="match-find-container card1">
         <p>
           Enter the names of one or more sports teams to discover your ideal

@@ -68,7 +68,6 @@ export default function GameDetails() {
     <>
       <Navigation />
       <div className="card1 card2">
-        {/* <h1>Game Details for Game ID: {id}</h1> */}
         {fixtureDetails && (
           <div className="soccer-scoring-card">
             <div className="league-name">Game Details</div>
@@ -85,68 +84,52 @@ export default function GameDetails() {
                 </div>
                 <div className="events-container">
                   <h3 className="events-header">Events</h3>
-                  {homeTeamEvents
-                    .filter((event) => event.detail !== "Missed Penalty") // Exclude events with detail "Missed Penalty"
-                    .map((event, index) => (
-                      <div key={index} className="match-event">
-                        <div className="event-details">
-                          <div className="event-time smaller ">
-                            {event.time.elapsed} min &nbsp;
-                          </div>
-                          <div className="event-type-icon">
-                            {/* Use a switch or if-else statements to determine the event type */}
-                            {event.detail === "Red Card" && (
-                              <img
-                                src="../../public/redcard.png"
-                                alt="Red Card"
-                                className="small-icon"
-                              />
-                            )}
-                            {event.detail === "Yellow Card" && (
-                              <img
-                                src="../../public/yellowcard.png"
-                                alt="Yellow Card"
-                                className="small-icon"
-                              />
-                            )}
-                            {event.detail === "Substitution 1" && (
-                              <img
-                                src="../../public/substitution.png"
-                                alt="Substitution 1"
-                                className="small-icon"
-                              />
-                            )}
-                            {event.detail === "Substitution 2" && (
-                              <img
-                                src="../../public/substitution.png"
-                                alt="Substitution 2"
-                                className="small-icon"
-                              />
-                            )}
-                            {event.detail === "Substitution 3" && (
-                              <img
-                                src="../../public/substitution.png"
-                                alt="Substitution 3"
-                                className="small-icon"
-                              />
-                            )}
-                            {event.detail === "Normal Goal" && (
-                              <img
-                                src="../../public/soccerballicon.png"
-                                alt="Goal"
-                                className="small-icon"
-                              />
-                            )}
-                          </div>
-                          <div className="event-type smaller">
-                            &nbsp;{event.type}&nbsp;
-                          </div>
-                          <div className="player-name smaller bold">
-                            &nbsp; {event.player.name} &nbsp;
-                          </div>
+                  {homeTeamEvents.map((event, index) => (
+                    <div key={index} className="match-event">
+                      <div className="event-details">
+                        <div className="event-time smaller ">
+                          {event.time.elapsed} min &nbsp;
+                        </div>
+                        <div className="event-type-icon">
+                          {/* Use a switch or if-else statements to determine the event type */}
+                          {event.detail === "Red Card" && (
+                            <img
+                              src="../../public/redcard.png"
+                              alt="Red Card"
+                              className="small-icon"
+                            />
+                          )}
+                          {event.detail === "Yellow Card" && (
+                            <img
+                              src="../../public/yellowcard.png"
+                              alt="Yellow Card"
+                              className="small-icon"
+                            />
+                          )}
+                          {event.detail.startsWith("Substitution") && (
+                            <img
+                              src="../../public/substitution.png"
+                              alt={`Substitution ${event.detail.charAt(13)}`}
+                              className="small-icon"
+                            />
+                          )}
+                          {event.detail === "Normal Goal" && (
+                            <img
+                              src="../../public/soccerballicon.png"
+                              alt="Goal"
+                              className="small-icon"
+                            />
+                          )}
+                        </div>
+                        <div className="event-type smaller">
+                          &nbsp;{event.type}&nbsp;
+                        </div>
+                        <div className="player-name smaller bold">
+                          &nbsp; {event.player.name} &nbsp;
                         </div>
                       </div>
-                    ))}
+                    </div>
+                  ))}
                 </div>
               </div>
               <div className="vertical-line"></div>
@@ -162,72 +145,52 @@ export default function GameDetails() {
                 </div>
                 <div className="events-container">
                   <h3 className="events-header">Events</h3>
-                  {awayTeamEvents
-                    .filter((event) => event.detail !== "Missed Penalty") // Exclude events with detail "Missed Penalty"
-                    .map((event, index) => (
-                      <div key={index} className="match-event">
-                        <div className="event-details">
-                          <div className="event-time smaller ">
-                            {event.time.elapsed} min &nbsp;
-                          </div>
-                          <div className="event-type-icon">
-                            {/* Use a switch or if-else statements to determine the event type */}
-                            {event.detail === "Red Card" && (
-                              <img
-                                src="../../public/redcard.png"
-                                alt="Red Card"
-                                className="small-icon"
-                              />
-                            )}
-                            {event.detail === "Yellow Card" && (
-                              <img
-                                src="../../public/yellowcard.png"
-                                alt="Yellow Card"
-                                className="small-icon"
-                              />
-                            )}
-                            {event.detail === "Substitution 1" && (
-                              <img
-                                src="../../public/substitution.png"
-                                alt="Substitution 1"
-                                className="small-icon"
-                              />
-                            )}
-                            {event.detail === "Substitution 2" && (
-                              <img
-                                src="../../public/substitution.png"
-                                alt="Substitution 2"
-                                className="small-icon"
-                              />
-                            )}
-                            {event.detail === "Substitution 3" && (
-                              <img
-                                src="../../public/substitution.png"
-                                alt="Substitution 3"
-                                className="small-icon"
-                              />
-                            )}
-                            {event.detail === "Normal Goal" && (
-                              <img
-                                src="../../public/soccerballicon.png"
-                                alt="Goal"
-                                className="small-icon"
-                              />
-                            )}
-                          </div>
-                          <div className="event-type smaller">
-                            &nbsp; {event.type} &nbsp;
-                          </div>
-                          <div className="player-name smaller bold">
-                            &nbsp;{event.player.name} &nbsp;{" "}
-                          </div>
-                          {/* <div className="event-detail smaller">
-                          {event.detail}
-                        </div> */}
-                          {/* Additional away team event details can be added here */}
+                  {awayTeamEvents.map((event, index) => (
+                    <div key={index} className="match-event">
+                      <div className="event-details">
+                        <div className="event-time smaller ">
+                          {event.time.elapsed} min &nbsp;
+                        </div>
+                        <div className="event-type-icon">
+                          {/* Use a switch or if-else statements to determine the event type */}
+                          {event.detail === "Red Card" && (
+                            <img
+                              src="../../public/redcard.png"
+                              alt="Red Card"
+                              className="small-icon"
+                            />
+                          )}
+                          {event.detail === "Yellow Card" && (
+                            <img
+                              src="../../public/yellowcard.png"
+                              alt="Yellow Card"
+                              className="small-icon"
+                            />
+                          )}
+                          {event.detail.startsWith("Substitution") && (
+                            <img
+                              src="../../public/substitution.png"
+                              alt={`Substitution ${event.detail.charAt(13)}`}
+                              className="small-icon"
+                            />
+                          )}
+                          {event.detail === "Normal Goal" && (
+                            <img
+                              src="../../public/soccerballicon.png"
+                              alt="Goal"
+                              className="small-icon"
+                            />
+                          )}
+                        </div>
+                        <div className="event-type smaller">
+                          &nbsp; {event.type} &nbsp;
+                        </div>
+                        <div className="player-name smaller bold">
+                          &nbsp;{event.player.name} &nbsp;{" "}
                         </div>
                       </div>
-                    ))}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

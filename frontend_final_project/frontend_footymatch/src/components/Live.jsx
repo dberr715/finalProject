@@ -145,8 +145,8 @@ export default function Live() {
                       <div className="team team--home">
                         <div className="team-logo">
                           <img
-                            src={score.teams.home.logo}
-                            alt={score.teams.home.name}
+                            src={score.teams.away.logo}
+                            alt={score.teams.away.name}
                           />
                         </div>
                         <h2 className="team-name">{score.teams.home.name}</h2>
@@ -190,8 +190,8 @@ export default function Live() {
                       <div className="team team--away">
                         <div className="team-logo">
                           <img
-                            src={score.teams.away.logo}
-                            alt={score.teams.away.name}
+                            src={score.teams.home.logo}
+                            alt={score.teams.home.name}
                           />
                         </div>
                         <h2 className="team-name">{score.teams.away.name}</h2>
