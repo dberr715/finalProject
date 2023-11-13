@@ -623,11 +623,11 @@ input[type="text"] {
 }
 
 .match-container2 {
-  width: 60%;
+  width: 59%;
 }
 
 .card2 {
-  width: 40%;
+  width: 41%;
   margin-left: 5px;
   max-height: 225px;
 }
@@ -985,7 +985,7 @@ body {
 }
 
 .searchboi {
-  margin-top: 3.9px;
+  margin-top: 33.9px;
 }
 .home-container-outer {
   display: flex;
