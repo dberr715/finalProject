@@ -191,6 +191,19 @@
   /* align-items: center; */
 }
 
+
+.league-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.league-info {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjust the gap as needed */
+}
+
 .searchbutton {
   align-items: center;
   background-color: #3d9d34;
