@@ -174,10 +174,10 @@ export default function GameDetails() {
                <div className="score-column">
                  <div className="match-score">
                    <span className="match-score-number match-score-number--leading">
-                     {homeScore}
+                     {awayScore}
                    </span>
                    <span className="match-score-divider">:</span>
-                   <span className="match-score-number">{awayScore}</span>
+                   <span className="match-score-number">{homeScore}</span>
                  </div>
                </div>
                <div className="vertical-line"></div>
