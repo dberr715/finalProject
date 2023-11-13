@@ -769,9 +769,7 @@ input[type="text"] {
   align-items: center;
 }
 
-.input-spinner {
-  margin-left: 10px; /* Adjust the margin as needed to control spacing between input and spinner */
-}
+
 
 .team-name {
   text-align: center;
@@ -1108,8 +1106,8 @@ body {
   z-index: 1;
   top: 17.8%;
   bottom: 13%;
-  max-width: 63.3%; /* Set maximum width */
-  max-height: 80vh;
+  max-width: 786px; /* Set maximum width */
+  max-height: 100%;
   border-radius: 30px;
   border: black 3px solid;
   background: rgb(153, 255, 143);
@@ -1446,9 +1444,7 @@ body {
   background-size: cover;
   animation: spin 1s linear infinite;
 }
-.input-spinner {
-  margin-left: 10px; /* Adjust the margin as needed to control spacing between input and spinner */
-}
+
 
 @keyframes spin {
   0% {
