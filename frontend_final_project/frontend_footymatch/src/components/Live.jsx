@@ -18,12 +18,21 @@ export default function Live() {
   };
 
   const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
+    console.log("Next Page Clicked");
+    if (!isLastPage) {
+      setCurrentPage((prevPage) => prevPage + 1);
+      navigate(`/live?page=${currentPage + 1}&league=${selectedLeague || ""}`);
+      // Scroll to the top of the screen
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage((prevPage) => prevPage - 1);
+      navigate(`/live?page=${currentPage - 1}&league=${selectedLeague || ""}`);
+      // Scroll to the top of the screen
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
@@ -31,7 +40,7 @@ export default function Live() {
 
   useEffect(() => {
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
-
+    window.scrollTo({ top: 0, behavior: "smooth" });
     const fetchFixtures = async () => {
       const url = "https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all";
       const options = {
@@ -76,10 +85,12 @@ export default function Live() {
     ? sortedFixtures.filter((fixture) => fixture.league.name === selectedLeague)
     : sortedFixtures;
 
-  const endIndex = currentPage * pageSize;
-  const fixturesToDisplay = filteredFixtures.slice(0, endIndex);
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const fixturesToDisplay = filteredFixtures.slice(startIndex, endIndex);
 
-  const isLastPage = endIndex >= filteredFixtures.length;
+  const isLastPage =
+    endIndex >= filteredFixtures.length || endIndex >= sortedFixtures.length;
 
   const createNoGamesCard = () => (
     <div className="no-games-card">
