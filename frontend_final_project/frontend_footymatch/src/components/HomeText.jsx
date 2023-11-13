@@ -1,60 +1,64 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AIResponse from "./AIResponse";
 import ResponseModal from "./ResponseModal";
 
 export default function HomeText() {
+  const navigate = useNavigate();
   const [team, setTeam] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalRec, setModalRec] = useState("");
 
   const handleInputChange = (event) => {
-    const inputValue = event.target.value; // Get the input value
-    setTeam(inputValue); // Update the state with the input value
-    setErrorMessage(""); // Clear any previous error message when input changes
+    const inputValue = event.target.value;
+    setTeam(inputValue);
+    setErrorMessage("");
   };
 
   const handleSearchClick = async () => {
-    setLoading(true);
+    const teamCapitalized =
+      team &&
+      team
+        .split(" ")
+        .map(
+          (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        )
+        .join(" ");
 
-    try {
-      const isValidTeam = await validateTeamName(team);
-      if (isValidTeam) {
-        // Perform the desired action when it's a valid team (e.g., navigate to the team page)
-        // I've commented this line as you can add your own logic here
-        // navigate(`/team/${team}`, { team });
-        setErrorMessage(""); // Clear any previous error message
-      } else {
-        setErrorMessage("Not a team. Check spelling and try again");
-      }
-    } catch (error) {
-      console.error("Error validating team:", error);
-      setErrorMessage("An error occurred while validating the team name");
-    } finally {
-      setLoading(false);
+    if (!teamCapitalized) {
+      setError("Please enter a team name.");
+      return;
     }
-  };
 
-  // Helper function to validate the team name using footballAPI
-  const validateTeamName = async (teamName) => {
+    const key = import.meta.env.VITE_FOOTBALL_API_KEY;
+    const nameUrl = `https://api-football-v1.p.rapidapi.com/v3/teams?name=${teamCapitalized}`;
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": key,
+        "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+      },
+    };
+
     try {
-      // You can make a fetch request to the footballAPI to check if the team exists
-      // Replace this URL with your actual API endpoint
-      const response = await fetch(
-        `https://api.example.com/validate-team?name=${teamName}`
-      );
+      const response = await fetch(nameUrl, options);
 
       if (response.ok) {
         const result = await response.json();
-        const teamExists = result.exists; // Adjust this based on your API response
-        return teamExists;
+        const teamExists = result.response.length > 0;
+
+        if (teamExists) {
+          navigate(`/team/${teamCapitalized}`);
+        } else {
+          setError("Team not found. Please try again.");
+        }
       } else {
-        return false;
+        setError("An error occurred. Please try again.");
       }
     } catch (error) {
-      console.error("Error validating team name:", error);
-      return false;
+      setError("An error occurred. Please try again.");
     }
   };
 
@@ -95,7 +99,7 @@ export default function HomeText() {
 
                 <input
                   type="text"
-                  className="form__input searchbars searchboi "
+                  className="form__input searchbars searchboi"
                   value={team}
                   onChange={handleInputChange}
                   placeholder="Soccer Team Name"
