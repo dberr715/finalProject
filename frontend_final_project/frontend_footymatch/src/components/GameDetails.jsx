@@ -76,7 +76,10 @@ export default function GameDetails() {
     <>
       <Navigation />
       <div className="card1 card3">
-        <button className="back-button more-info-button" onClick={handleBackButtonClick}>
+        <button
+          className="back-button more-info-button"
+          onClick={handleBackButtonClick}
+        >
           Back
         </button>
         {fixtureDetails && (
@@ -89,9 +92,9 @@ export default function GameDetails() {
                 </div>
                 <div className="team-details">
                   <h2 className="team-name">{homeTeamEvents[0]?.team.name}</h2>
-                </div>
-                <div className="team-score">
-                  Score: {fixtureDetails.response[0]?.goals?.home ?? "N/A"}
+                  <div className="team-score">
+                    Score: {fixtureDetails.response[0]?.goals?.home ?? "N/A"}
+                  </div>
                 </div>
                 <div className="events-container">
                   <h3 className="events-header">Events</h3>
@@ -102,7 +105,6 @@ export default function GameDetails() {
                           {event.time.elapsed} min &nbsp;
                         </div>
                         <div className="event-type-icon">
-                          {/* Use a switch or if-else statements to determine the event type */}
                           {event.detail === "Red Card" && (
                             <img
                               src="../../public/redcard.png"
@@ -150,9 +152,9 @@ export default function GameDetails() {
                 </div>
                 <div className="team-details">
                   <h2 className="team-name">{awayTeamEvents[0]?.team.name}</h2>
-                </div>
-                <div className="team-score">
-                  Score: {fixtureDetails.response[0]?.goals?.away ?? "N/A"}
+                  <div className="team-score">
+                    Score: {fixtureDetails.response[0]?.goals?.away ?? "N/A"}
+                  </div>
                 </div>
                 <div className="events-container">
                   <h3 className="events-header">Events</h3>
@@ -163,7 +165,6 @@ export default function GameDetails() {
                           {event.time.elapsed} min &nbsp;
                         </div>
                         <div className="event-type-icon">
-                          {/* Use a switch or if-else statements to determine the event type */}
                           {event.detail === "Red Card" && (
                             <img
                               src="../../public/redcard.png"
@@ -210,4 +211,5 @@ export default function GameDetails() {
       </div>
     </>
   );
+
 }
