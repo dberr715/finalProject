@@ -137,7 +137,7 @@ export default function Live() {
                         className="more-info-button"
                         onClick={() => handleMoreInfo(score.fixture.id)}
                       >
-                        More Info
+                        Match Details
                       </button>
                     </div>
                   <div className="match-content">

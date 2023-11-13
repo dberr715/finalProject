@@ -9,6 +9,8 @@ export default function GameDetails() {
   const [awayTeamEvents, setAwayTeamEvents] = useState([]);
   const [homeLogo, setHomeLogo] = useState(null);
   const [awayLogo, setAwayLogo] = useState(null);
+  const [homeTeamName, setHomeTeamName] = useState(null);
+  const [awayTeamName, setAwayTeamName] = useState(null);
 
   const navigate = useNavigate();
 
@@ -43,6 +45,8 @@ export default function GameDetails() {
 
           setHomeLogo(homeLogo);
           setAwayLogo(awayLogo);
+          setHomeTeamName(homeTeamName);
+          setAwayTeamName(awayTeamName);
 
           // Filter events for home and away teams
           const homeEvents = events.filter(
@@ -91,13 +95,15 @@ export default function GameDetails() {
                   <img src={awayLogo} alt="away team logo" />
                 </div>
                 <div className="team-details">
-                  <h2 className="team-name">{awayTeamEvents[0]?.team.name}</h2>
+                  <h2 className="team-name">{awayTeamName}</h2>
                 </div>
                 <div className="events-container">
-                  <div className="team-score">
-                    Score: {fixtureDetails.response[0]?.goals?.away ?? "N/A"}
-                  </div>
-
+                  <div className="team-score">Score: </div>
+                  {awayTeamEvents.length === 0 && (
+                    <div className="placeholder-message">
+                      No match events yet
+                    </div>
+                  )}
                   {awayTeamEvents.map((event, index) => (
                     <div key={index} className="match-event">
                       <div className="event-details">
@@ -105,7 +111,34 @@ export default function GameDetails() {
                           {event.time.elapsed} min &nbsp;
                         </div>
                         <div className="event-type-icon">
-                          {/* ... (unchanged) */}
+                          {event.detail === "Red Card" && (
+                            <img
+                              src="../../public/redcard.png"
+                              alt="Red Card"
+                              className="small-icon"
+                            />
+                          )}
+                          {event.detail === "Yellow Card" && (
+                            <img
+                              src="../../public/yellowcard.png"
+                              alt="Yellow Card"
+                              className="small-icon"
+                            />
+                          )}
+                          {event.detail.startsWith("Substitution") && (
+                            <img
+                              src="../../public/substitution.png"
+                              alt={`Substitution ${event.detail.charAt(13)}`}
+                              className="small-icon"
+                            />
+                          )}
+                          {event.detail === "Normal Goal" && (
+                            <img
+                              src="../../public/soccerballicon.png"
+                              alt="Goal"
+                              className="small-icon"
+                            />
+                          )}
                         </div>
                         <div className="event-type smaller">
                           &nbsp; {event.type} &nbsp;
@@ -124,12 +157,15 @@ export default function GameDetails() {
                   <img src={homeLogo} alt="home Team Logo" />
                 </div>
                 <div className="team-details">
-                  <h2 className="team-name">{homeTeamEvents[0]?.team.name}</h2>
-                  <div className="team-score">
-                    Score: {fixtureDetails.response[0]?.goals?.home ?? "N/A"}
-                  </div>
+                  <h2 className="team-name">{homeTeamName}</h2>
                 </div>
                 <div className="events-container">
+                  <div className="team-score">Score: </div>
+                  {homeTeamEvents.length === 0 && (
+                    <div className="placeholder-message">
+                      No match events yet
+                    </div>
+                  )}
                   {homeTeamEvents.map((event, index) => (
                     <div key={index} className="match-event">
                       <div className="event-details">
@@ -137,7 +173,34 @@ export default function GameDetails() {
                           {event.time.elapsed} min &nbsp;
                         </div>
                         <div className="event-type-icon">
-                          {/* ... (unchanged) */}
+                          {event.detail === "Red Card" && (
+                            <img
+                              src="../../public/redcard.png"
+                              alt="Red Card"
+                              className="small-icon"
+                            />
+                          )}
+                          {event.detail === "Yellow Card" && (
+                            <img
+                              src="../../public/yellowcard.png"
+                              alt="Yellow Card"
+                              className="small-icon"
+                            />
+                          )}
+                          {event.detail.startsWith("Substitution") && (
+                            <img
+                              src="../../public/substitution.png"
+                              alt={`Substitution ${event.detail.charAt(13)}`}
+                              className="small-icon"
+                            />
+                          )}
+                          {event.detail === "Normal Goal" && (
+                            <img
+                              src="../../public/soccerballicon.png"
+                              alt="Goal"
+                              className="small-icon"
+                            />
+                          )}
                         </div>
                         <div className="event-type smaller">
                           &nbsp;{event.type}&nbsp;
@@ -156,5 +219,4 @@ export default function GameDetails() {
       </div>
     </>
   );
-
 }
