@@ -66,12 +66,6 @@ export default function GameDetails() {
           setHomeTeamName(homeTeamName);
           setAwayTeamName(awayTeamName);
 
-          // Set league logo and name
-          //   setLeagueLogo(fixtureDetails.response[0].league.logo);
-          //   setLeagueName(fixtureDetails.response[0].league.name);
-          console.log("fixturedeets", fixtureDetails);
-
-          // Filter events for home and away teams
           const homeEvents = events.filter(
             (event) => event.team.name === homeTeamName
           );
@@ -104,7 +98,6 @@ export default function GameDetails() {
   }, [id]);
 
   const handleBackButtonClick = () => {
-    // Go back to the previous page using useNavigate
     navigate(-1);
   };
 
@@ -118,17 +111,21 @@ export default function GameDetails() {
         >
           Back
         </button>
+        <h1 className="league-name">Match Events</h1>
         {fixtureDetails && (
           <div className="soccer-scoring-card">
             <div className="league-box">
               <div className="league-info">
-                <div className="league-name1">{league}</div>
                 <div className="leagueLogo1">
-                  <img src={leagueLogo} alt={league} />
+                  <img
+                    className="leagueLogoPic"
+                    src={leagueLogo}
+                    alt={league}
+                  />
                 </div>
+                <div className="league-name1">{league}</div>
               </div>
             </div>
-            <h1 className="league-name">Match Events</h1>
             <div className="teams-container">
               <div className="team">
                 <div className="team-logo">

@@ -134,7 +134,11 @@ export default function Live() {
                   <div className="match-header">
                     <div className="match-tournament">
                       <div className="tournament-info">
-                        <img src={score.league.logo} alt="League Logo" />
+                        <img
+                          className="leagueLogoPic"
+                          src={score.league.logo}
+                          alt="League Logo"
+                        />
                         <div className="league-name">{score.league.name}</div>
                       </div>
                     </div>
