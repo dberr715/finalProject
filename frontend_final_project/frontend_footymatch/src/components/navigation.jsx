@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 // import { useNavigator } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 import "../index.css";
 
 export default function Navigation({ isFavorite }) {
   const { isAuth, username } = useAuth();
-
+  const navigate = useNavigate();
   const [favorites, setFavorites] = useState([]);
 
   const fetchFavoriteTeams = async () => {
@@ -58,7 +58,14 @@ export default function Navigation({ isFavorite }) {
           <div className="dropdown-content">
             {favorites && favorites.length > 0 ? (
               favorites.map((favorite, index) => (
-                <Link key={index} to={`/team/${favorite.team_name}`}>
+                <Link
+                  key={index}
+                  to={`/team/${favorite.team_name}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate(`/team/${favorite.team_name}`);
+                  }}
+                >
                   {favorite.team_name}
                 </Link>
               ))
@@ -73,11 +80,10 @@ export default function Navigation({ isFavorite }) {
               <div>
                 <Link to="/logout">Logout</Link>
               </div>
-
             </>
           ) : (
             <Link to="/login">Login</Link>
-            )}
+          )}
         </div>
         <div className="logo-container">
           <img
@@ -86,7 +92,7 @@ export default function Navigation({ isFavorite }) {
             className="company-logo"
           />
         </div>
-            <div className="username">{username}</div>
+        <div className="username">{username}</div>
       </div>
     </div>
   );

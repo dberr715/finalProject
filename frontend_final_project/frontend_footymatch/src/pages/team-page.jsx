@@ -212,68 +212,66 @@ export default function TeamPage() {
     fetchFavoriteTeams();
   }
 
- async function handleFavoriteTeam(isFav, favoriteId) {
-   const apiUrl = "http://localhost:8000/favorite-teams/";
-   const token = localStorage.getItem("access_token");
-   const user_id = localStorage.getItem("user_id");
+async function handleFavoriteTeam(isFav, favoriteId) {
+  const apiUrl = "http://localhost:8000/favorite-teams/";
+  const token = localStorage.getItem("access_token");
+  const user_id = localStorage.getItem("user_id");
 
-   try {
-     if (isFav) {
-       if (!favoriteId) {
-         // Fetch favorite teams to get favoriteId if not available
-         const favoriteTeams = await fetchFavoriteTeams();
-         const foundTeam = favoriteTeams.find(
-           (team) =>
-             team.team_name.toLowerCase() === params.teamname.toLowerCase()
-         );
+  try {
+    if (isFav) {
+      // Remove from favorites
+      if (!favoriteId) {
+        // Fetch favorite teams to get favoriteId if not available
+        const favoriteTeams = await fetchFavoriteTeams();
+        const foundTeam = favoriteTeams.find(
+          (team) =>
+            team.team_name.toLowerCase() === params.teamname.toLowerCase()
+        );
 
-         if (foundTeam) {
-           favoriteId = foundTeam.id;
-         }
-       }
+        if (foundTeam) {
+          favoriteId = foundTeam.id;
+        }
+      }
 
-       const response = await fetch(apiUrl + favoriteId, {
-         method: "DELETE",
-         headers: {
-           "Content-Type": "application/json",
-           Authorization: `Bearer ${token}`,
-         },
-       });
+      const response = await fetch(apiUrl + favoriteId, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-       if (response.ok) {
-         console.log("Team removed from favorites successfully.");
-         setIsFavorite(false);
-         setKey((prevKey) => prevKey + 1);
-         console.log("Updated key:", key);
-       } else {
-         console.error("Failed to remove team from favorites.");
-       }
-     } else {
-       console.log("FIRED FAVES");
-       const response = await fetch(apiUrl, {
-         method: "POST",
-         headers: {
-           "Content-Type": "application/json",
-           Authorization: `Bearer ${token}`,
-         },
-         body: JSON.stringify({ team_name: teamName, user: user_id }),
-       });
+      if (response.ok) {
+        console.log("Team removed from favorites successfully.");
+        setIsFavorite(false);
+        setFavoriteMessage("Removed from favorites");
+      } else {
+        console.error("Failed to remove team from favorites.");
+      }
+    } else {
+      // Add to favorites
+      console.log("FIRED FAVES");
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ team_name: teamName, user: user_id }),
+      });
 
-       if (response.ok) {
-         console.log("Team added to favorites successfully.");
-         setIsFavorite(true);
-         setKey((prevKey) => prevKey + 1);
-         console.log("Updated key:", key);
-       } else {
-         console.error("Failed to add team to favorites.");
-       }
-     }
-     setIsFavorite(!isFav);
-   } catch (error) {
-     console.error("An error occurred:", error);
-   }
- }
-
+      if (response.ok) {
+        console.log("Team added to favorites successfully.");
+        setIsFavorite(true);
+        setFavoriteMessage("Added to favorites");
+      } else {
+        console.error("Failed to add team to favorites.");
+      }
+    }
+  } catch (error) {
+    console.error("An error occurred:", error);
+  }
+}
 
 
   const fetchFavoriteTeams = async () => {
@@ -302,16 +300,24 @@ export default function TeamPage() {
     }
   };
 
-
   useEffect(() => {
     fetchData1();
   }, [key]);
 
   useEffect(() => {
     if (teamId) {
-      fetchFavoriteTeams();
+      const fetchFavorites = async () => {
+        const favoriteTeams = await fetchFavoriteTeams();
+        const isTeamFavorite = favoriteTeams.some(
+          (team) => team.team_name.toLowerCase() === teamName.toLowerCase()
+        );
+        setIsFavorite(isTeamFavorite);
+      };
+
+      fetchFavorites();
     }
-  }, [teamId]);
+  }, [teamId, teamName]);
+
 
   return (
     <>
