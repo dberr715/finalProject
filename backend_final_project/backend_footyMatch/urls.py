@@ -20,7 +20,7 @@ urlpatterns = [
     path("favorite-teams/", views.FavoriteTeam.as_view(), name="favorite-teams"),
     path(
         "favorite-teams/<int:pk>",
-        views.FavoriteTeamDelete.as_view(),
+        FavoriteTeamDelete.as_view(),
         name="favorite-team-delete",
     ),
 ]

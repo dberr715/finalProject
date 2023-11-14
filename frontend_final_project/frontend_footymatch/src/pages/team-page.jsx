@@ -12,6 +12,8 @@ export default function TeamPage() {
   const [successMessage, setSuccessMessage] = useState("");
   const [teamName, setTeamName] = useState("");
 
+  const [favoriteId, setFavoriteId] = useState(null);
+
   const params = useParams();
   const { isAuth } = useAuth();
   const navigate = useNavigate();
@@ -65,20 +67,21 @@ export default function TeamPage() {
 
       if (response.ok) {
         const result = await response.json();
+        console.log("RESULT: ", result.response);
+
         const name = result.response[0].team.name;
         const logo = result.response[0].team.logo;
         const stadium = result.response[0].venue.name;
         const stadiumPic = result.response[0].venue.image;
         const country = result.response[0].team.country;
-        const teamId = result.response[0].team.id;
-        // console.log("RESULT FOR TEAM ID:", result);
+
         setTeamName(name);
         setLogo(logo);
         setStadium(stadium);
         setStadiumPic(stadiumPic);
         setCountry(country);
-        setTeamId(teamId);
-        fetchData2(teamId);
+        setTeamId(result.response[0].team.id);
+        fetchData2(result.response[0].team.id);
       } else {
         setError("Team not found. Please try again.");
       }
@@ -209,62 +212,75 @@ export default function TeamPage() {
     fetchFavoriteTeams();
   }
 
-  async function handleFavoriteTeam(isFav) {
-    const apiUrl = "http://localhost:8000/favorite-teams/"; // Correct API endpoint
-    const token = localStorage.getItem("access_token");
-    const user_id = localStorage.getItem("user_id");
-    const data = { team_name: teamName, user: user_id };
+ async function handleFavoriteTeam(isFav, favoriteId) {
+   const apiUrl = "http://localhost:8000/favorite-teams/";
+   const token = localStorage.getItem("access_token");
+   const user_id = localStorage.getItem("user_id");
 
-    try {
-      if (isFav) {
-        const response = await fetch(apiUrl + teamId + "/", {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+   try {
+     if (isFav) {
+       if (!favoriteId) {
+         // Fetch favorite teams to get favoriteId if not available
+         const favoriteTeams = await fetchFavoriteTeams();
+         const foundTeam = favoriteTeams.find(
+           (team) =>
+             team.team_name.toLowerCase() === params.teamname.toLowerCase()
+         );
 
-        if (response.ok) {
-          console.log("Team removed from favorites successfully.");
-          setIsFavorite(false);
-          setKey((prevKey) => prevKey + 1);
-          console.log("Updated key:", key);
-        } else {
-          console.error("Failed to remove team from favorites.");
-        }
-      } else {
-        console.log("FIRED FAVES");
-        const response = await fetch(apiUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(data),
-        });
+         if (foundTeam) {
+           favoriteId = foundTeam.id;
+         }
+       }
 
-        if (response.ok) {
-          console.log("Team added to favorites successfully.");
-          setIsFavorite(true);
-          setKey((prevKey) => prevKey + 1);
-          console.log("Updated key:", key);
-        } else {
-          console.error("Failed to add team to favorites.");
-        }
-      }
-      setIsFavorite(!isFav);
-    } catch (error) {
-      console.error("An error occurred:", error);
-    }
-  }
+       const response = await fetch(apiUrl + favoriteId, {
+         method: "DELETE",
+         headers: {
+           "Content-Type": "application/json",
+           Authorization: `Bearer ${token}`,
+         },
+       });
+
+       if (response.ok) {
+         console.log("Team removed from favorites successfully.");
+         setIsFavorite(false);
+         setKey((prevKey) => prevKey + 1);
+         console.log("Updated key:", key);
+       } else {
+         console.error("Failed to remove team from favorites.");
+       }
+     } else {
+       console.log("FIRED FAVES");
+       const response = await fetch(apiUrl, {
+         method: "POST",
+         headers: {
+           "Content-Type": "application/json",
+           Authorization: `Bearer ${token}`,
+         },
+         body: JSON.stringify({ team_name: teamName, user: user_id }),
+       });
+
+       if (response.ok) {
+         console.log("Team added to favorites successfully.");
+         setIsFavorite(true);
+         setKey((prevKey) => prevKey + 1);
+         console.log("Updated key:", key);
+       } else {
+         console.error("Failed to add team to favorites.");
+       }
+     }
+     setIsFavorite(!isFav);
+   } catch (error) {
+     console.error("An error occurred:", error);
+   }
+ }
+
+
 
   const fetchFavoriteTeams = async () => {
     const access_token = localStorage.getItem("access_token");
     const url = "http://localhost:8000/favorite-teams/";
 
     try {
-      // console.log("TRYING TO GET FAVORITE TEAM");
       const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -272,40 +288,20 @@ export default function TeamPage() {
           Authorization: `Bearer ${access_token}`,
         },
       });
-      // console.log("RESPONSE OK?", response.ok);
-          if (response.ok) {
-            const favoriteTeams = await response.json();
-            const isFavorite = favoriteTeams.some(
-              (team) =>
-                team.team_name.toLowerCase() === params.teamname.toLowerCase()
-            );
-            setIsFavorite(isFavorite);
 
-            // Grab the favorites for a user by their names
-            // Take the array you get back (see Postman) and filter(?) it?
-            // teams.filter(team => team.toLower() === teamname.toLower() ? {team_name, team_id: id} : {})
-            // Return the ID of the entry based on the above (this should limit to one per user)
-
-            // Take the name from the params, convert it to lowercase, check the database, return True & the ID if found
-            // Return False is not found.
-            // Converting to lowercase on both the database and URL side will "normalize" the spelling
-            // If it does exist, add setTeamId([SOME ID VALUE]), then use `teamId` in your DELETE route API call
-
-            // console.log(favoriteTeams);
-            // return setIsFavorite(isFavorite);
-          } else {
-            console.error("Failed to fetch favorite teams.");
-          }
+      if (response.ok) {
+        const favoriteTeams = await response.json();
+        return favoriteTeams; // Return the favorite teams array
+      } else {
+        console.error("Failed to fetch favorite teams.");
+        return []; // Return an empty array if there's an error
+      }
     } catch (error) {
       console.error("Error:", error);
+      return []; // Return an empty array if there's an error
     }
   };
 
-  // useEffect(() => {
-  //   fetchData1();
-  //   fetchFavoriteTeams();
-  //   console.log("USE EFFECT RUNNING");
-  // }, [key]);
 
   useEffect(() => {
     fetchData1();
@@ -338,20 +334,20 @@ export default function TeamPage() {
                     <h2>{country}</h2>
                   </div>
                 </div>
-                          <div className="favorites-button-container">
-                            {isAuth && (
-                              <>
-                                <FavoritesButton
-                                  teamName={teamName}
-                                  isFavorite={isFavorite}
-                                  onToggleFavorite={handleFavoriteTeam}
-                                />
-                                {isFavorite && (
-                                  <p style={{ color: "black" }}>{favoriteMessage}</p>
-                                )}
-                              </>
-                            )}
-                          </div>
+                <div className="favorites-button-container">
+                  {isAuth && (
+                    <>
+                      <FavoritesButton
+                        teamName={teamName}
+                        isFavorite={isFavorite}
+                        onToggleFavorite={handleFavoriteTeam}
+                      />
+                      {isFavorite && (
+                        <p style={{ color: "black" }}>{favoriteMessage}</p>
+                      )}
+                    </>
+                  )}
+                </div>
                 <h2 className="upcoming">Upcoming Games</h2>
                 <div className="next-games">
                   <div className="game-card">
