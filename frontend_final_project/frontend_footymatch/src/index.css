@@ -1522,9 +1522,15 @@ body {
     margin: 0 auto; /* Center the card horizontally */
     max-width: none; /* Remove the max-width restriction if any */
   }
+
   .match-container2{
     margin-right: 20px;
   }
+ 
+  .modal{
+    max-width: 65%;
+  }
+
 }
 
 @media screen and (min-width: 845px) {
