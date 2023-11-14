@@ -11,6 +11,9 @@ export default function HomeText() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalRec, setModalRec] = useState("");
 
+  const setError = (message) => {
+    setErrorMessage(message);
+  };
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
     setTeam(inputValue);

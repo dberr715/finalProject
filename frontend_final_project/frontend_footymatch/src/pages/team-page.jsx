@@ -305,18 +305,18 @@ async function handleFavoriteTeam(isFav, favoriteId) {
   }, [key]);
 
   useEffect(() => {
-    if (teamId) {
-      const fetchFavorites = async () => {
-        const favoriteTeams = await fetchFavoriteTeams();
-        const isTeamFavorite = favoriteTeams.some(
-          (team) => team.team_name.toLowerCase() === teamName.toLowerCase()
-        );
-        setIsFavorite(isTeamFavorite);
-      };
+  if (teamId) {
+    const fetchFavorites = async () => {
+      const favoriteTeams = await fetchFavoriteTeams();
+      const isTeamFavorite = favoriteTeams.some(
+        (team) => team.team_name.toLowerCase() === teamName.toLowerCase()
+      );
+      setIsFavorite(isTeamFavorite);
+    };
 
-      fetchFavorites();
-    }
-  }, [teamId, teamName]);
+    fetchFavorites();
+  }
+}, [teamId, teamName]);
 
 
   return (

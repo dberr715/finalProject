@@ -54,6 +54,7 @@ export default function Live() {
       try {
         const response = await fetch(url, options);
         const data = await response.json();
+        console.log("API Response:", data);
 
         const sortedFixtures = data.response.sort(
           (a, b) => b.fixture.elapsed - a.fixture.elapsed
@@ -139,6 +140,7 @@ export default function Live() {
             </select>
           )}
         </div>
+        
         {filteredFixtures.length === 0 && selectedLeague && (
           <div className="live-matches-container">{createNoGamesCard()}</div>
         )}
