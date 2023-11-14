@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function ResponseModal({ rec, onClose }) {
+export default function ResponseModal({ rec, onClose, fetchData }) {
   const navigate = useNavigate();
   const [team, setTeam] = useState("");
   const [teamName, setTeamName] = useState("");
@@ -83,16 +83,26 @@ export default function ResponseModal({ rec, onClose }) {
             placeholder="Enter FootyMatch Team"
             required=""
           />
-          {/* <br /> */}
-
           <button
-            className=" prev-next-button"
+            className="prev-next-button"
             type="submit"
             id="blacktext"
             onClick={handleSearchClick}
           >
             Search and Learn!
           </button>
+          <br />
+          <p>Want another team suggestion?</p>
+          <br />
+          <div className="button-container">
+            <button
+              className="rerun-button prev-next-button "
+              id="blacktext2"
+              onClick={fetchData}
+            >
+              New FootyMatch!
+            </button>
+          </div>
         </div>
       </div>
       {error && <p className="error-message">{error}</p>}

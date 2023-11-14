@@ -63,6 +63,7 @@ export default function AIResponse({ openModal }) {
             <input
               type="text"
               className="form__input searchbars"
+              // id="find-team"
               value={inputText}
               onChange={handleInputChange}
               placeholder=" team1, team2, etc..."
