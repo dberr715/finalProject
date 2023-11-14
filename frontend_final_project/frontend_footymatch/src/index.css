@@ -330,7 +330,7 @@
   outline: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 845px) {
   .button-56 {
     padding: 0 40px;
   }
@@ -655,7 +655,6 @@ input[type="text"] {
 }
 .card3 {
   max-height: 100%;
-  
 }
 
 .match-find-container {
@@ -1286,7 +1285,7 @@ option {
   width: 130px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 845px) {
   .topnav a:not(:first-child),
   .dropdown .dropbtn {
     display: none;
@@ -1297,7 +1296,7 @@ option {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 845px) {
   .topnav.responsive {
     position: relative;
   }
@@ -1506,33 +1505,29 @@ body {
   height: 70px;
 }
 
-@media only screen and (max-width: 600px) {
-  /* Adjustments for small screens */
-  .home-container {
-    margin-top: 5px;
-  }
-
-  .card1 {
-    padding: 20px;
-  }
-
-  .pagination-buttons {
+@media only screen and (max-width: 845px) {
+  .match-container {
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Center items horizontally */
   }
 
-  .page-list {
-    flex-direction: column;
+  .match-find-container {
+    width: 100%; /* Take full width */
+    max-width: 100%; /* Set maximum width if needed */
+    margin-bottom: 10px; /* Add some margin for spacing */
   }
 
-  .page-button {
-    margin-top: 8px;
+  .card2 {
+    width: 60%;
+    margin: 0 auto; /* Center the card horizontally */
+    max-width: none; /* Remove the max-width restriction if any */
   }
-
-  /* Adjust other styles as needed */
+  .match-container2{
+    margin-right: 20px;
+  }
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 845px) {
   .card {
     max-width: 300px; /* or any preferred value */
   }
@@ -1547,7 +1542,7 @@ body {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 845px) {
   .league-dropdown {
     display: block;
     width: 25%;
@@ -1563,7 +1558,7 @@ body {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 845px) {
   .live-matches-container {
     width: 85%;
   }
@@ -1575,11 +1570,11 @@ body {
 }
 
 /* Styles for screens up to 375px */
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 845px) {
   .home-container {
-    max-width: 75%; /* Set max width for smaller screens */
-    margin: 0 auto; /* Center the content horizontally */
-    padding: 0 20px; /* Add padding to the sides if needed */
+    max-width: 75%;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 
   .top-container {
@@ -1590,10 +1585,22 @@ body {
   .search-container {
     max-width: 100%;
   }
+
+  .top-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .match-find-container,
+  .card2 {
+    flex: 1;
+    margin: 10px;
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+  }
 }
 
 /* Styles for screens up to 768px */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 845px) {
   .top-row {
     flex-direction: column;
     align-items: center;
