@@ -1523,14 +1523,28 @@ body {
     max-width: none; /* Remove the max-width restriction if any */
   }
 
-  .match-container2{
+  .match-container2 {
     margin-right: 20px;
   }
- 
-  .modal{
+
+  .modal {
     max-width: 65%;
   }
 
+  .league-filter-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .league-button,
+  .league-dropdown {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .match {
+    width: 100%;
+  }
 }
 
 @media screen and (min-width: 845px) {
@@ -1634,6 +1648,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center; /* Center the cards horizontally */
+  }
+
+  .live-matches-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto; /* Center the container horizontally */
   }
 
   .custom-dropdown {
