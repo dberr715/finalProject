@@ -334,7 +334,20 @@
   .button-56 {
     padding: 0 40px;
   }
+  .league-name1 {
+  font-weight: bold;
 }
+
+
+
+
+
+
+}
+@media (max-width: 844px){
+.username {
+    display: none;
+  }}
 
 /* ////LOGIN PAGE///// */
 
@@ -1508,11 +1521,12 @@ body {
 @media only screen and (max-width: 845px) {
   .match-container {
     flex-direction: column;
-    align-items: center; /* Center items horizontally */
+    align-items: center;
+    width: 100%; /* Center items horizontally */
   }
 
   .match-find-container {
-    width: 100%; /* Take full width */
+    width: 100px; /* Take full width */
     max-width: 100%; /* Set maximum width if needed */
     margin-bottom: 10px; /* Add some margin for spacing */
   }
@@ -1682,23 +1696,33 @@ body {
     margin: 0 auto;
   }
 
+  .match-find-container {
+    flex: 1 0 200px;
+  }
+
   .card1,
   .card3 {
-    width: 70%;
+    width: 100%;
+    min-width: 200px;
     margin: 10 auto;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center the card horizontally */
+    align-items: center;
+    flex: 1 0 200px; /* Center the card horizontally */
   }
 
   .soccer-scoring-card {
     width: 70%;
     box-sizing: border-box;
     padding: 10px; /* Add padding as needed */
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center; /* Center the content horizontally */
+  }
+
+  .back-button {
+    display: flex;
+    justify-content: start;
   }
 
   .teams-container {
@@ -1794,7 +1818,7 @@ body {
   .navbar-menu-list.show {
     display: flex; /* Show the menu list when the 'show' class is added */
   }
-    .teams-container {
+  .teams-container {
     flex-direction: column;
   }
 
@@ -1827,9 +1851,7 @@ body {
     display: none;
   }
 
- 
-
-    .score-column {
+  .score-column {
     display: flex;
     flex-direction: column;
     align-items: center;
