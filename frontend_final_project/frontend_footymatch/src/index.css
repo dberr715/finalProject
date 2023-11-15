@@ -342,11 +342,41 @@
   .username {
     display: none;
   }
+
+  .league-info {
+    /* Hide on small screens */
+    display: none;
+  }
   .company-logo {
     margin-left: 1px;
   }
+
+  .event-details {
+    /* Adjust width for smaller screens */
+    width: 100%;
+  }
+
+  .events-container {
+    /* Adjust width for smaller screens */
+    width: 100%;
+  }
 }
 
+@media (max-width: 844px) {
+  .card1 {
+    /* Adjust the width for smaller screens */
+    width: 50%;
+  }
+
+  .soccer-scoring-card {
+    min-width: 900px;
+  }
+
+  .card3 {
+    /* Adjust the width for smaller screens */
+    width: 50%;
+  }
+}
 /* ////LOGIN PAGE///// */
 
 .company-logo {
@@ -1710,7 +1740,8 @@ body {
   }
 
   .soccer-scoring-card {
-    width: 70%;
+    min-width: 900px;
+    /* width: 70%; */
     box-sizing: border-box;
     padding: 10px; /* Add padding as needed */
     display: flex;
