@@ -335,19 +335,17 @@
     padding: 0 40px;
   }
   .league-name1 {
-  font-weight: bold;
+    font-weight: bold;
+  }
 }
-
-
-
-
-
-
-}
-@media (max-width: 844px){
-.username {
+@media (max-width: 844px) {
+  .username {
     display: none;
-  }}
+  }
+  .company-logo {
+    margin-left: 1px;
+  }
+}
 
 /* ////LOGIN PAGE///// */
 
