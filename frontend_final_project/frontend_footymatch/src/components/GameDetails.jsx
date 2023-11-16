@@ -13,15 +13,11 @@ export default function GameDetails() {
   const [awayTeamName, setAwayTeamName] = useState(null);
   const [homeScore, setHomeScore] = useState(null);
   const [awayScore, setAwayScore] = useState(null);
-  //   const [leagueLogo, setLeagueLogo] = useState("");
-  //   const [leagueName, setLeagueName] = useState("");
   const { state } = useLocation();
-
   const { league, leagueLogo, homeTeam, awayTeam } = state;
   console.log("Hometeam:  ", homeTeam);
   console.log("Awayteam:  ", awayTeam);
 
-  //   const [totalScore, setTotalScore] = useState(null);
 
   const navigate = useNavigate();
 
@@ -44,16 +40,12 @@ export default function GameDetails() {
         if (response.ok) {
           const result = await response.json();
           const events = result.response;
-
-          // Assuming the response contains fixture details
           setFixtureDetails(result);
-
-          // Extract home and away team names from the state
           const { homeTeam, awayTeam } = state;
           const homeTeamName = homeTeam.homeTeam;
           const awayTeamName = awayTeam.awayTeam;
 
-          // Filter events for home and away teams
+         
           const homeEvents = events.filter(
             (event) => event.team.name === homeTeamName
           );
@@ -61,7 +53,6 @@ export default function GameDetails() {
             (event) => event.team.name === awayTeamName
           );
 
-          // Find home and away scores
           const homeScore = homeEvents.filter(
             (event) => event.type === "Goal"
           ).length;
@@ -69,15 +60,15 @@ export default function GameDetails() {
             (event) => event.type === "Goal"
           ).length;
 
-          // Set home and away team events
+        
           setHomeTeamEvents(homeEvents);
           setAwayTeamEvents(awayEvents);
 
-          // Set home and away team names
+         
           setHomeTeamName(homeTeamName);
           setAwayTeamName(awayTeamName);
 
-          // Set home and away team logos
+          
           const homeLogo =
             events.find((event) => event.team.name === homeTeamName)?.team
               .logo || homeTeam.homeLogo;
@@ -88,7 +79,7 @@ export default function GameDetails() {
           setHomeLogo(homeLogo);
           setAwayLogo(awayLogo);
 
-          // Set home and away scores
+         
           setHomeScore(homeScore);
           setAwayScore(awayScore);
         } else {

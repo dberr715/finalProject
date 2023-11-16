@@ -23,10 +23,7 @@ export default function ResponseModal({ rec, onClose }) {
   };
 
   const handleSearchClick = async () => {
-    // Capitalize the first letter of each word in the team input
     const teamCapitalized = capitalizeFirstLetter(team);
-
-    // API fetch logic
     const key = import.meta.env.VITE_FOOTBALL_API_KEY;
     const nameUrl = `https://api-football-v1.p.rapidapi.com/v3/teams?name=${teamCapitalized}`;
     const options = {
@@ -83,7 +80,6 @@ export default function ResponseModal({ rec, onClose }) {
             placeholder="Enter FootyMatch Team"
             required=""
           />
-          {/* <br /> */}
 
           <button
             className=" prev-next-button"

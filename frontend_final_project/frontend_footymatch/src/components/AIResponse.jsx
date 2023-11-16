@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Spinner from "./Spinner";
-import ResponseModal from "./ResponseModal";
 
 export default function AIResponse({ openModal }) {
   const key = import.meta.env.VITE_OPENAI_API_KEY;

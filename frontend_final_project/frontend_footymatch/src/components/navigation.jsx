@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { useNavigator } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 import "../index.css";
@@ -25,7 +24,6 @@ export default function Navigation({ isFavorite }) {
 
         if (response.ok) {
           const data = await response.json();
-          // console.log("Data: ", data);
           setFavorites(data);
         } else {
           console.error("Failed to fetch favorite teams.");
@@ -36,7 +34,6 @@ export default function Navigation({ isFavorite }) {
     }
   };
 
-  // Fetch favorite teams whenever isAuth changes
   useEffect(() => {
     fetchFavoriteTeams();
   }, [isAuth, isFavorite]);
@@ -87,7 +84,7 @@ export default function Navigation({ isFavorite }) {
         </div>
         <div className="logo-container">
           <img
-            src="../../newfootymatch.png" // replace with the actual path to your logo image
+            src="../../newfootymatch.png" 
             alt="Company Logo"
             className="company-logo"
           />

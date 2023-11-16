@@ -14,7 +14,7 @@ export default function Live() {
 
   const handleLeagueFilter = (league) => {
     setSelectedLeague(league);
-    setCurrentPage(1); // Reset page when changing the league
+    setCurrentPage(1);
   };
 
   const handleNextPage = () => {
@@ -22,7 +22,6 @@ export default function Live() {
     if (!isLastPage) {
       setCurrentPage((prevPage) => prevPage + 1);
       navigate(`/live?page=${currentPage + 1}&league=${selectedLeague || ""}`);
-      // Scroll to the top of the screen
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -31,7 +30,6 @@ export default function Live() {
     if (currentPage > 1) {
       setCurrentPage((prevPage) => prevPage - 1);
       navigate(`/live?page=${currentPage - 1}&league=${selectedLeague || ""}`);
-      // Scroll to the top of the screen
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -62,13 +60,11 @@ export default function Live() {
 
         setSortedFixtures(sortedFixtures);
 
-        // Update the leagues without applying pagination
         const uniqueLeagues = [
           ...new Set(sortedFixtures.map((fixture) => fixture.league.name)),
         ];
         setLeagues(uniqueLeagues);
 
-        // Apply pagination after fetching all fixtures
         const startIndex = (currentPage - 1) * pageSize;
         const endIndex = startIndex + pageSize;
         const fixturesToDisplay = sortedFixtures.slice(startIndex, endIndex);
@@ -140,7 +136,7 @@ export default function Live() {
             </select>
           )}
         </div>
-        
+
         {filteredFixtures.length === 0 && selectedLeague && (
           <div className="live-matches-container">{createNoGamesCard()}</div>
         )}
