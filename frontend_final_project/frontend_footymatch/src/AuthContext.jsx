@@ -5,11 +5,10 @@ const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [isAuth, setIsAuth] = useState(false);
-  const [username, setUsername] = useState(""); // Added username state
+  const [username, setUsername] = useState("");
   useEffect(() => {
     if (localStorage.getItem("access_token") !== null) {
       setIsAuth(true);
-      // Retrieve username from localStorage if it exists
       const storedUsername = localStorage.getItem("username");
       if (storedUsername) {
         setUsername(storedUsername);

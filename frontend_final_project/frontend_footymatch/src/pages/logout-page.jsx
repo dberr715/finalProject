@@ -22,23 +22,22 @@ export default function LogoutPage() {
       });
 
       if (response.status === 205) {
-        localStorage.clear(); // Clear user data and tokens
-        setIsAuth(false); // Update the authentication state
-        navigate(`/login`); // Redirect to the login page
+        localStorage.clear(); 
+        setIsAuth(false); 
+        navigate(`/login`); 
       } else {
         console.error("ERROR", response.status, response.statusText);
-        navigate(`/login`); // Redirect to the login page even if an error occurs
+        navigate(`/login`); 
       }
     } catch (error) {
       console.error("ERROR", error);
-      navigate(`/login`); // Redirect to the login page in case of an error
+      navigate(`/login`); 
     }
   };
 
   useEffect(() => {
-    performLogout(); // Execute the logout logic when the component mounts
+    performLogout(); 
   }, [navigate, setIsAuth]);
 
-  // You can also render a loading spinner or message here while the logout logic is in progress
   return <div>Logging out...</div>;
 }

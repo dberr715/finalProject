@@ -8,7 +8,7 @@ export default function LoginPage() {
   const { setIsAuth } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // Add error state
+  const [error, setError] = useState(""); 
 
   const handleChangeUsername = (e) => {
     setUsername(e.target.value);
