@@ -27,15 +27,6 @@ class FavoriteTeamDelete(generics.DestroyAPIView):
     queryset = Favorites.objects.all()
     serializer_class = FavoritesSerializer
 
-    # def delete(self, request, teamId):
-    #     try:
-    #         # Get the favorite record for the team and user
-    #         favorite = Favorites.objects.get(user=request.user, teamId=teamId)
-    #         favorite.delete()  # Remove the favorite
-    #         return Response(status=status.HTTP_204_NO_CONTENT)
-    #     except Favorites.DoesNotExist:
-    #         return Response(status=status.HTTP_404_NOT_FOUND)
-
 
 class FavoriteTeam(APIView):
     permission_classes = [IsAuthenticated]
@@ -44,9 +35,7 @@ class FavoriteTeam(APIView):
         try:
             serializer = FavoritesSerializer(data=request.data)
             if serializer.is_valid():
-                serializer.save(
-                    user=request.user
-                )  # Set the user to the currently authenticated user
+                serializer.save(user=request.user)
                 return Response(status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
@@ -55,10 +44,8 @@ class FavoriteTeam(APIView):
     def get(self, request):
         user = request.user
 
-        # Retrieve the favorite teams for the authenticated user
         favorite_teams = Favorites.objects.filter(user=user)
 
-        # Serialize the favorite teams data (using the FavoritesSerializer)
         favorite_teams_data = FavoritesSerializer(favorite_teams, many=True).data
 
         return Response(favorite_teams_data, status=status.HTTP_200_OK)

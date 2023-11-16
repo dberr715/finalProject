@@ -23,8 +23,6 @@ class FavoritesSerializer(serializers.ModelSerializer):
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
-
-        # Add your extra responses here
         data["user_id"] = self.user.id
         data["username"] = self.user.username
         data["groups"] = self.user.groups.values_list("name", flat=True)
