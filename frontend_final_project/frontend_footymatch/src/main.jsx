@@ -5,14 +5,13 @@ import ErrorPage from "./pages/error-page";
 import Root from "./routes/root";
 import Home from "./pages/home-page";
 import LoginPage from "./pages/login-page";
-// import LogoutPage, { logoutLoader } from "./pages/logout-page";
+
 import LogoutPage from "./pages/logout-page";
 import CreateAccount from "./pages/create-account-page";
 import "./index.css";
 import TeamPage from "./pages/team-page";
 import Live from "./components/Live";
 
-// import { PrivateRoute } from "./components/PrivateRoute";
 import HomePage from "./pages/home-page";
 import GameDetails from "./components/GameDetails";
 
@@ -50,13 +49,8 @@ const router = createBrowserRouter([
       },
       {
         path: "game/:id",
-        element: <GameDetails/>
+        element: <GameDetails />,
       },
-
-      // {
-      //   path: "home/*",
-      //   element: <PrivateRoute element={<HomePage />} />,
-      // },
     ],
   },
 ]);
