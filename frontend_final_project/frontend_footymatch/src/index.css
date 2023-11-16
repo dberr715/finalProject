@@ -699,26 +699,26 @@ input[type="text"] {
 }
 
 .match-content {
-  padding: 8px; /* Reduce padding for smaller screens */
+  padding: 8px; 
 }
 
 .team-name {
-  font-size: 14px; /* Adjust font size for team names */
+  font-size: 14px; 
 }
 
 .match-details {
-  font-size: 12px; /* Adjust font size for match details */
+  font-size: 12px; 
 }
 
 .pagination-buttons {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0; /* Adjust margin for smaller screens */
+  margin: 10px 0; 
 }
 
 .prev-next-button {
-  padding: 8px; /* Adjust padding for smaller screens */
-  font-size: 14px; /* Adjust font size for buttons */
+  padding: 8px; 
+  font-size: 14px; 
 }
 
 .tournament-info {
@@ -745,7 +745,6 @@ input[type="text"] {
 
 .match-actions {
   display: flex;
-  /* margin-left: auto; */
 }
 
 .btn-icon {
@@ -787,8 +786,8 @@ input[type="text"] {
   box-shadow: 0 4px 4px 0 black, 0 0 0 15px var(--color-bg-secondary);
 }
 .team-logo img {
-  max-width: 100%; /* Set maximum width to 100% */
-  height: auto; /* Maintain aspect ratio */
+  max-width: 100%; 
+  height: auto; 
 }
 
 #createbutton1 {
@@ -835,9 +834,7 @@ p {
   flex-direction: column;
   align-items: center;
 }
-/* p:not(:last-child) {
-  margin-bottom: 1.5em;
-} */
+
 
 body {
   font: 1em/1.618 Inter, sans-serif;
@@ -949,20 +946,18 @@ body {
   margin-top: 5px;
   width: 500px;
 }
-/* //////MODAL////// */
 
-/* Add these styles to your existing CSS or create a new CSS file */
 
 .card1 {
   width: 100%;
-  margin-top: 50px; /* Set the width of the container to 100% */
+  margin-top: 50px; 
 }
 
 .soccer-scoring-card {
   min-width: 900px;
-  width: 80%; /* Adjust the width as needed */
-  margin: auto; /* Center the container */
-  padding: 20px; /* Add padding for better spacing */
+  width: 80%; 
+  margin: auto; 
+  padding: 20px; 
 }
 
 .more-info-button {
@@ -1026,7 +1021,7 @@ body {
 }
 
 .home-container {
-  max-width: 800px; /* Adjust the max-width as needed */
+  max-width: 800px; 
   width: 100%;
 }
 
@@ -1036,93 +1031,87 @@ body {
 }
 
 .intro-container {
-  flex: 0.1; /* Takes up 2/3 of the space */
-  margin-right: 16px; /* Adjust the margin as needed */
+  flex: 0.1; 
+  margin-right: 16px; 
 }
 
 .card1 {
-  flex: 1; /* Takes up 1/3 of the space */
+  flex: 1; 
 }
 
-/* .match-container {
-  display: flex;
-} */
-
-/* Add the rest of your styling here */
 
 .league-name {
-  font-size: 1.5rem; /* Example font size for the league name */
-  margin-bottom: 10px; /* Add spacing below the league name */
+  font-size: 1.5rem; 
+  margin-bottom: 10px; 
 }
 
 .teams-container {
-  display: flex; /* Use flexbox for a horizontal layout */
+  display: flex; 
 }
 
 .team {
-  flex: 1; /* Each team takes equal width */
-  padding: 10px; /* Add padding for spacing */
+  flex: 1; 
+  padding: 10px; 
 }
 
 .team-name {
-  font-size: 1.2rem; /* Example font size for the team name */
-  margin-bottom: 8px; /* Add spacing below the team name */
+  font-size: 1.2rem; 
+  margin-bottom: 8px; 
 }
 
 .events-container {
-  flex: 1; /* Fill the available space on each side of the grey line */
-  padding: 0 10px; /* Add padding to events container */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  flex: 1; 
+  padding: 0 10px; 
+  box-sizing: border-box; 
   display: flex;
-  flex-direction: column; /* Align events in a column */
-  align-items: flex-start; /* Left-align events within the container */
+  flex-direction: column; 
+  align-items: flex-start; 
 }
 
 .vertical-line {
-  width: 2px; /* Set the width of the vertical line */
-  height: 100%; /* Make the line stretch to the full height of the container */
-  background-color: #ddd; /* Set the color of the line */
-  margin: 0 10px; /* Adjust margin for spacing around the line */
+  width: 2px; 
+  height: 100%; 
+  background-color: #ddd; 
+  margin: 0 10px; 
 }
 
 .events-header {
-  font-size: 1rem; /* Example font size for the events header */
+  font-size: 1rem; 
   text-decoration: none;
-  text-align: center; /* Add spacing below the header */
+  text-align: center; 
 }
 
 .small-icon {
-  width: 30px; /* Adjust the size as needed */
+  width: 30px; 
   height: 30px;
 }
 
 .team .events-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Left-align the content */
+  align-items: flex-start; 
 }
 
 .match-event {
-  display: flex; /* Use flexbox to align event details horizontally */
+  display: flex;
   margin-bottom: 10px;
 }
 
 .event-details {
   display: flex;
-  flex-direction: row; /* Display details in a row */
+  flex-direction: row; 
   align-items: center;
 }
 
 .event-time {
-  font-size: 0.9rem; /* Example smaller font size for event time */
-  /* Example bold style for event time */
+  font-size: 0.9rem;
+  
 }
 
 .event-type,
 .event-detail {
   font-size: 0.8rem;
-  /* Example smaller font size for other event details */
-  /* Additional styles for other event details if needed */
+  
 }
 
 .player-name {
@@ -1130,7 +1119,6 @@ body {
   font-size: 0.8rem;
 }
 
-/* Adjust the styles based on your design preferences */
 
 .modal {
   display: flex;
@@ -1138,7 +1126,7 @@ body {
   z-index: 1;
   top: 17.8%;
   bottom: 13%;
-  max-width: 786px; /* Set maximum width */
+  max-width: 786px; 
   max-height: 100%;
   border-radius: 30px;
   border: black 3px solid;
@@ -1172,7 +1160,7 @@ body {
     252,
     252,
     0.4
-  ); /* Semi-transparent background to cover the entire screen */
+  ); 
   justify-content: center;
   align-items: center;
 }
@@ -1217,7 +1205,7 @@ body {
 }
 
 .active {
-  /* background-color: #04aa6d; */
+
   color: white;
 }
 
@@ -1244,19 +1232,19 @@ body {
 .sticky-topnav {
   position: fixed;
   width: 100%;
-  background-color: #333; /* Example background color */
-  padding: 15px 0; /* Adjust padding to create space below the navigation bar */
+  background-color: #333; 
+  padding: 15px 0; 
   top: 0;
   z-index: 100;
 }
 
-/* Dropdown content style */
+
 .dropdown-content {
   display: none;
   min-width: -webkit-fill-available;
   text-align: left;
   position: absolute;
-  /* background-color: #f9f9f9; */
+  
   color: rgb(247, 242, 242);
   text-align: center;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -1340,7 +1328,6 @@ option {
 body {
   min-height: 100vh;
   width: 100%;
-  /* background: url("../public/pitch.jpg"); */
   color: #101212;
 }
 .container {
@@ -1394,7 +1381,6 @@ body {
 }
 .form a {
   font-size: 16px;
-  /* color: #009579; */
   text-decoration: none;
 }
 .form a:hover {
@@ -1420,7 +1406,6 @@ body {
   font-size: 18px;
   width: 100%;
   text-align: left;
-  /* border: 1px solid rgba(255, 255, 255, 0.25); */
   border-radius: 20px;
   background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
@@ -1506,7 +1491,6 @@ body {
   margin: 0 auto;
   width: 400px;
   height: auto;
-  /* border-radius: ; */
 }
 
 .tLogo {
@@ -1517,19 +1501,19 @@ body {
   .match-container {
     flex-direction: column;
     align-items: center;
-    width: 100%; /* Center items horizontally */
+    width: 100%; 
   }
 
   .match-find-container {
-    width: 100px; /* Take full width */
-    max-width: 100%; /* Set maximum width if needed */
-    margin-bottom: 10px; /* Add some margin for spacing */
+    width: 100px; 
+    max-width: 100%; 
+    margin-bottom: 10px; 
   }
 
   .card2 {
     width: 60%;
-    margin: 0 auto; /* Center the card horizontally */
-    max-width: none; /* Remove the max-width restriction if any */
+    margin: 0 auto; 
+    max-width: none; 
   }
 
   .match-container2 {
