@@ -10,7 +10,7 @@ export default function HomeText() {
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalRec, setModalRec] = useState("");
-
+  
   const setError = (message) => {
     setErrorMessage(message);
   };

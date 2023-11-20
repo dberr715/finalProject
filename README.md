@@ -16,7 +16,7 @@ Soccer is the world's most popular sport, but many people in America do not have
 
 ## User Stories
 
-1. As a non-soccer fan, I want to enter in one of my other favorite sports teams, so that I can receive a recommendation for a soccer team to start following.
+1. As a non-soccer fan, I want to enter in one of my other favorite sports teams, so that I can receive a recommendation for a soccer team to start following.   
 
 2. As an admin, I want the ability to manage users so that passwords can be recovered.
 
@@ -73,7 +73,7 @@ Soccer is the world's most popular sport, but many people in America do not have
 
 #### UI
 
-- Navigation Bar on top of every page with "Home", "Favorites" "Log-in/Create Account" Buttons
+- Navigation Bar on top of every page with "Home", "Favorites" "Log-in/Create Account", "Live Games" Buttons
   -Home Page 
     - 5-6 live scores of games that are currently occurring on top of home page 
     - Search area with 1 input to find new team 
