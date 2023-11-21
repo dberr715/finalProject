@@ -8,7 +8,7 @@ export default function LoginPage() {
   const { setIsAuth } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); 
+  const [error, setError] = useState("");
 
   const handleChangeUsername = (e) => {
     setUsername(e.target.value);
@@ -61,11 +61,7 @@ export default function LoginPage() {
   return (
     <div className="login-container">
       <div className="login-head">
-        <img
-          src="../../public/newfootymatch.png"
-          alt="FootyMatch"
-          className="footy"
-        />
+        <img src="../newfootymatch.png" alt="FootyMatch" className="footy" />
         <h3>Your Gateway to the World of Soccer.</h3>
         <p>
           For sports fans looking to explore soccer, we've got you covered. Find

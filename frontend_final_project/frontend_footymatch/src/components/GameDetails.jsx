@@ -145,28 +145,28 @@ export default function GameDetails() {
                         <div className="event-type-icon">
                           {event.detail === "Red Card" && (
                             <img
-                              src="../../public/redcard.png"
+                              src="../redcard.png"
                               alt="Red Card"
                               className="small-icon"
                             />
                           )}
                           {event.detail === "Yellow Card" && (
                             <img
-                              src="../../public/yellowcard.png"
+                              src="../yellowcard.png"
                               alt="Yellow Card"
                               className="small-icon"
                             />
                           )}
                           {event.detail.startsWith("Substitution") && (
                             <img
-                              src="../../public/substitution.png"
+                              src="../substitution.png"
                               alt={`Substitution ${event.detail.charAt(13)}`}
                               className="small-icon"
                             />
                           )}
                           {event.detail === "Normal Goal" && (
                             <img
-                              src="../../public/soccerballicon.png"
+                              src="../soccerballicon.png"
                               alt="Goal"
                               className="small-icon"
                             />
@@ -216,28 +216,28 @@ export default function GameDetails() {
                         <div className="event-type-icon">
                           {event.detail === "Red Card" && (
                             <img
-                              src="../../public/redcard.png"
+                              src="../redcard.png"
                               alt="Red Card"
                               className="small-icon"
                             />
                           )}
                           {event.detail === "Yellow Card" && (
                             <img
-                              src="../../public/yellowcard.png"
+                              src="../yellowcard.png"
                               alt="Yellow Card"
                               className="small-icon"
                             />
                           )}
                           {event.detail.startsWith("Substitution") && (
                             <img
-                              src="../../public/substitution.png"
+                              src="../substitution.png"
                               alt={`Substitution ${event.detail.charAt(13)}`}
                               className="small-icon"
                             />
                           )}
                           {event.detail === "Normal Goal" && (
                             <img
-                              src="../../public/soccerballicon.png"
+                              src="../soccerballicon.png"
                               alt="Goal"
                               className="small-icon"
                             />
