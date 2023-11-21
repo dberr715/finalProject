@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navigation from "./Navigation";
+import Navigation from "./PrimaryNavigation";
 import { useNavigate } from "react-router-dom";
 
 export default function Live() {

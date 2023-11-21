@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../AuthContext";
-import Navigation from "../components/Navigation";
+import Navigation from "../components/PrimaryNavigation";
 import FavoritesButton from "../components/FavoritesButton";
 import "../index.css";
 

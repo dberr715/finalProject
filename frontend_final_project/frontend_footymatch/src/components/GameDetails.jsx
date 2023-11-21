@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import Navigation from "./Navigation";
+import Navigation from "./PrimaryNavigation";
 
 export default function GameDetails() {
   const { id } = useParams();
