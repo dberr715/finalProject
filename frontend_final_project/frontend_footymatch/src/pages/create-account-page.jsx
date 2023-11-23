@@ -22,7 +22,7 @@ export default function CreateAccount() {
     }
 
     try {
-      const response = await fetch("http://footymatch1.onrender.com/register/", {
+      const response = await fetch("https://footymatch1.onrender.com/register/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

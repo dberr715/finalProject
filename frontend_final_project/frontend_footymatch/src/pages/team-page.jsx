@@ -85,7 +85,6 @@ export default function TeamPage() {
         "That is not a professional soccer team, please check your spelling and try again!"
       );
     }
-    
 
     fetchFavoriteTeams();
   }
@@ -203,7 +202,7 @@ export default function TeamPage() {
   }
 
   async function handleFavoriteTeam(isFav, favoriteId) {
-    const apiUrl = "http://footymatch1.onrender.com/favorite-teams/";
+    const apiUrl = "https://footymatch1.onrender.com/favorite-teams/";
     const token = localStorage.getItem("access_token");
     const user_id = localStorage.getItem("user_id");
 
@@ -262,7 +261,7 @@ export default function TeamPage() {
 
   const fetchFavoriteTeams = async () => {
     const access_token = localStorage.getItem("access_token");
-    const url = "http://footymatch1.onrender.com/favorite-teams/";
+    const url = "https://footymatch1.onrender.com/favorite-teams/";
 
     try {
       const response = await fetch(url, {
@@ -275,14 +274,14 @@ export default function TeamPage() {
 
       if (response.ok) {
         const favoriteTeams = await response.json();
-        return favoriteTeams; 
+        return favoriteTeams;
       } else {
         console.error("Failed to fetch favorite teams.");
-        return []; 
+        return [];
       }
     } catch (error) {
       console.error("Error:", error);
-      return []; 
+      return [];
     }
   };
 

@@ -26,7 +26,7 @@ export default function LoginPage() {
     };
 
     try {
-      const url = "http://footymatch1.onrender.com/token/";
+      const url = "https://footymatch1.onrender.com/token/";
       const data = await fetch(url, {
         method: "POST",
         headers: {
