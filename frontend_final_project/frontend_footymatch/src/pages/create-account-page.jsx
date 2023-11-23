@@ -22,13 +22,16 @@ export default function CreateAccount() {
     }
 
     try {
-      const response = await fetch("https://footymatch1.onrender.com/register/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://footymatch1.onrender.com/register/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.status === 201) {
         setShowSuccessAlert(true);
@@ -56,7 +59,6 @@ export default function CreateAccount() {
   const handleSuccessAlertClose = () => {
     setShowSuccessAlert(false);
   };
- 
 
   const handleErrorAlertClose = () => {
     setShowErrorAlert(false);
@@ -68,11 +70,7 @@ export default function CreateAccount() {
 
   return (
     <div className="registration form card1">
-      <img
-        src="../../public/newfootymatch.png"
-        alt="FootyMatch"
-        className="footy"
-      />
+      <img src="../newfootymatch.png" alt="FootyMatch" className="footy" />
       <header>Sign Up</header>
       <form className="create-account" onSubmit={handleSubmit}>
         <input
@@ -93,11 +91,7 @@ export default function CreateAccount() {
           name="confirm_password"
           onChange={handleChange}
         />
-        <input
-          type="submit"
-          className="prev-next-button "
-          value="Sign Up"
-        />
+        <input type="submit" className="prev-next-button " value="Sign Up" />
       </form>
       <div className="signup">
         <span className="signup">Already have an account?</span>
