@@ -1835,7 +1835,7 @@ body {
     max-width: 80%;
   }
 
-  .footy{
+  .footy {
     margin-bottom: 20px;
   }
   .login.form {
@@ -1843,5 +1843,26 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  .match-find-container,
+  .match-container2,
+  .match-container {
+    width: 100%;
+    display: flex;
+    margin-right: none;
+    justify-content: flex-start;
+  }
+
+  .match-container2 {
+    margin-left: 25px;
+  }
+
+  .searchbutton:after {
+    background-color: transparent;
+  }
+
+  .searchbars{
+    margin-bottom: 0px;
   }
 }
