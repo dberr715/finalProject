@@ -263,8 +263,8 @@ export default function TeamPage() {
 
   const fetchFavoriteTeams = async () => {
     const access_token = localStorage.getItem("access_token");
-    // const url = "https://footymatch1.onrender.com/favorite-teams/";
-    const url = "https://localhost/favorite-teams/";
+    const url = "https://footymatch1.onrender.com/favorite-teams/";
+    // const url = "https://localhost/favorite-teams/";
 
     try {
       const response = await fetch(url, {

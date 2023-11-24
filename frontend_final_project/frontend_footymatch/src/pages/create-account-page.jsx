@@ -23,8 +23,8 @@ export default function CreateAccount() {
 
     try {
       const response = await fetch(
-        // "https://footymatch1.onrender.com/register/",
-        "https://localhost/register/",
+        "https://footymatch1.onrender.com/register/",
+        // "https://localhost/register/",
         {
           method: "POST",
           headers: {

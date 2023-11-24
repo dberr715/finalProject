@@ -7,8 +7,8 @@ export default function LogoutPage() {
   const navigate = useNavigate();
 
   const performLogout = async () => {
-    // const url = "https://footymatch1.onrender.com/logout/";
-    const url = "https://localhost/logout/";
+    const url = "https://footymatch1.onrender.com/logout/";
+    // const url = "https://localhost/logout/";
 
     const refresh_token = localStorage.getItem("refresh_token");
     const access_token = localStorage.getItem("access_token");
