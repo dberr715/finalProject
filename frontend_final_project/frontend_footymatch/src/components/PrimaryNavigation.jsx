@@ -2,17 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 import "../index.css";
+
 export default function Navigation({ isFavorite }) {
   const { isAuth, username } = useAuth();
   const navigate = useNavigate();
   const [favorites, setFavorites] = useState([]);
-  const [isSmallScreen, setIsSmallScreen] = useState(false); // Move the useState here
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const fetchFavoriteTeams = async () => {
     if (isAuth) {
       const access_token = localStorage.getItem("access_token");
       const url = "https://footymatch1.onrender.com/favorite-teams/";
-      // const url = "https://localhost/favorite-teams/";
 
       try {
         const response = await fetch(url, {
@@ -39,6 +40,10 @@ export default function Navigation({ isFavorite }) {
     setIsSmallScreen(window.innerWidth <= 450);
   };
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -57,9 +62,15 @@ export default function Navigation({ isFavorite }) {
         <div className={!isSmallScreen ? "active" : "hidden-on-small-screen"}>
           <Link to="/home">Home</Link>
         </div>
-        <div className={!isSmallScreen ? "" : "hidden-on-small-screen"}>
-          <Link to="/live">Live Games</Link>
+        {/* Always render the logo */}
+        <div className="logo-container">
+          <img
+            src="../../newfootymatch.png"
+            alt="Company Logo"
+            className="company-logo"
+          />
         </div>
+
         <div className="dropdown">
           <button className="dropbtn">
             My Favorites
@@ -84,32 +95,25 @@ export default function Navigation({ isFavorite }) {
             )}
           </div>
         </div>
-        <div>
-          {isAuth ? (
-            <>
+
+
+        <div className={!isSmallScreen ? "" : "hidden-on-small-screen"}>
+          <Link to="/live">Live Games</Link>
+        </div>
+        {!isSmallScreen && (
+          <div>
+            {isAuth ? (
               <div>
-                <Link to="/logout">Logout</Link>
+                <Link to="/logout" className="logout-link">
+                  Logout
+                </Link>
               </div>
-            </>
-          ) : (
-            <Link to="/login">Login</Link>
-          )}
-        </div>
-        <div className="logo-container">
-          <img
-            src="../../newfootymatch.png"
-            alt="Company Logo"
-            className="company-logo"
-          />
-        </div>
-        <div className="username">{username}</div>
-        {isSmallScreen && (
-          <div className="hamburger-menu">
-            <button onClick={() => console.log("Toggle hamburger menu")}>
-              <i className="fa fa-bars"></i>
-            </button>
+            ) : (
+              <Link to="/login">Login</Link>
+              )}
           </div>
         )}
+        {isAuth && <div className="username">{username}</div>}
       </div>
     </div>
   );

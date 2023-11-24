@@ -202,8 +202,8 @@ export default function TeamPage() {
   }
 
   async function handleFavoriteTeam(isFav, favoriteId) {
-    // const apiUrl = "https://footymatch1.onrender.com/favorite-teams/";
-    const apiUrl = "https://localhost/favorite-teams/";
+    const apiUrl = "https://footymatch1.onrender.com/favorite-teams/";
+    // const apiUrl = "https://localhost/favorite-teams/";
 
     const token = localStorage.getItem("access_token");
     const user_id = localStorage.getItem("user_id");
