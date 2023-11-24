@@ -11,7 +11,8 @@ export default function Navigation({ isFavorite }) {
   const fetchFavoriteTeams = async () => {
     if (isAuth) {
       const access_token = localStorage.getItem("access_token");
-      const url = "https://footymatch1.onrender.com/favorite-teams/";
+      // const url = "https://footymatch1.onrender.com/favorite-teams/";
+      const url = "https://localhost/favorite-teams/";
 
       try {
         const response = await fetch(url, {

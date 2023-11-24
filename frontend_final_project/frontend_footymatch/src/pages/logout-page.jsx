@@ -7,7 +7,9 @@ export default function LogoutPage() {
   const navigate = useNavigate();
 
   const performLogout = async () => {
-    const url = "https://footymatch1.onrender.com/logout/";
+    // const url = "https://footymatch1.onrender.com/logout/";
+    const url = "https://localhost/logout/";
+
     const refresh_token = localStorage.getItem("refresh_token");
     const access_token = localStorage.getItem("access_token");
 
@@ -22,21 +24,21 @@ export default function LogoutPage() {
       });
 
       if (response.status === 205) {
-        localStorage.clear(); 
-        setIsAuth(false); 
-        navigate(`/login`); 
+        localStorage.clear();
+        setIsAuth(false);
+        navigate(`/login`);
       } else {
         console.error("ERROR", response.status, response.statusText);
-        navigate(`/login`); 
+        navigate(`/login`);
       }
     } catch (error) {
       console.error("ERROR", error);
-      navigate(`/login`); 
+      navigate(`/login`);
     }
   };
 
   useEffect(() => {
-    performLogout(); 
+    performLogout();
   }, [navigate, setIsAuth]);
 
   return <div>Logging out...</div>;
