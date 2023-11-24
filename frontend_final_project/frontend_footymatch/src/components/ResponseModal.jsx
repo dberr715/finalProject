@@ -20,6 +20,7 @@ export default function ResponseModal({ rec, onClose }) {
 
   const handleInputChange = (e) => {
     setTeam(e.target.value);
+    setError(null); // Clear error when the input changes
   };
 
   const handleSearchClick = async () => {
@@ -82,16 +83,17 @@ export default function ResponseModal({ rec, onClose }) {
           />
 
           <button
-            className=" prev-next-button"
+            className="prev-next-button"
             type="submit"
             id="blacktext"
             onClick={handleSearchClick}
           >
             Search and Learn!
           </button>
+
+          {error && <p className="error-message">{error}</p>}
         </div>
       </div>
-      {error && <p className="error-message">{error}</p>}
     </div>
   );
 }

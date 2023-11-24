@@ -17,6 +17,10 @@
   --color-theme-primary: #623ce6;
 }
 
+.hamburger-menu {
+  display: none;
+}
+
 .pagination-buttons {
   display: flex;
   justify-content: space-between;
@@ -1880,5 +1884,68 @@ body {
   .pagination-buttons {
     display: flex;
     flex-direction: column;
+  }
+
+  .teams-container {
+    max-width: 50%;
+  }
+  .event-time,
+  .event-type-icon,
+  .player-name,
+  .event-type {
+    margin: 10px;
+  }
+
+  .player-name {
+    width: 100%;
+  }
+
+  .events-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .event-time,
+  .player-name {
+    margin: 0;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+
+  .hamburger-menu button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .modal {
+    width: 100%;
+    max-width: 325px;
+    margin: 0;
+    overflow: hidden;
+  }
+  .modal-content {
+    width: 100%;
+  }
+
+  .modal-content p {
+    font-size: 16px;
+    overflow: hidden;
+  }
+  .modal-content h2 {
+    font-size: 20px;
+  }
+
+  .error-message {
+    font-size: 15px;
+  }
+
+  .form__group {
+    width: 100%;
+    font-size: 14px;
   }
 }

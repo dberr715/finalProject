@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 import "../index.css";
-
 export default function Navigation({ isFavorite }) {
   const { isAuth, username } = useAuth();
   const navigate = useNavigate();
   const [favorites, setFavorites] = useState([]);
+  const [isSmallScreen, setIsSmallScreen] = useState(false); // Move the useState here
 
   const fetchFavoriteTeams = async () => {
     if (isAuth) {
       const access_token = localStorage.getItem("access_token");
-      // const url = "https://footymatch1.onrender.com/favorite-teams/";
-      const url = "https://localhost/favorite-teams/";
+      const url = "https://footymatch1.onrender.com/favorite-teams/";
+      // const url = "https://localhost/favorite-teams/";
 
       try {
         const response = await fetch(url, {
@@ -35,6 +35,18 @@ export default function Navigation({ isFavorite }) {
     }
   };
 
+  const handleResize = () => {
+    setIsSmallScreen(window.innerWidth <= 450);
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   useEffect(() => {
     fetchFavoriteTeams();
   }, [isAuth, isFavorite]);
@@ -42,10 +54,10 @@ export default function Navigation({ isFavorite }) {
   return (
     <div className="sticky-topnav">
       <div className="topnav" id="myTopnav">
-        <div className="active">
+        <div className={!isSmallScreen ? "active" : "hidden-on-small-screen"}>
           <Link to="/home">Home</Link>
         </div>
-        <div>
+        <div className={!isSmallScreen ? "" : "hidden-on-small-screen"}>
           <Link to="/live">Live Games</Link>
         </div>
         <div className="dropdown">
@@ -85,12 +97,19 @@ export default function Navigation({ isFavorite }) {
         </div>
         <div className="logo-container">
           <img
-            src="../../newfootymatch.png" 
+            src="../../newfootymatch.png"
             alt="Company Logo"
             className="company-logo"
           />
         </div>
         <div className="username">{username}</div>
+        {isSmallScreen && (
+          <div className="hamburger-menu">
+            <button onClick={() => console.log("Toggle hamburger menu")}>
+              <i className="fa fa-bars"></i>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
