@@ -1862,7 +1862,23 @@ body {
     background-color: transparent;
   }
 
-  .searchbars{
+  .searchbars {
     margin-bottom: 0px;
+  }
+
+  .match-content {
+    max-width: 100%;
+  }
+  .live-matches-container {
+    max-width: 55%;
+  }
+
+  .team-logo {
+    max-height: 60px;
+    max-width: 60px;
+  }
+  .pagination-buttons {
+    display: flex;
+    flex-direction: column;
   }
 }
